@@ -10,7 +10,7 @@ import static primitives.Util.isZero;
  * @author Dan Zilberstein
  */
 public class Double3 {
-
+   /** first number */
    final double                d1;
    /** Second number */
    final double                d2;
