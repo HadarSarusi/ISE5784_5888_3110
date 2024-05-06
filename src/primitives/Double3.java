@@ -10,11 +10,12 @@ import static primitives.Util.isZero;
  * @author Dan Zilberstein
  */
 public class Double3 {
-   /** First number */
+
    final double                d1;
    /** Second number */
    final double                d2;
-   /** Third number */
+
+
    final double                d3;
 
    /** Zero triad (0,0,0) */
