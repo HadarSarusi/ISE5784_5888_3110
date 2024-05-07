@@ -33,10 +33,7 @@ public class Vector extends Point{
 
      public Vector add(Vector vector)
      {
-         Vector v=new Vector(this.xyz.add(vector.xyz) );
-         if(v.xyz.equals(ZERO))
-             throw new IllegalArgumentException("vector can't be zero");
-        return v;
+         return new Vector(this.xyz.add(vector.xyz) );
      }
 
      public Vector scale(double scale)
