@@ -3,7 +3,7 @@ package primitives;
 public class Point {
 
     protected final Double3 xyz;
-    public static final Double3 ZERO = new Double3(0, 0, 0);
+    public static final Point ZERO = new Point(0, 0, 0);
 
     public Point(double x, double y, double z)
     {
@@ -14,20 +14,21 @@ public class Point {
     { //c-tor
         this.xyz = xyz;
     }
-    @Override
-    public boolean equals(Object obj)
-    {
-       if (this == obj) return true;
-       return (obj instanceof Point )
 
-               && xyz.equals(point.xyz); //delegation
-    }
-//    public boolean equals(Object obj) {
-//        if (this == obj) return true;
-//        if ((obj instanceof Point)) return false; // Check if obj is an instance of Point
-//        Point point = (Point) obj; // Cast obj to Point
-//        return xyz.equals(point.xyz); // Compare the xyz fields of both points
+
+//    public boolean equals(Object obj)
+//    {
+//       if (this == obj) return true;
+//       return obj instanceof Point other  && xyz.equals(other.xyz);
 //    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof Point)) return false;
+        Point other = (Point)obj;
+        return this.xyz.equals(other.xyz);
+    }
+
 
     @Override
    public String toString()
@@ -35,17 +36,14 @@ public class Point {
        return ""+xyz;
     }
 
-    public Point add(Point point)
+    public Point add(Vector vector)
     {
-        return new Point(this.xyz.add(point.xyz));
+        return new Point(xyz.add(vector.xyz));
     }
 
     public Vector subtract(Point point)
     {
-        point = new Point(this.xyz.subtract(point.xyz));
-        if(point.xyz.equals(ZERO))
-            throw new IllegalArgumentException("vector can't be zero");
-        return new Vector(point.xyz);
+        return new Vector(xyz.subtract(point.xyz));
     }
     public Point product(Point point)
     {
@@ -53,9 +51,18 @@ public class Point {
     }
     public double distanceSquared(Point point)
     {
-        Point sumResult=this.subtract(point);
-        sumResult=sumResult.product(sumResult);
-        return sumResult.xyz.d1+sumResult.xyz.d2+sumResult.xyz.d3;
+
+//        Point sumResult=this.subtract(point);
+//        sumResult=sumResult.product(sumResult);
+//        return sumResult.xyz.d1+sumResult.xyz.d2+sumResult.xyz.d3;
+        double distanceX = (this.xyz.d1 - point.xyz.d1);
+        double distanceY = (this.xyz.d2 - point.xyz.d2);
+        double distanceZ = (this.xyz.d3 - point.xyz.d3);
+
+        double distance = distanceX * distanceX + distanceY * distanceY + distanceZ * distanceZ;
+        return distance;
+
+
     }
     public double distance(Point point)
     {
