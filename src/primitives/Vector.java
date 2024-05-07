@@ -21,6 +21,7 @@ public class Vector extends Point{
 //    {
 //          return super.equals(obj);
 //    }
+
     @Override
     public boolean equals(Object obj)
     {

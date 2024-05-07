@@ -16,6 +16,7 @@ public final class Util {
     * NB: exponent is stored "normalized" (i.e. always positive by adding 1023)<br>
     * @param  num the original number
     * @return     the exponent value */
+
    private static int getExp(double num) {
       // 1. doubleToRawLongBits: "convert" the stored number to set of bits
       // 2. Shift all 52 bits to the right (removing mantissa)

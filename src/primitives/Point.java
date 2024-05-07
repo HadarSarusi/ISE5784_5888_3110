@@ -9,6 +9,7 @@ public class Point {
     {
         xyz = new Double3(x,y,z);
     }
+
     Point(Double3 xyz)
     { //c-tor
         this.xyz = xyz;
