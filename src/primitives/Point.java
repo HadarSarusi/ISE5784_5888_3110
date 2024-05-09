@@ -9,6 +9,7 @@ public class Point {
     /** Zero point (0,0,0) */
     public static final Point ZERO1 = new Point(0, 0, 0);
 
+
     /**
      * Point c-tor receiving 3 double values:
      *
