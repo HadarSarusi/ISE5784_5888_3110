@@ -96,7 +96,6 @@ public class Vector extends Point{
      {
          return this.dotProduct(this);
      }
-
     /**
      * length method calculate the length of vector
      *
@@ -112,7 +111,7 @@ public class Vector extends Point{
      * @return Vector value
      */
      public Vector normalize()
-     {
+     {//לשאול את דן
       return  new Vector( this.xyz.reduce(length())) ;
      }
 
