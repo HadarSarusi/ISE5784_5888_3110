@@ -3,6 +3,7 @@ import primitives.*;
 
 /**
  * RadialGeometry- abstract class for representing geometries with a radius
+ * @author Lea & Hadar
  */
 public abstract class RadialGeometry implements Geometry {
     protected final double radius;

@@ -1,12 +1,10 @@
 /**
-  lea haim 214085888--> leahaim36@gmail.com
-  && hadar surusi 213383110--> hadarsarusi21@gmail.com
+  Lea Haim 214085888--> leahaim36@gmail.com
+  && Hadar Surusi 213383110--> hadarsarusi21@gmail.com
  */
 package test;
 
 import static java.lang.System.out;
-
-import static primitives.Point.ZERO1;
 import static primitives.Util.isZero;
 import primitives.*;
 
@@ -55,7 +53,7 @@ public final class Main {
       // Add vector to point
       if (!(p1.add(v1).equals(p2)))
          out.println("ERROR: (point + vector) = other point does not work correctly");
-      if (!(p1.add(v1Opposite).equals(Point.ZERO1)))
+      if (!(p1.add(v1Opposite).equals(Point.ZERO)))
          out.println("ERROR: (point + vector) = center of coordinates does not work correctly");
 
       // distances

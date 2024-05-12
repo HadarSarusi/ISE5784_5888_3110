@@ -3,6 +3,7 @@ package primitives;
 import static primitives.Double3.ZERO;
 /**
  * Vector class representing a vector.
+ * @author Lea & Hadar
  */
 public class Vector extends Point{
 
@@ -16,7 +17,7 @@ public class Vector extends Point{
     public Vector(double x, double y, double z)
     {
         super(x,y,z);
-        if(xyz.equals(ZERO))
+        if(xyz.equals( Double3.ZERO))
             throw new IllegalArgumentException("vector can't be zero");
     }
     /**
@@ -27,7 +28,7 @@ public class Vector extends Point{
     public Vector(Double3 xyz) //c-tor
     {
         super(xyz);
-        if(xyz.equals(ZERO))
+        if(xyz.equals( Double3.ZERO))
             throw new IllegalArgumentException("vector can't be zero");
     }
 
@@ -63,7 +64,7 @@ public class Vector extends Point{
      */
      public Vector scale(double scale)
      {
-         return this.scale(scale);
+         return new Vector(this.xyz.scale(scale));
      }
     /**
      * dotProduct return sum of multiple between the coordinates of the two vectors
@@ -112,7 +113,7 @@ public class Vector extends Point{
      */
      public Vector normalize()
      {//לשאול את דן
-      return  new Vector( this.xyz.reduce(length())) ;
+      return  new Vector(this.xyz.reduce(length())) ;
      }
 
 }

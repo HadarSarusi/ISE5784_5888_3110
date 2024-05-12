@@ -2,12 +2,13 @@ package primitives;
 
 /**
  * class Point representing a point in 3 domination.
+ * @author Lea & Hadar
  */
 public class Point {
     /** The field of the coordinate values*/
     protected final Double3 xyz;
     /** Zero point (0,0,0) */
-    public static final Point ZERO1 = new Point(0, 0, 0);
+    public static final Point ZERO = new Point(0, 0, 0);
 
 
     /**
@@ -26,7 +27,7 @@ public class Point {
      *
      * @param xyz Double3 value
      */
-    Point(Double3 xyz)
+    public Point(Double3 xyz)
     { //c-tor
         this.xyz = xyz;
     }
@@ -34,10 +35,10 @@ public class Point {
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (!(obj instanceof Point)) return false;
-        Point other = (Point)obj;
-        return this.xyz.equals(other.xyz);
+        return (obj instanceof Point point) &&
+                this.xyz.equals(point.xyz);
     }
+
 
     @Override
    public String toString()
@@ -66,17 +67,7 @@ public class Point {
     {
         return new Vector(xyz.subtract(point.xyz));
     }
-    /**
-     * product method return a point that is a product of the
-     * 'this' point and the point received as a parameter
-     *
-     * @param point Point value
-     * @return Point value
-     */
-    public Point product(Point point)
-    {
-        return new Point(this.xyz.product(point.xyz));
-    }
+
     /**
      * distanceSquared method return the distance between 2 points-> power 2.
      *
@@ -85,11 +76,8 @@ public class Point {
      */
     public double distanceSquared(Point point)
     {
-        double distanceX = (this.xyz.d1 - point.xyz.d1);
-        double distanceY = (this.xyz.d2 - point.xyz.d2);
-        double distanceZ = (this.xyz.d3 - point.xyz.d3);
-        double distance = distanceX * distanceX + distanceY * distanceY + distanceZ * distanceZ;
-        return distance;
+        Double3 distance = this.xyz.subtract(point.xyz);
+        return (distance.d1*distance.d1 + distance.d2*distance.d2 + distance.d3*distance.d3);
     }
     /**
      * distance method return the distance between 2 points.

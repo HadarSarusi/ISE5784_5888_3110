@@ -1,6 +1,7 @@
 package primitives;
 /**
  * Ray class representing a ray.
+ * @author Lea & Hadar
  */
 public class Ray {
 
@@ -17,7 +18,6 @@ public class Ray {
     {
         this.head = head;
         this.direction=direction.normalize();
-
     }
 
 }

@@ -3,6 +3,7 @@ import primitives.*;
 
 /**
  * Geometry interface is the base level of all the geometries'
+ * @author Lea & Hadar
  */
 public interface Geometry {
     /**
