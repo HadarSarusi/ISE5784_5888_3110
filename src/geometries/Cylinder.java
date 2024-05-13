@@ -5,22 +5,25 @@ import primitives.*;
 /**
  * Cylinder class representing a three-dimensional cylinder in 3D Cartesian coordinate
  * system
+ * @author lea &amp; hadar
  */
 public class Cylinder extends Tube {
 
     private final double height;
+
     /**
      * cylinder c-tor receiving a height, ray and a radius.
      *
-     * @param height  double value
-     * @param axis Ray value
+     * @param height double value
+     * @param axis   Ray value
      * @param radius double value
      */
-    Cylinder(double height, Ray axis, double radius)
-    {
+    Cylinder(double height, Ray axis, double radius) {
         super(axis, radius);
         this.height = height;
     }
 
-    public Vector getNormal(Point point){return null;}
+    public Vector getNormal(Point point) {
+        return null;
+    }
 }

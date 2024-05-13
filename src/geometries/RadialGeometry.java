@@ -1,19 +1,21 @@
 package geometries;
+
 import primitives.*;
 
 /**
  * RadialGeometry- abstract class for representing geometries with a radius
- * @author Lea & Hadar
+ *
+ * @author Lea &amp; Hadar
  */
 public abstract class RadialGeometry implements Geometry {
     protected final double radius;
+
     /**
      * RadialGeometry c-tor receiving double value
      *
-     * @param radius  double value
+     * @param radius double value
      */
-    RadialGeometry(double radius)
-    {
+    RadialGeometry(double radius) {
         this.radius = radius;
     }
 
