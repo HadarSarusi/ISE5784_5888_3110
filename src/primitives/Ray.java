@@ -30,4 +30,12 @@ public class Ray {
     public String toString() {
         return "->" + super.toString();
     }
+
+    public Point getHead(){
+        return head;
+    }
+
+    public Vector getDirection(){
+        return direction;
+    }
 }

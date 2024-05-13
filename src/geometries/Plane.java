@@ -20,9 +20,8 @@ public class Plane implements Geometry {
      * @param point3 Point value
      */
     Plane(Point point1, Point point2, Point point3) {
-
         this.point = point1;
-        this.normal = null;
+        this.normal = (point2.subtract(point1)).crossProduct(point3.subtract(point1)).normalize() ;
     }
 
     /**
@@ -37,6 +36,7 @@ public class Plane implements Geometry {
     }
 
     public Vector getNormal(Point point) {
+
         return normal;
     }
     public Vector getNormal() {
