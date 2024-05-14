@@ -6,7 +6,7 @@ import primitives.Point;
 import primitives.Vector;
 
 /**
- * Testing Triangle
+ * Testing Triangle class
  *
  * @author Lea &amp; Hadar
  */

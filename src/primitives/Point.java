@@ -1,40 +1,41 @@
 package primitives;
 
 /**
- * class Point representing a point in 3 domination.
+ * The `Point` class represents a point in 3D space.
  *
  * @author Lea &amp; Hadar
  */
 public class Point {
     /**
-     * The field of the coordinate values
+     * The field representing the coordinates of the point.
      */
     protected final Double3 xyz;
+
     /**
-     * Zero point (0,0,0)
+     * Represents the zero point (0,0,0).
      */
     public static final Point ZERO = new Point(0, 0, 0);
 
-
     /**
-     * Point c-tor receiving 3 double values:
+     * Constructs a `Point` object with the specified coordinates.
      *
-     * @param x double value
-     * @param y double value
-     * @param z double value
+     * @param x The x-coordinate.
+     * @param y The y-coordinate.
+     * @param z The z-coordinate.
      */
     public Point(double x, double y, double z) {
         xyz = new Double3(x, y, z);
     }
 
     /**
-     * Point c-tor receiving Double3 value:
+     * Constructs a `Point` object with the specified `Double3` object.
      *
-     * @param xyz Double3 value
+     * @param xyz The `Double3` object representing the coordinates.
      */
-    public Point(Double3 xyz) { //c-tor
+    public Point(Double3 xyz) {
         this.xyz = xyz;
     }
+
 
     @Override
     public boolean equals(Object obj) {
@@ -43,39 +44,39 @@ public class Point {
                 this.xyz.equals(point.xyz);
     }
 
-
     @Override
     public String toString() {
         return "" + xyz;
     }
 
     /**
-     * add method return new Poind witch his coordinates is the sum of the
-     * receiving vector's coordinates and 'this' point's coordinates.
+     * Returns a new `Point` whose coordinates are the sum of the
+     * coordinates of this point and the specified vector.
      *
-     * @param vector Vector value
-     * @return Point value
+     * @param vector The vector to add.
+     * @return A new `Point` representing the result of the addition.
      */
     public Point add(Vector vector) {
         return new Point(xyz.add(vector.xyz));
     }
 
     /**
-     * subtract method return new Vector witch his coordinates is the substract of the
-     * receiving point's coordinates from 'this' point's coordinates.
+     * Returns a new `Vector` whose coordinates are the result of
+     * subtracting the coordinates of the specified point from
+     * the coordinates of this point.
      *
-     * @param point Point value
-     * @return Vector value
+     * @param point The point to subtract.
+     * @return A new `Vector` representing the result of the subtraction.
      */
     public Vector subtract(Point point) {
         return new Vector(xyz.subtract(point.xyz));
     }
 
     /**
-     * distanceSquared method return the distance between 2 points-> power 2.
+     * Returns the square of the distance between this point and the specified point.
      *
-     * @param point Point value
-     * @return double value
+     * @param point The point to calculate the distance to.
+     * @return The square of the distance between the points.
      */
     public double distanceSquared(Point point) {
         double dx = this.xyz.d1 - point.xyz.d1;
@@ -85,13 +86,13 @@ public class Point {
     }
 
     /**
-     * distance method return the distance between 2 points.
+     * Returns the distance between this point and the specified point.
      *
-     * @param point Point value
-     * @return double value
+     * @param point The point to calculate the distance to.
+     * @return The distance between the points.
      */
     public double distance(Point point) {
         return Math.sqrt(this.distanceSquared(point));
     }
-
 }
+

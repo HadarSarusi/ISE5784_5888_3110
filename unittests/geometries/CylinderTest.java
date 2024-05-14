@@ -8,7 +8,7 @@ import primitives.Point;
 import primitives.Vector;
 
 /**
- * Testing Cylinder
+ * Testing Cylinder class
  *
  * @author Lea &amp; Hadar
  */

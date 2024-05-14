@@ -1,19 +1,18 @@
 package geometries;
-
 import primitives.Point;
 
 /**
- * Triangle class representing a two-dimensional Triangle in 3D Cartesian coordinate
- * system
+ * This class extends the `Polygon` class and represents a triangle with three vertices.
+ *
  * @author Lea &amp; Hadar
  */
 public class Triangle extends Polygon {
     /**
-     * Triangle c-tor receiving 3 Point values.
+     * Constructs a triangle with the specified vertices.
      *
-     * @param point1 Point value
-     * @param point2 Point value
-     * @param point3 Point value
+     * @param point1 The first vertex of the triangle.
+     * @param point2 The second vertex of the triangle.
+     * @param point3 The third vertex of the triangle.
      */
     Triangle(Point point1, Point point2, Point point3) {
         super(point1, point2, point3);

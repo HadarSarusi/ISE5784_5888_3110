@@ -4,17 +4,19 @@ import static primitives.Double3.ZERO;
 
 /**
  * Vector class representing a vector.
+ * This class extends the Point class and represents a vector in 3D space.
  *
  * @author Lea &amp; Hadar
  */
 public class Vector extends Point {
 
     /**
-     * Vector c-tor receiving 3 double values
+     * Constructs a vector with the specified coordinates.
      *
-     * @param x double value
-     * @param y double value
-     * @param z double value
+     * @param x The x-coordinate of the vector.
+     * @param y The y-coordinate of the vector.
+     * @param z The z-coordinate of the vector.
+     * @throws IllegalArgumentException if the vector is zero.
      */
     public Vector(double x, double y, double z) {
         super(x, y, z);
@@ -23,16 +25,17 @@ public class Vector extends Point {
     }
 
     /**
-     * Vector c-tor receiving Double3 value.
+     * Constructs a vector with the specified `Double3` object.
      *
-     * @param xyz Point value
+     * @param xyz The `Double3` object representing the coordinates of the vector.
+     * @throws IllegalArgumentException if the vector is zero.
      */
-    public Vector(Double3 xyz) //c-tor
-    {
+    public Vector(Double3 xyz) {
         super(xyz);
         if (xyz.equals(Double3.ZERO))
             throw new IllegalArgumentException("vector can't be zero");
     }
+
 
     @Override
     public boolean equals(Object obj) {
@@ -46,42 +49,40 @@ public class Vector extends Point {
     }
 
     /**
-     * add method return vector witch is the sum of two vectors
+     * Returns the sum of this vector and the specified vector.
      *
-     * @param vector Vector value
-     * @return Vector value
+     * @param vector The vector to add.
+     * @return A new vector representing the result of the addition.
      */
     public Vector add(Vector vector) {
-
         return new Vector(this.xyz.add(vector.xyz));
     }
 
     /**
-     * scale method return multiple vector by a receiving scalar
+     * Scales this vector by the specified scalar.
      *
-     * @param scale double value
-     * @return Vector value
+     * @param scale The scalar value.
+     * @return A new vector representing the result of the scaling.
      */
     public Vector scale(double scale) {
         return new Vector(this.xyz.scale(scale));
     }
 
     /**
-     * dotProduct return sum of multiple between the coordinates of the two vectors
-     * *
+     * Calculates the dot product of this vector and the specified vector.
      *
-     * @param vector Vector value
-     * @return double value
+     * @param vector The vector to calculate the dot product with.
+     * @return The dot product of the vectors.
      */
     public double dotProduct(Vector vector) {
         return (this.xyz.d1 * vector.xyz.d1) + (this.xyz.d2 * vector.xyz.d2) + (this.xyz.d3 * vector.xyz.d3);
     }
 
     /**
-     * crossProduct method calculate cartesian product and return the new Vector
+     * Calculates the cross product of this vector and the specified vector.
      *
-     * @param vector Vector value
-     * @return Vector value
+     * @param vector The vector to calculate the cross product with.
+     * @return A new vector representing the result of the cross product.
      */
     public Vector crossProduct(Vector vector) {
         return new Vector((this.xyz.d2 * vector.xyz.d3) - (this.xyz.d3 * vector.xyz.d2),
@@ -90,30 +91,29 @@ public class Vector extends Point {
     }
 
     /**
-     * lengthSquared method calculate the length of vector ->power 2
+     * Calculates the square of the length of this vector.
      *
-     * @return double value
+     * @return The square of the length of the vector.
      */
     public double lengthSquared() {
         return this.dotProduct(this);
     }
 
     /**
-     * length method calculate the length of vector
+     * Calculates the length of this vector.
      *
-     * @return double value
+     * @return The length of the vector.
      */
     public double length() {
         return Math.sqrt(lengthSquared());
     }
 
     /**
-     * normalize method normalize the vector
+     * Normalizes this vector.
      *
-     * @return Vector value
+     * @return A new vector representing the normalized vector.
      */
-    public Vector normalize() {//לשאול את דן
+    public Vector normalize() {
         return new Vector(this.xyz.reduce(length()));
     }
-
 }
