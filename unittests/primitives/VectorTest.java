@@ -17,17 +17,20 @@ class VectorTest {
      */
     public static final Double3 ZERO = new Double3(0, 0, 0);
 
-    /**
-     * Sample vectors for testing.
-     */
+    /*** Sample vectors for testing*/
     private static final Vector v1 = new Vector(1, 2, 3);
+    /*** Sample vectors for testing*/
     private static final Vector v2 = new Vector(-1, -2, -3);
+    /*** Sample vectors for testing*/
     private static final Vector v3 = new Vector(2, 4, 6);
+    /*** Sample vectors for testing*/
     private static final Vector v4 = new Vector(0, 0, 1);
+    /*** Sample vectors for testing*/
     private static final Vector v5 = new Vector(1, 0, 0);
+    /*** Sample vectors for testing*/
     private static final Vector v7 = new Vector(0, 3, -2);
+    /*** Sample vectors for testing*/
     private static final Vector v8 = new Vector(3, -1, 1);
-    private static final Vector v6 = v1.normalize();
 
     /**
      * Test method for {@link primitives.Vector#Vector(double, double, double)}.
@@ -35,15 +38,17 @@ class VectorTest {
      */
     @Test
     public void testConstructor() {
+        // ============ Equivalence Partitions Tests ==============
+        // TC01: Constructing a non-zero vector should succeed
+        assertDoesNotThrow(() -> new Vector(1, 2, 3), "Failed constructing a correct vector");
+
         // =============== Boundary Values Tests ==================
         // TC11: Constructing a vector equal to zero should throw an exception
         assertThrows(IllegalArgumentException.class, () -> new Vector(0, 0, 0), "vector can't be zero");
         // TC12: Constructing a vector equal to zero should throw an exception
         assertThrows(IllegalArgumentException.class, () -> new Vector(ZERO), "vector can't be zero");
 
-        // ============ Equivalence Partitions Tests ==============
-        // TC01: Constructing a non-zero vector should succeed
-        assertDoesNotThrow(() -> new Vector(1, 2, 3), "Failed constructing a correct vector");
+
     }
 
     /**
@@ -143,9 +148,9 @@ class VectorTest {
 
         // ============ Boundary Value Analysis (BVA) ==============
         // TC11: The normalized vector should be parallel to the original one
-        assertThrows(Exception.class, () -> v1.crossProduct(v6), "The normalized vector is not parallel to the original one");
+        assertThrows(Exception.class, () -> v1.crossProduct(v1.normalize()), "The normalized vector is not parallel to the original one");
 
         // TC12: The dot product between the original vector and its normalized version should be non-negative
-        assertTrue(v1.dotProduct(v6) >= 0, "The normalized vector is opposite to the original one");
+        assertTrue(v1.dotProduct(v1.normalize()) >= 0, "The normalized vector is opposite to the original one");
     }
 }
