@@ -1,6 +1,9 @@
 package geometries;
 import primitives.*;
 
+
+import static primitives.Util.alignZero;
+
 /**
  * Cylinder class representing a three-dimensional cylinder in 3D Cartesian coordinate system.
  *
@@ -32,7 +35,27 @@ public class Cylinder extends Tube {
      * @return The normal vector to the cylinder at the given point.
      */
     public Vector getNormal(Point point) {
-        return null;
+
+        if (super.axis.getHead().equals(point)){
+            return super.axis.getDirection().normalize();
+        }
+        //Calculate the vector from the point P0 to the point we got
+        Vector v = point.subtract(axis.getHead());//There may be an exception here that the vector is zero
+        //We will do a scalar multiplication between the vector of the line and the vector we got.
+        // And because the vector of the line is normalized, the result will be the projection of
+        // our vector on the line
+        double d = alignZero(v.dotProduct(axis.getDirection()));
+        if (d <= 0) {
+            return super.axis.getDirection().normalize();//.scale(-1)
+        }
+
+        if (alignZero(height - d) > 0) {
+            return super.getNormal(point);
+        }
+        if (d >= height) {
+            return super.axis.getDirection().normalize();
+        }
+        return null;//impossible case
     }
 }
 

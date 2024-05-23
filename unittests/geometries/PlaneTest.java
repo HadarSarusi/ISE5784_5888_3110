@@ -21,7 +21,7 @@ class PlaneTest {
      */
     @Test
     public void testConstructor(){
-        // ============ Boun,dary Value Analysis (BVA) ==============
+        // ============ Boundary Value Analysis (BVA) ==============
         //TC11: if the points on the same line expect to exception
         assertThrows(IllegalArgumentException.class,()->
                 new Plane(new Point(1,2,3), new Point(2,4,6), new Point(4,8,12)),"the points on the same straight line");

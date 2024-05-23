@@ -10,7 +10,7 @@ import primitives.Vector;
 /**
  * Unit tests for the geometries.Sphere class.
  * This class contains test methods to verify the functionality of the Sphere class.
-
+ * <p>
  * Author: Lea &amp; Hadar
  */
 class SphereTest {

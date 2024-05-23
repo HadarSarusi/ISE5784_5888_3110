@@ -17,17 +17,22 @@ class VectorTest {
      */
     public static final Double3 ZERO = new Double3(0, 0, 0);
 
-    /**
-     * Sample vectors for testing.
-     */
+    /** * Sample vectors for testing.*/
     private static final Vector v1 = new Vector(1, 2, 3);
+    /** * Sample vectors for testing.*/
     private static final Vector v2 = new Vector(-1, -2, -3);
+    /** * Sample vectors for testing.*/
     private static final Vector v3 = new Vector(2, 4, 6);
+    /** * Sample vectors for testing.*/
     private static final Vector v4 = new Vector(0, 0, 1);
+    /** * Sample vectors for testing.*/
     private static final Vector v5 = new Vector(1, 0, 0);
+    /** * Sample vectors for testing.*/
     private static final Vector v7 = new Vector(0, 3, -2);
+    /** * Sample vectors for testing.*/
     private static final Vector v8 = new Vector(3, -1, 1);
-   // private static final Vector v6 = v1.normalize();
+
+
 
     /**
      * Test method for {@link primitives.Vector#Vector(double, double, double)}.
