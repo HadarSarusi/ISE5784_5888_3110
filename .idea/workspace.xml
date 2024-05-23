@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="21087c2b-fa54-4989-b039-4ac151d13dc5" name="Changes" comment="Stage2">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stage1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ISE5784_5888_3110.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Double3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Double3.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" show_ignored="true" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="JUnit5 Test Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="lea haim &lt;leahaim36@gmail.com&gt;" />
+      </list>
+    </option>
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {}
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/HadarSarusi/ISE5784_5888_3110.git&quot;,
+    &quot;accountId&quot;: &quot;7e14a5fe-fbb9-4604-b0eb-69a38372d4c6&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2g2NRVCcJsFh5dcGbDQp3zdvNqp" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="false" id="Update" />
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JUnit.PlaneTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlaneTest.getNormal.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SphereTest.getNormal.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TubeTest.getNormal.executor&quot;: &quot;Run&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Hadar Sarusi/Desktop/Study/mini-project to software engineering/Stage1&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/Hadar Sarusi/Desktop/מיני פרויקט מבוא להנדסת תכנה/Stage1/src/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.github.copilot.settings.ApplicationConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="geometries" />
+      <recent name="primitives" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.TubeTest.getNormal">
+    <configuration name="PlaneTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5784_5888_3110" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="geometries.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="geometries" />
+      <option name="MAIN_CLASS_NAME" value="geometries.PlaneTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PlaneTest.getNormal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5784_5888_3110" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="geometries.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="geometries" />
+      <option name="MAIN_CLASS_NAME" value="geometries.PlaneTest" />
+      <option name="METHOD_NAME" value="getNormal" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SphereTest.getNormal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5784_5888_3110" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="geometries.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="geometries" />
+      <option name="MAIN_CLASS_NAME" value="geometries.SphereTest" />
+      <option name="METHOD_NAME" value="getNormal" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TubeTest.getNormal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5784_5888_3110" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="geometries.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="geometries" />
+      <option name="MAIN_CLASS_NAME" value="geometries.TubeTest" />
+      <option name="METHOD_NAME" value="getNormal" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.TubeTest.getNormal" />
+        <item itemvalue="JUnit.SphereTest.getNormal" />
+        <item itemvalue="JUnit.PlaneTest" />
+        <item itemvalue="JUnit.PlaneTest.getNormal" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="21087c2b-fa54-4989-b039-4ac151d13dc5" name="Changes" comment="" />
+      <created>1714891712127</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1714891712127</updated>
+      <workItem from="1714891713274" duration="1223000" />
+      <workItem from="1714996371297" duration="3976000" />
+      <workItem from="1715013143875" duration="9344000" />
+      <workItem from="1715093426470" duration="3461000" />
+      <workItem from="1715154197782" duration="3249000" />
+      <workItem from="1715197176574" duration="12045000" />
+      <workItem from="1715500489384" duration="23327000" />
+      <workItem from="1715583584787" duration="10569000" />
+      <workItem from="1715683374881" duration="932000" />
+      <workItem from="1715684714507" duration="4562000" />
+      <workItem from="1715693982460" duration="7619000" />
+      <workItem from="1715711555783" duration="616000" />
+      <workItem from="1715776692498" duration="599000" />
+      <workItem from="1716097185168" duration="6559000" />
+      <workItem from="1716453144493" duration="2406000" />
+    </task>
+    <task id="LOCAL‎-00001" summary="upload">
+      <option name="closed" value="true" />
+      <created>1714892493755</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL‎-00001" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1714892493755</updated>
+    </task>
+    <task id="LOCAL‎-00002" summary="update">
+      <option name="closed" value="true" />
+      <created>1715013172317</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL‎-00002" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1715013172317</updated>
+    </task>
+    <task id="LOCAL‎-00003" summary="update">
+      <option name="closed" value="true" />
+      <created>1715013174802</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL‎-00003" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1715013174802</updated>
+    </task>
+    <task id="LOCAL‎-00004" summary="update1.1">
+      <option name="closed" value="true" />
+      <created>1715024075713</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL‎-00004" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1715024075713</updated>
+    </task>
+    <task id="LOCAL‎-00005" summary="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;src/geometries/Plane.java&#10;#&#9;src/geometries/Polygon.java&#10;#&#9;src/geometries/RadialGeometry.java&#10;#&#9;src/geometries/Sphere.java&#10;#&#9;src/geometries/Triangle.java&#10;#&#9;src/primitives/Point.java&#10;#&#9;src/primitives/Vector.java">
+      <option name="closed" value="true" />
+      <created>1715094182936</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL‎-00005" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1715094182936</updated>
+    </task>
+    <task id="LOCAL‎-00006" summary="Stage1 finish">
+      <option name="closed" value="true" />
+      <created>1715114768020</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL‎-00006" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1715114768020</updated>
+    </task>
+    <task id="LOCAL‎-00007" summary="Stage1 finish">
+      <option name="closed" value="true" />
+      <created>1715156122613</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL‎-00007" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1715156122613</updated>
+    </task>
+    <task id="LOCAL‎-00008" summary="Stage 2.1">
+      <option name="closed" value="true" />
+      <created>1715268774451</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL‎-00008" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1715268774451</updated>
+    </task>
+    <task id="LOCAL‎-00009" summary="Stage 1 refactoring">
+      <option name="closed" value="true" />
+      <created>1715506249334</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL‎-00009" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1715506249334</updated>
+    </task>
+    <task id="LOCAL‎-00010" summary="Stage 2.1 PointTest">
+      <option name="closed" value="true" />
+      <created>1715509389845</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL‎-00010" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1715509389845</updated>
+    </task>
+    <task id="LOCAL‎-00011" summary="Stage2 implement getNormal">
+      <option name="closed" value="true" />
+      <created>1715611926281</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL‎-00011" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1715611926281</updated>
+    </task>
+    <task id="LOCAL‎-00012" summary="Stage2 with documentation">
+      <option name="closed" value="true" />
+      <created>1715703216680</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL‎-00012" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1715703216684</updated>
+    </task>
+    <task id="LOCAL‎-00013" summary="Stage2">
+      <option name="closed" value="true" />
+      <created>1716453711331</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL‎-00013" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1716453711331</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="upload" />
+    <MESSAGE value="update" />
+    <MESSAGE value="update1.1" />
+    <MESSAGE value="update1.2" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;src/geometries/Plane.java&#10;#&#9;src/geometries/Polygon.java&#10;#&#9;src/geometries/RadialGeometry.java&#10;#&#9;src/geometries/Sphere.java&#10;#&#9;src/geometries/Triangle.java&#10;#&#9;src/primitives/Point.java&#10;#&#9;src/primitives/Vector.java" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/master'" />
+    <MESSAGE value="Stage1 finish" />
+    <MESSAGE value="Stage 2.1" />
+    <MESSAGE value="Stage 1 refactoring" />
+    <MESSAGE value="Stage 2.1 PointTest" />
+    <MESSAGE value="Stage2 implement getNormal" />
+    <MESSAGE value="Stage2 with documentation" />
+    <MESSAGE value="Stage2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Stage2" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
