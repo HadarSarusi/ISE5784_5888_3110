@@ -17,20 +17,17 @@ class VectorTest {
      */
     public static final Double3 ZERO = new Double3(0, 0, 0);
 
-    /*** Sample vectors for testing*/
+    /**
+     * Sample vectors for testing.
+     */
     private static final Vector v1 = new Vector(1, 2, 3);
-    /*** Sample vectors for testing*/
     private static final Vector v2 = new Vector(-1, -2, -3);
-    /*** Sample vectors for testing*/
     private static final Vector v3 = new Vector(2, 4, 6);
-    /*** Sample vectors for testing*/
     private static final Vector v4 = new Vector(0, 0, 1);
-    /*** Sample vectors for testing*/
     private static final Vector v5 = new Vector(1, 0, 0);
-    /*** Sample vectors for testing*/
     private static final Vector v7 = new Vector(0, 3, -2);
-    /*** Sample vectors for testing*/
     private static final Vector v8 = new Vector(3, -1, 1);
+   // private static final Vector v6 = v1.normalize();
 
     /**
      * Test method for {@link primitives.Vector#Vector(double, double, double)}.
@@ -47,8 +44,6 @@ class VectorTest {
         assertThrows(IllegalArgumentException.class, () -> new Vector(0, 0, 0), "vector can't be zero");
         // TC12: Constructing a vector equal to zero should throw an exception
         assertThrows(IllegalArgumentException.class, () -> new Vector(ZERO), "vector can't be zero");
-
-
     }
 
     /**
@@ -72,13 +67,13 @@ class VectorTest {
      */
     @Test
     void scale() {
-        // ============ Boundary Value Analysis (BVA) ==============
-        // TC11: Multiplying a vector by zero scalar should throw an exception
-        assertThrows(IllegalArgumentException.class, () -> v1.scale(0), "vector can't be zero");
-
         // ============ Equivalence Partitions Tests ==============
         // TC01: Multiplying a vector by a scalar should produce the correct result
         assertEquals(v3, v1.scale(2), "scale vector failed");
+
+        // ============ Boundary Value Analysis (BVA) ==============
+        // TC11: Multiplying a vector by zero scalar should throw an exception
+        assertThrows(IllegalArgumentException.class, () -> v1.scale(0), "vector can't be zero");
     }
 
     /**
