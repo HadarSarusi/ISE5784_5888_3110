@@ -37,4 +37,8 @@ class TubeTest {
         Tube tube = new Tube(new Ray(new Point(0, 0, 0), new Vector(1, 0, 0)), 1);
 
     }
+    @Test
+    void findIntsersections() {
+
+    }
 }

@@ -3,6 +3,8 @@ package geometries;
 import primitives.*;
 
 
+import java.util.List;
+
 import static primitives.Util.alignZero;
 
 /**
@@ -58,5 +60,6 @@ public class Cylinder extends Tube {
         }
         return null;//impossible case
     }
+    public List<Point> findIntsersections(Ray ray){return null;}
 }
 

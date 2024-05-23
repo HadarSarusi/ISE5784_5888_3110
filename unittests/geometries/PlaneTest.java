@@ -60,4 +60,8 @@ class PlaneTest {
         assertEquals(0,result.dotProduct(p2.subtract(p3)), "Plane's normal is not orthogonal to one of the edges");
         assertEquals(result.dotProduct(p3.subtract(p1)), "Plane's normal is not orthogonal to one of the edges");
     }
+    @Test
+    void findIntsersections() {
+
+    }
 }
