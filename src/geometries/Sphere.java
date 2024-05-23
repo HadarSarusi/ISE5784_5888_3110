@@ -1,9 +1,11 @@
 package geometries;
+
 import primitives.Point;
 import primitives.Vector;
 
 /**
  * This class extends the `RadialGeometry` class and represents a sphere with a given center and radius.
+ *
  * @author Lea &amp; Hadar
  */
 public class Sphere extends RadialGeometry {

@@ -11,7 +11,7 @@ import primitives.Vector;
 /**
  * Unit tests for the geometries.Plane class.
  * This class contains test methods to verify the functionality of the Plane class.
-
+ * <p>
  * Author: Lea &amp; Hadar
  */
 class PlaneTest {
@@ -20,15 +20,15 @@ class PlaneTest {
      * Test method for {@link geometries.Plane#Plane(Point, Point, Point)}.
      */
     @Test
-    public void testConstructor(){
+    public void testConstructor() {
         // ============ Boundary Value Analysis (BVA) ==============
         //TC11: if the points on the same line expect to exception
-        assertThrows(IllegalArgumentException.class,()->
-                new Plane(new Point(1,2,3), new Point(2,4,6), new Point(4,8,12)),"the points on the same straight line");
+        assertThrows(IllegalArgumentException.class, () ->
+                new Plane(new Point(1, 2, 3), new Point(2, 4, 6), new Point(4, 8, 12)), "the points on the same straight line");
 
         //TC12: the first and the second points converge
-        assertThrows(IllegalArgumentException.class,()->
-                new Plane(new Point(1,2,3), new Point(1,2,3), new Point(4,5,6)),"2 points converge");
+        assertThrows(IllegalArgumentException.class, () ->
+                new Plane(new Point(1, 2, 3), new Point(1, 2, 3), new Point(4, 5, 6)), "2 points converge");
     }
 
     /**

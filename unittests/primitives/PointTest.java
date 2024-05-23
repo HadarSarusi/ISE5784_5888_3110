@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Unit tests for the primitives.Point class.
  * This class contains test methods to verify the functionality of the Point class.
- *
+ * <p>
  * Author: Lea &amp; Hadar
  */
 class PointTest {
@@ -16,11 +16,6 @@ class PointTest {
      * Constant representing the point (1, 1, 1).
      */
     public static final Point ONE = new Point(1, 1, 1);
-
-    /**
-     * Constant representing the origin point (0, 0, 0).
-     */
-    public static final Point ZERO = new Point(0, 0, 0);
 
     /**
      * A sample point.
@@ -39,7 +34,7 @@ class PointTest {
 
         // ============ Boundary Value Analysis (BVA) ==============
         // TC11: test if adding a vector to the origin point produces the correct result
-        assertEquals(ZERO, ONE.add(new Vector(-1, -1, -1)));
+        assertEquals(Point.ZERO, ONE.add(new Vector(-1, -1, -1)));
     }
 
     /**

@@ -1,4 +1,5 @@
 package geometries;
+
 import primitives.*;
 
 
@@ -36,7 +37,7 @@ public class Cylinder extends Tube {
      */
     public Vector getNormal(Point point) {
 
-        if (super.axis.getHead().equals(point)){
+        if (super.axis.getHead().equals(point)) {
             return super.axis.getDirection().normalize();
         }
         //Calculate the vector from the point P0 to the point we got

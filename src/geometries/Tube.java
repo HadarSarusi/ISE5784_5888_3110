@@ -1,5 +1,8 @@
 package geometries;
+
 import primitives.*;
+
+import static primitives.Util.isZero;
 
 /**
  * Tube class representing a three-dimensional tube in 3D Cartesian coordinate system.
@@ -17,7 +20,7 @@ public class Tube extends RadialGeometry {
     /**
      * Constructs a tube with the specified axis and radius.
      *
-     * @param axis The axis of the tube.
+     * @param axis   The axis of the tube.
      * @param radius The radius of the tube.
      */
     Tube(Ray axis, double radius) {
@@ -33,10 +36,12 @@ public class Tube extends RadialGeometry {
      * @throws IllegalArgumentException if the given point is on the axis of the tube.
      */
     public Vector getNormal(Point point) {
-        double t = axis.getDirection().dotProduct(point.subtract(axis.getHead()));
-        if(t == 0 )
-            throw new IllegalArgumentException("vector can't be zero");
-        return point.subtract(axis.getHead().add(axis.getDirection().scale(t))).normalize();
+        Point p0 = axis.getHead();
+        Vector v = axis.getDirection();
+        double t = v.dotProduct(point.subtract(p0));
+        // calculate a point on the axis that is located against the point
+        Point o = isZero(t) ? p0 : p0.add(v.scale(t));
+        return point.subtract(o).normalize();
     }
 
 }

@@ -8,30 +8,43 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 /**
  * Unit tests for the primitives.Vector class.
  * This class contains test methods to verify the functionality of the Vector class.
- *
+ * <p>
  * Author: Lea &amp; Hadar
  */
 class VectorTest {
     /**
-     * Constant representing the zero vector.
+     * Accuracy of test results for numbers
      */
-    public static final Double3 ZERO = new Double3(0, 0, 0);
+    public static final double DELTA = 0.0001;
 
-    /** * Sample vectors for testing.*/
+    /**
+     * Sample vectors for testing.
+     */
     private static final Vector v1 = new Vector(1, 2, 3);
-    /** * Sample vectors for testing.*/
+    /**
+     * Sample vectors for testing.
+     */
     private static final Vector v2 = new Vector(-1, -2, -3);
-    /** * Sample vectors for testing.*/
+    /**
+     * Sample vectors for testing.
+     */
     private static final Vector v3 = new Vector(2, 4, 6);
-    /** * Sample vectors for testing.*/
+    /**
+     * Sample vectors for testing.
+     */
     private static final Vector v4 = new Vector(0, 0, 1);
-    /** * Sample vectors for testing.*/
+    /**
+     * Sample vectors for testing.
+     */
     private static final Vector v5 = new Vector(1, 0, 0);
-    /** * Sample vectors for testing.*/
+    /**
+     * Sample vectors for testing.
+     */
     private static final Vector v7 = new Vector(0, 3, -2);
-    /** * Sample vectors for testing.*/
+    /**
+     * Sample vectors for testing.
+     */
     private static final Vector v8 = new Vector(3, -1, 1);
-
 
 
     /**
@@ -48,7 +61,7 @@ class VectorTest {
         // TC11: Constructing a vector equal to zero should throw an exception
         assertThrows(IllegalArgumentException.class, () -> new Vector(0, 0, 0), "vector can't be zero");
         // TC12: Constructing a vector equal to zero should throw an exception
-        assertThrows(IllegalArgumentException.class, () -> new Vector(ZERO), "vector can't be zero");
+        assertThrows(IllegalArgumentException.class, () -> new Vector(Double3.ZERO), "vector can't be zero");
     }
 
     /**
@@ -104,7 +117,8 @@ class VectorTest {
     void crossProduct() {
         // ============ Equivalence Partitions Tests ==============
         // TC01: Calculating the cross product of two vectors should produce the correct result
-        assertTrue(Util.isZero(v1.crossProduct(v7).length() - v1.length() * v7.length()), "CrossProduct returned wrong result length");
+        assertEquals(v1.length() * v7.length(), v1.crossProduct(v7).length(), DELTA, //
+                "CrossProduct returned wrong result length");
 
         // ============ Boundary Value Analysis (BVA) ==============
         // TC11: Cross product result should be orthogonal to its operands
