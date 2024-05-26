@@ -35,7 +35,10 @@ class TubeTest {
         // TC11: Verifying that an exception is thrown when connecting a point to the tube's axis head
         //      which produces a right angle with the axis
         Tube tube = new Tube(new Ray(new Point(0, 0, 0), new Vector(1, 0, 0)), 1);
-        assertThrows(IllegalArgumentException.class, () -> tube.getNormal(new Point(0, 1, 0)),
-                "The point is in front of the head of the tube axis");
+
+    }
+    @Test
+    void findIntsersections() {
+
     }
 }

@@ -56,8 +56,12 @@ class PlaneTest {
         assertEquals(1, result.length(), 0.00000001, "Plane's normal is not a unit vector");
 
         // Ensure that the normal vector is orthogonal to all the edges of the plane
-        assertTrue(isZero(result.dotProduct(p1.subtract(p2))), "Plane's normal is not orthogonal to one of the edges");
-        assertTrue(isZero(result.dotProduct(p2.subtract(p3))), "Plane's normal is not orthogonal to one of the edges");
-        assertTrue(isZero(result.dotProduct(p3.subtract(p1))), "Plane's normal is not orthogonal to one of the edges");
+        assertEquals(0,result.dotProduct(p1.subtract(p2)), "Plane's normal is not orthogonal to one of the edges");
+        assertEquals(0,result.dotProduct(p2.subtract(p3)), "Plane's normal is not orthogonal to one of the edges");
+        assertEquals(result.dotProduct(p3.subtract(p1)), "Plane's normal is not orthogonal to one of the edges");
+    }
+    @Test
+    void findIntsersections() {
+
     }
 }
