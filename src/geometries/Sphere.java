@@ -42,31 +42,30 @@ public class Sphere extends RadialGeometry {
     public List<Point> findIntersections(Ray ray) {
         Point p0 = ray.getHead();
         Vector v = ray.getDirection();
-        Vector u=this.center.subtract(p0);
-        double tm=v.dotProduct(u);
-        double d=Math.sqrt((u.lengthSquared())-(Math.pow(tm,2)));
-        double th=Math.sqrt((Math.pow(this.radius,2))-(Math.pow(d,2)));
-        if(d >= radius){
+        if(this.center.equals(p0)){
+            return List.of(p0.add(v.scale(this.radius)));
+        }
+        Vector u = this.center.subtract(p0);
+        double tm = v.dotProduct(u);
+        double d = Math.sqrt((u.lengthSquared()) - (Math.pow(tm, 2)));
+        double th = Math.sqrt((Math.pow(this.radius, 2)) - (Math.pow(d, 2)));
+
+        if (d >= radius) {
             return null;//no intersection
         }
         double t1 = tm - th;
         double t2 = tm + th;
-        if(t1 < 0){
-            return List.of(p0.add(v.scale(t2)));
+        if (t1 > 0 && t2 > 0) {
+            return List.of(p0.add(v.scale(t1)), p0.add(v.scale(t2)));
         }
-        if(t2 < 0){
+
+        if (t1 > 0) {
             return List.of(p0.add(v.scale(t1)));
         }
-        Point p1 = p0.add(v.scale(t1));
-        Point p2 = p0.add(v.scale(t2));
-        double d1 = p0.distance(p1);
-        double d2 = p0.distance(p2);
-        if(d1 > d2){
-           return List.of(p2,p1);
+        if (t2 > 0) {
+            return List.of(p0.add(v.scale(t2)));
         }
-        else{
-            return List.of(p1,p2);
-        }
+        return null;
     }
 }
 

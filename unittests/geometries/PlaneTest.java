@@ -6,7 +6,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import static primitives.Util.isZero;
 
 import primitives.Point;
+import primitives.Ray;
 import primitives.Vector;
+
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * Unit tests for the geometries.Plane class.
@@ -62,6 +66,50 @@ class PlaneTest {
     }
     @Test
     void findIntsersections() {
+        Plane plane = new Plane(new Point(0,0,1), new Point(0,2,0), new Point(1,0,0));
+        final Point p0_20 = new Point(0, -2, 0);
+
+        // ============ Equivalence Partitions Tests ==============
+        // TC01: The ray is neither perpendicular nor parallel to the plane and trace the plane
+        final var result = plane.findIntersections(new Ray(p0_20, new Vector(1,4,-1)))
+                .stream().sorted(Comparator.comparingDouble(p -> p.distance(p0_20))).toList();
+        assertEquals(1, result.size(), "Wrong number of points");
+        assertEquals(List.of(new Point(1,2,-1)), result, "Ray crosses plane");
+
+        // TC02: The ray is neither perpendicular nor parallel to the plane and not trace the plane
+        assertNull(plane.findIntersections(new Ray(new Point(0,5,0),new Vector(6,-5,0))));
+
+        // =============== Boundary Values Tests ==================
+
+        //The ray is parallel to the plane
+        //TC11: ray start inside, 0 hits
+        assertNull(plane.findIntersections(new Ray(new Point(0.67,-2.16,1.41), new Vector(-1.8,-0.65,2.08))));
+        //TC12: ray start outside, 0 hits
+        assertNull(plane.findIntersections(new Ray(new Point(5,0,0), new Vector(-0.64,-0.2,0.74))));
+
+        //The ray is perpendicular to the plane
+        Point p_200 = new Point(-2,0,0);
+        // TC13: Ray start outside  the plane and goes inside the plane (1 point)
+        final var result1 = plane.findIntersections(new Ray(p_200, new Vector(2,1,2)))
+                .stream().sorted(Comparator.comparingDouble(p -> p.distance(p_200))).toList();
+        assertEquals(1, result1.size(), "Wrong number of points");
+        assertEquals(List.of(new Point(-0.6666666666666667, 0.6666666666666666, 1.3333333333333333)), result1, "Ray crosses plane");
+
+        // TC14: Ray start outside  the plane (0 point)
+        assertNull(plane.findIntersections(new Ray(p_200, new Vector(-1.53,-0.77,-1.53))));
+
+        // TC15: Ray start inside the plane (0 point)
+        assertNull(plane.findIntersections(new Ray(new Point(0,0,1), new Vector(1,0.5,2))));
+
+        // **** Group: Ray is neither orthogonal nor parallel to
+        //TC15: Ray begins at the plane
+        assertNull(plane.findIntersections(new Ray(new Point(2,4,1), new Vector(2,3,5))),
+                "Ray is neither orthogonal nor parallel to ray and begin at the plane");
+
+        //TC16: Ray begins in the same point which appears as reference point in the plane
+        assertNull(plane.findIntersections(new Ray(new Point(1,0,1), new Vector(2,3,5))),
+                "Ray is neither orthogonal nor parallel to ray and begins in the same point " +
+                        "which appears as reference point in the plane");
 
     }
 }
