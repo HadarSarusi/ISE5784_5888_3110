@@ -5,6 +5,7 @@ import primitives.Ray;
 import primitives.Vector;
 
 import java.util.List;
+import static primitives.Util.alignZero;
 
 /**
  * This class extends the `Polygon` class and represents a triangle with three vertices.
@@ -31,5 +32,24 @@ public class Triangle extends Polygon {
     public Vector getNormal(Point point) {
         return super.getNormal(point);
     }
-    public List<Point> findIntersections(Ray ray){return null;}
+
+    public List<Point> findIntersections(Ray ray){
+        if(this.plane.findIntersections(ray) == null){
+            return null;
+        }
+        Point p0 = ray.getHead();
+        Vector v = ray.getDirection();
+        Vector v1 = this.vertices.get(0).subtract(p0);
+        Vector v2 =this.vertices.get(1).subtract(p0);
+        Vector v3 =this.vertices.get(2).subtract(p0);
+        Vector n1 = v1.crossProduct(v2).normalize();
+        Vector n2 = v2.crossProduct(v3).normalize();
+        Vector n3 = v3.crossProduct(v1).normalize();
+        if ((alignZero(v.dotProduct(n1)) > 0 && alignZero(v.dotProduct(n2)) > 0 && alignZero(v.dotProduct(n3)) > 0) ||
+                (alignZero(v.dotProduct(n1)) < 0 && alignZero(v.dotProduct(n2)) < 0 && alignZero(v.dotProduct(n3)) < 0)){
+
+            return  plane.findIntersections(ray);
+        }
+        return null;
+    }
 }

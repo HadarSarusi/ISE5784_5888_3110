@@ -66,13 +66,14 @@ public class Plane implements Geometry {
     public Vector getNormal() {
         return normal;
     }
+
     public List<Point> findIntersections(Ray ray){
         Point p0 = ray.getHead();
         Vector n =this.normal;
         Vector v =ray.getDirection();
         double nv = n.dotProduct(v);
         if (isZero(nv))
-            throw new IllegalArgumentException("nv cant be zero");
+            return null;
         double nQMinusP0=  n.dotProduct(this.point.subtract(p0));
         double t = alignZero(nQMinusP0 / nv);
         if (t > 0) {

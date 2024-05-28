@@ -99,7 +99,7 @@ class PlaneTest {
         assertNull(plane.findIntersections(new Ray(p_200, new Vector(-1.53,-0.77,-1.53))));
 
         // TC15: Ray start inside the plane (0 point)
-        assertNull(plane.findIntersections(new Ray(new Point(0,0,1), new Vector(1,0.5,2))));
+        assertNull(plane.findIntersections(new Ray(new Point(-10,-10,16), new Vector(1,0.5,2))));
 
         // **** Group: Ray is neither orthogonal nor parallel to
         //TC15: Ray begins at the plane
