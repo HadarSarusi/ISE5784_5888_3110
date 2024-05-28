@@ -29,8 +29,7 @@ public class Geometries implements Intersectable {
                result.addAll(geometry.findIntersections(ray));
            }
         }
-        if(result.size()==0)
-        {
+        if(result.size()==0) {
             return null;
         }
         return result;

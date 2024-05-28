@@ -47,7 +47,6 @@ public class Triangle extends Polygon {
         Vector n3 = v3.crossProduct(v1).normalize();
         if ((alignZero(v.dotProduct(n1)) > 0 && alignZero(v.dotProduct(n2)) > 0 && alignZero(v.dotProduct(n3)) > 0) ||
                 (alignZero(v.dotProduct(n1)) < 0 && alignZero(v.dotProduct(n2)) < 0 && alignZero(v.dotProduct(n3)) < 0)){
-
             return  plane.findIntersections(ray);
         }
         return null;
