@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="21087c2b-fa54-4989-b039-4ac151d13dc5" name="Changes" comment="stage3 sphera EP test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Sphere.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Sphere.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unittests/geometries/PlaneTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/geometries/PlaneTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unittests/geometries/SphereTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/geometries/SphereTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Plane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Plane.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,9 +64,10 @@
     "Downloaded.Files.Path.Enabled": "false",
     "JUnit.All in ISE5784_5888_3110.executor": "Run",
     "JUnit.PlaneTest.executor": "Run",
+    "JUnit.PlaneTest.findIntsersections.executor": "Run",
     "JUnit.PlaneTest.getNormal.executor": "Run",
     "JUnit.SphereTest.getNormal.executor": "Run",
-    "JUnit.SphereTest.testFindIntersections.executor": "Run",
+    "JUnit.SphereTest.testFindIntersections.executor": "Debug",
     "JUnit.TriangleTest.testGetNormal.executor": "Run",
     "JUnit.TubeTest.getNormal.executor": "Debug",
     "JUnit.VectorTest.crossProduct.executor": "Run",
@@ -111,11 +110,19 @@
       <recent name="primitives" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SphereTest.testFindIntersections">
-    <configuration name="All in ISE5784_5888_3110" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.PlaneTest.findIntsersections">
+    <configuration name="PlaneTest.findIntsersections" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5784_5888_3110" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="geometries.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="geometries" />
+      <option name="MAIN_CLASS_NAME" value="geometries.PlaneTest" />
+      <option name="METHOD_NAME" value="findIntsersections" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -186,11 +193,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.PlaneTest.findIntsersections" />
         <item itemvalue="JUnit.SphereTest.testFindIntersections" />
         <item itemvalue="JUnit.TriangleTest.testGetNormal" />
         <item itemvalue="JUnit.TubeTest.getNormal" />
         <item itemvalue="JUnit.VectorTest.crossProduct" />
-        <item itemvalue="JUnit.All in ISE5784_5888_3110" />
       </list>
     </recent_temporary>
   </component>
@@ -414,17 +421,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/unittests/geometries/SphereTest.java</url>
-          <line>111</line>
-          <option name="timeStamp" value="7" />
+          <line>97</line>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/unittests/geometries/SphereTest.java</url>
-          <line>46</line>
-          <properties class="geometries.SphereTest" method="testFindIntersections">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="8" />
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/unittests/geometries/PlaneTest.java</url>
+          <line>65</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

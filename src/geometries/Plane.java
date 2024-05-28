@@ -4,6 +4,9 @@ import primitives.*;
 
 import java.util.List;
 
+import static primitives.Util.alignZero;
+import static primitives.Util.isZero;
+
 /**
  * Plane class representing a two-dimensional plane in 3D Cartesian coordinate system.
  *
@@ -63,5 +66,22 @@ public class Plane implements Geometry {
     public Vector getNormal() {
         return normal;
     }
-    public List<Point> findIntersections(Ray ray){return null;}
+    public List<Point> findIntersections(Ray ray){
+        Point p0 = ray.getHead();
+        Vector n =this.normal;
+        Vector v =ray.getDirection();
+        double nv = n.dotProduct(v);
+        if (isZero(nv))
+            throw new IllegalArgumentException("nv cant be zero");
+        double nQMinusP0=  n.dotProduct(this.point.subtract(p0));
+        double t = alignZero(nQMinusP0 / nv);
+        if (t > 0) {
+            return List.of( p0.add(v.scale(t)));
+        }
+
+
+
+
+        return null;
+    }
 }
