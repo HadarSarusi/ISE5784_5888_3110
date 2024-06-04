@@ -33,6 +33,18 @@ public class Triangle extends Polygon {
         return super.getNormal(point);
     }
 
+    /**
+     * Finds the intersections of a given ray with a Triangle.
+     *
+     * <p>This method calculates the intersection points of the ray with the Triangle defined
+     * by the object on which the method is called. If the ray intersects the Triangle,
+     * the intersection points are returned as a list. If there are no intersections,
+     * the method returns {@code null}.
+     * </p>
+     *
+     * @param ray the ray to find intersections with
+     * @return a list of intersection points, or {@code null} if there are no intersections
+     */
     public List<Point> findIntersections(Ray ray){
         if(this.plane.findIntersections(ray) == null){
             return null;

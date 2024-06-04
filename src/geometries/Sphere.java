@@ -38,7 +38,18 @@ public class Sphere extends RadialGeometry {
     public Vector getNormal(Point point) {
         return point.subtract(center).normalize();
     }
-
+    /**
+     * Finds the intersections of a given ray with a Sphere.
+     *
+     * <p>This method calculates the intersection points of the ray with the Sphere defined
+     * by the object on which the method is called. If the ray intersects the Sphere,
+     * the intersection points are returned as a list. If there are no intersections,
+     * the method returns {@code null}.
+     * </p>
+     *
+     * @param ray the ray to find intersections with
+     * @return a list of intersection points, or {@code null} if there are no intersections
+     */
     public List<Point> findIntersections(Ray ray) {
         Point p0 = ray.getHead();
         Vector v = ray.getDirection();

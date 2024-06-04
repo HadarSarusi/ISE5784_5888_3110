@@ -64,8 +64,12 @@ class PlaneTest {
         assertEquals(0,result.dotProduct(p2.subtract(p3)), "Plane's normal is not orthogonal to one of the edges");
         assertEquals(result.dotProduct(p3.subtract(p1)), "Plane's normal is not orthogonal to one of the edges");
     }
+    /**
+     * Test method for {@link geometries.Plane#findIntersections(Ray)}.
+     * This test method verifies the behavior of the findIntersections method in the Plane class.
+     */
     @Test
-    void findIntsersections() {
+     void testFindIntersections() {
         Plane plane = new Plane(new Point(0,0,1), new Point(0,2,0), new Point(1,0,0));
         final Point p0_20 = new Point(0, -2, 0);
 

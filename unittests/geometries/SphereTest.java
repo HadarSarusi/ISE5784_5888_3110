@@ -41,7 +41,7 @@ class SphereTest {
     private final Point p210 = new Point(2, 1, 0);
 
     /**
-     * Test method for {@link geometries.Sphere#findIntersections(primitives.Ray)}.
+     * Test method for {@link geometries.Sphere#findIntersections(Ray)}.
      */
     @Test
     public void testFindIntersections() {
@@ -70,11 +70,13 @@ class SphereTest {
         // ============ Equivalence Partitions Tests ==============
         // TC01: Ray's line is outside the sphere (0 points)
         assertNull(sphere.findIntersections(new Ray(p01, v110)), "Ray's line out of sphere");
+
         // TC02: Ray starts before and crosses the sphere (2 points)
         final var result1 = sphere.findIntersections(new Ray(p01, v310))
                 .stream().sorted(Comparator.comparingDouble(p -> p.distance(p01))).toList();
         assertEquals(2, result1.size(), "Wrong number of points");
         assertEquals(exp, result1, "Ray crosses sphere");
+
         // TC03: Ray starts inside the sphere (1 point)
         final var result2 = sphere.findIntersections(new Ray(p11_50, v010))
                 .stream().sorted(Comparator.comparingDouble(p -> p.distance(p11_50))).toList();
@@ -111,21 +113,21 @@ class SphereTest {
         assertEquals(2, result6.size(), "Wrong number of points");
         assertEquals(exp6, result6, "Ray crosses sphere");
 
-        // TC14: Ray starts at sphere and goes inside (1 points)
+        // TC14: Ray starts at sphere and goes inside (1 point)
         final var exp5= List.of(p320);
         final var result5 = sphere1.findIntersections(new Ray(p120, v100))
                 .stream().sorted(Comparator.comparingDouble(p -> p.distance(p120))).toList();
         assertEquals(1, result5.size(), "Wrong number of points");
         assertEquals(exp5, result5, "Ray crosses sphere");
 
-        // TC15: Ray starts inside (1 points)
+        // TC15: Ray starts inside (1 point)
         final var exp3 = List.of(p120);
         final var result3 = sphere1.findIntersections(new Ray(p1_520, v_100))
                 .stream().sorted(Comparator.comparingDouble(p -> p.distance(p1_520))).toList();
         assertEquals(1, result3.size(), "Wrong number of points");
         assertEquals(exp3, result3, "Ray crosses sphere");
 
-        // TC16: Ray starts at the center (1 points)
+        // TC16: Ray starts at the center 1 points
         final var exp4 = List.of(p120);
         final var result4 = sphere1.findIntersections(new Ray(p220, v_100))
                 .stream().sorted(Comparator.comparingDouble(p -> p.distance(p220))).toList();

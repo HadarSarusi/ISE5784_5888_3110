@@ -67,6 +67,18 @@ public class Plane implements Geometry {
         return normal;
     }
 
+    /**
+     * Finds the intersections of a given ray with a surface.
+     *
+     * <p>This method calculates the intersection points of the ray with the plane defined
+     * by the object on which the method is called. If the ray intersects the plane,
+     * the intersection points are returned as a list. If there are no intersections,
+     * the method returns {@code null}.
+     * </p>
+     *
+     * @param ray the ray to find intersections with
+     * @return a list of intersection points, or {@code null} if there are no intersections
+     */
     public List<Point> findIntersections(Ray ray){
         Point p0 = ray.getHead();
         Vector n =this.normal;

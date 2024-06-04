@@ -20,6 +20,7 @@ import java.util.List;
 class TriangleTest {
 
     public static final double DELTA = 0.0001;
+
     /**
      * Test method for {@link geometries.Triangle#getNormal(primitives.Point)}.
      */
@@ -31,21 +32,25 @@ class TriangleTest {
                 {new Point(1, 2, 3),
                         new Point(4, 5, 6),
                         new Point(7, 8, 9),};
-    Triangle tri = new Triangle(new Point(1,2,3),new Point(4,5,6),new Point(7,8,10));
-    // ensure there are no exceptions
-    assertDoesNotThrow(() -> tri.getNormal(new Point(1, 2, 3)), "");
-    // generate the test result
-    Vector result = tri.getNormal(new Point(1, 2, 3));
-    // ensure |result| = 1
-    assertEquals(1, result.length(), DELTA, "Polygon's normal is not a unit vector");
-    // ensure the result is orthogonal to all the edges
+        Triangle tri = new Triangle(new Point(1, 2, 3), new Point(4, 5, 6), new Point(7, 8, 10));
+        // ensure there are no exceptions
+        assertDoesNotThrow(() -> tri.getNormal(new Point(1, 2, 3)), "");
+        // generate the test result
+        Vector result = tri.getNormal(new Point(1, 2, 3));
+        // ensure |result| = 1
+        assertEquals(1, result.length(), DELTA, "Polygon's normal is not a unit vector");
+        // ensure the result is orthogonal to all the edges
         for (int i = 0; i < 2; ++i)
-    assertEquals(0d, result.dotProduct(pts[i].subtract(pts[i == 0 ? 2 : i - 1])), DELTA,
-            "Triangle's normal is not orthogonal to one of the edges");
-}
+            assertEquals(0d, result.dotProduct(pts[i].subtract(pts[i == 0 ? 2 : i - 1])), DELTA,
+                    "Triangle's normal is not orthogonal to one of the edges");
+    }
+
+    /**
+     * Test method for {@link geometries.Triangle#findIntersections(Ray)}.
+     */
     @Test
     void findIntsersections() {
-        Triangle triangle = new Triangle(new Point(0,1,0), new Point(0,5,0), new Point(0,3,5));
+        Triangle triangle = new Triangle(new Point(0, 1, 0), new Point(0, 5, 0), new Point(0, 3, 5));
         // ============ Equivalence Partitions Tests ==============
         //TC01: the ray intersect inside the triangle
         Point p130 = new Point(1, 3, 0);
@@ -77,4 +82,4 @@ class TriangleTest {
         assertNull(triangle.findIntersections(new Ray(new Point(1, 0, 0), new Vector(-1, 0.1, 0))),
                 "The point supposed to be on edge's continuation");
     }
-    }
+}
