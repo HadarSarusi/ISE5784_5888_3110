@@ -79,10 +79,6 @@ public class Plane implements Geometry {
         if (t > 0) {
             return List.of(ray.getPoint(t));
         }
-
-
-
-
         return null;
     }
 }

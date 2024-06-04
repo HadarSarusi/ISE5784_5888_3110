@@ -6,6 +6,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RayTest {
 
+    /**
+     * Tests the {@link Ray#getPoint(double)} method.
+     * This method checks if the point returned by the {@code getPoint} method is correct based on the given parameter {@code t}.
+     */
     @Test
     void getPoint() {
         Ray ray = new Ray(new Point(1,1,0), new Vector(0,1,0));

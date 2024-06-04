@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="21087c2b-fa54-4989-b039-4ac151d13dc5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/unittests/primitives/RayTest.java" afterDir="false" />
+    <list default="true" id="21087c2b-fa54-4989-b039-4ac151d13dc5" name="Changes" comment="stage3 sphera EP test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Geometries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Geometries.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/geometries/Plane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Plane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Sphere.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Sphere.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Triangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Triangle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/primitives/Ray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Ray.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unittests/geometries/SphereTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/geometries/SphereTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unittests/primitives/RayTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/primitives/RayTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,9 +19,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -68,14 +65,11 @@
     "Application.Main.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
     "JUnit.All in ISE5784_5888_3110.executor": "Run",
-    "JUnit.GeometriesTest.findIntsersections.executor": "Run",
     "JUnit.PlaneTest.executor": "Run",
     "JUnit.PlaneTest.findIntsersections.executor": "Run",
     "JUnit.PlaneTest.getNormal.executor": "Run",
-    "JUnit.RayTest.getPoint.executor": "Run",
     "JUnit.SphereTest.getNormal.executor": "Run",
-    "JUnit.SphereTest.testFindIntersections.executor": "Debug",
-    "JUnit.TriangleTest.findIntsersections.executor": "Run",
+    "JUnit.SphereTest.testFindIntersections.executor": "Run",
     "JUnit.TriangleTest.testGetNormal.executor": "Run",
     "JUnit.TubeTest.getNormal.executor": "Debug",
     "JUnit.VectorTest.crossProduct.executor": "Run",
@@ -114,27 +108,11 @@
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
-      <recent name="primitives" />
       <recent name="geometries" />
+      <recent name="primitives" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.RayTest.getPoint">
-    <configuration name="GeometriesTest.findIntsersections" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5784_5888_3110" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="geometries.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="geometries" />
-      <option name="MAIN_CLASS_NAME" value="geometries.GeometriesTest" />
-      <option name="METHOD_NAME" value="findIntsersections" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.SphereTest.testFindIntersections">
     <configuration name="PlaneTest.findIntsersections" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5784_5888_3110" />
       <extension name="coverage">
@@ -146,22 +124,6 @@
       <option name="PACKAGE_NAME" value="geometries" />
       <option name="MAIN_CLASS_NAME" value="geometries.PlaneTest" />
       <option name="METHOD_NAME" value="findIntsersections" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="RayTest.getPoint" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5784_5888_3110" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="primitives.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="primitives" />
-      <option name="MAIN_CLASS_NAME" value="primitives.RayTest" />
-      <option name="METHOD_NAME" value="getPoint" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -183,7 +145,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TriangleTest.findIntsersections" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TriangleTest.testGetNormal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5784_5888_3110" />
       <extension name="coverage">
         <pattern>
@@ -193,7 +155,39 @@
       </extension>
       <option name="PACKAGE_NAME" value="geometries" />
       <option name="MAIN_CLASS_NAME" value="geometries.TriangleTest" />
-      <option name="METHOD_NAME" value="findIntsersections" />
+      <option name="METHOD_NAME" value="testGetNormal" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TubeTest.getNormal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5784_5888_3110" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="geometries.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="geometries" />
+      <option name="MAIN_CLASS_NAME" value="geometries.TubeTest" />
+      <option name="METHOD_NAME" value="getNormal" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="VectorTest.crossProduct" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5784_5888_3110" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="primitives.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="primitives" />
+      <option name="MAIN_CLASS_NAME" value="primitives.VectorTest" />
+      <option name="METHOD_NAME" value="crossProduct" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -201,11 +195,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.RayTest.getPoint" />
-        <item itemvalue="JUnit.GeometriesTest.findIntsersections" />
-        <item itemvalue="JUnit.TriangleTest.findIntsersections" />
-        <item itemvalue="JUnit.PlaneTest.findIntsersections" />
         <item itemvalue="JUnit.SphereTest.testFindIntersections" />
+        <item itemvalue="JUnit.PlaneTest.findIntsersections" />
+        <item itemvalue="JUnit.TriangleTest.testGetNormal" />
+        <item itemvalue="JUnit.TubeTest.getNormal" />
+        <item itemvalue="JUnit.VectorTest.crossProduct" />
       </list>
     </recent_temporary>
   </component>
@@ -244,6 +238,7 @@
       <workItem from="1716493915101" duration="169000" />
       <workItem from="1716701878534" duration="5528000" />
       <workItem from="1716727347499" duration="5946000" />
+      <workItem from="1717349397580" duration="2973000" />
     </task>
     <task id="LOCAL‎-00001" summary="upload">
       <option name="closed" value="true" />
@@ -381,15 +376,7 @@
       <option name="project" value="LOCAL‎" />
       <updated>1716494008889</updated>
     </task>
-    <task id="LOCAL‎-00018" summary="stage3 triangle tests and implements findIntersection, geometries and implements findIntersection">
-      <option name="closed" value="true" />
-      <created>1716922767236</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL‎-00018" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1716922767236</updated>
-    </task>
-    <option name="localTasksCounter" value="19" />
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -425,8 +412,7 @@
     <MESSAGE value="stage2_full" />
     <MESSAGE value="Stage_2 add triangle test and convert assertTrue to assertEqual" />
     <MESSAGE value="stage3 sphera EP test" />
-    <MESSAGE value="stage3 triangle tests and implements findIntersection, geometries and implements findIntersection" />
-    <option name="LAST_COMMIT_MESSAGE" value="stage3 triangle tests and implements findIntersection, geometries and implements findIntersection" />
+    <option name="LAST_COMMIT_MESSAGE" value="stage3 sphera EP test" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -437,31 +423,12 @@
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/unittests/geometries/SphereTest.java</url>
-          <line>97</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/unittests/geometries/PlaneTest.java</url>
           <line>65</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/geometries/Geometries.java</url>
-          <line>23</line>
-          <properties class="geometries.Geometries" method="findIntersections">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="JUnit">
-        <watch expression="result.get(2)" />
-      </configuration>
-    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
