@@ -60,6 +60,9 @@ public class Cylinder extends Tube {
         }
         return null;//impossible case
     }
-    public List<Point> findIntsersections(Ray ray){return null;}
+
+    public List<Point> findIntsersections(Ray ray) {
+        return null;
+    }
 }
 

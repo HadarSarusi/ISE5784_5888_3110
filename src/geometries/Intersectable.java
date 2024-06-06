@@ -1,6 +1,7 @@
 package geometries;
 
 import primitives.*;
+
 import java.util.List;
 
 /**
@@ -11,13 +12,13 @@ import java.util.List;
  */
 public interface Intersectable {
 
-   /**
-    * Finds the intersection points of a given ray with the geometric object.
-    *
-    * @param ray the ray to intersect with the geometric object
-    * @return a list of intersection points with the geometric object.
-    *         If there are no intersections, null is returned.
-    */
-   public List<Point> findIntersections(Ray ray);
+    /**
+     * Finds the intersection points of a given ray with the geometric object.
+     *
+     * @param ray the ray to intersect with the geometric object
+     * @return a list of intersection points with the geometric object.
+     * If there are no intersections, null is returned.
+     */
+    public List<Point> findIntersections(Ray ray);
 }
 

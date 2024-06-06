@@ -122,8 +122,8 @@ class VectorTest {
 
         // ============ Boundary Value Analysis (BVA) ==============
         // TC11: Cross product result should be orthogonal to its operands
-        assertEquals(0,v1.crossProduct(v8).dotProduct(v1) ,DELTA, "CrossProduct result is not orthogonal to its operands");
-        assertEquals(0,v1.crossProduct(v8).dotProduct(v8),DELTA,"CrossProduct result is not orthogonal to its operands");
+        assertEquals(0, v1.crossProduct(v8).dotProduct(v1), DELTA, "CrossProduct result is not orthogonal to its operands");
+        assertEquals(0, v1.crossProduct(v8).dotProduct(v8), DELTA, "CrossProduct result is not orthogonal to its operands");
         // TC12: Cross product for parallel vectors should throw an exception
         assertThrows(IllegalArgumentException.class, () -> v1.crossProduct(v3), "CrossProduct for parallel vectors should throw Exception");
     }

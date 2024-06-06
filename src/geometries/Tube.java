@@ -38,12 +38,11 @@ public class Tube extends RadialGeometry {
      * @throws IllegalArgumentException if the given point is on the axis of the tube.
      */
     public Vector getNormal(Point point) {
-        Point p0 = axis.getHead();
-        Vector v = axis.getDirection();
-        double t = v.dotProduct(point.subtract(p0));
-        // calculate a point on the axis that is located against the point
-        Point o = isZero(t) ? p0 : p0.add(v.scale(t));
-        return point.subtract(o).normalize();
+        double t = axis.getDirection().dotProduct(point.subtract(axis.getHead()));
+        return point.subtract(axis.getPoint(t)).normalize();
     }
-    public List<Point> findIntersections(Ray ray){return null;}
+
+    public List<Point> findIntersections(Ray ray) {
+        return null;
+    }
 }

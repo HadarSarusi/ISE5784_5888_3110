@@ -79,18 +79,15 @@ public class Plane implements Geometry {
      * @param ray the ray to find intersections with
      * @return a list of intersection points, or {@code null} if there are no intersections
      */
-    public List<Point> findIntersections(Ray ray){
+    public List<Point> findIntersections(Ray ray) {
         Point p0 = ray.getHead();
-        Vector n =this.normal;
-        Vector v =ray.getDirection();
-        double nv = n.dotProduct(v);
-        if (isZero(nv))
+        Vector v = ray.getDirection();
+        double nv = this.normal.dotProduct(v);
+        if (isZero(nv) || this.point.equals(p0))
             return null;
-        double nQMinusP0=  n.dotProduct(this.point.subtract(p0));
+
+        double nQMinusP0 = this.normal.dotProduct(this.point.subtract(p0));
         double t = alignZero(nQMinusP0 / nv);
-        if (t > 0) {
-            return List.of(ray.getPoint(t));
-        }
-        return null;
+        return t <= 0 ? null : List.of(ray.getPoint(t));
     }
 }

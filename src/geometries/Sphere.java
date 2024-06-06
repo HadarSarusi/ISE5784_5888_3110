@@ -6,6 +6,8 @@ import primitives.Vector;
 
 import java.util.List;
 
+import static primitives.Util.alignZero;
+
 /**
  * This class extends the `RadialGeometry` class and represents a sphere with a given center and radius.
  *
@@ -38,6 +40,7 @@ public class Sphere extends RadialGeometry {
     public Vector getNormal(Point point) {
         return point.subtract(center).normalize();
     }
+
     /**
      * Finds the intersections of a given ray with a Sphere.
      *
@@ -53,30 +56,24 @@ public class Sphere extends RadialGeometry {
     public List<Point> findIntersections(Ray ray) {
         Point p0 = ray.getHead();
         Vector v = ray.getDirection();
-        if(this.center.equals(p0)){
-            return List.of(p0.add(v.scale(this.radius)));
+        if (this.center.equals(p0)) {
+            return List.of(ray.getPoint(this.radius));
         }
         Vector u = this.center.subtract(p0);
         double tm = v.dotProduct(u);
-        double d = Math.sqrt((u.lengthSquared()) - (Math.pow(tm, 2)));
-        double th = Math.sqrt((Math.pow(this.radius, 2)) - (Math.pow(d, 2)));
+        double dSquared = u.lengthSquared() - tm * tm;
+        double thSquared = this.radiusSquared - dSquared;
+        if (alignZero(thSquared) <= 0) return null;//no intersection
 
-        if (d >= radius) {
-            return null;//no intersection
-        }
+        double th = Math.sqrt(thSquared);
+
+        double t2 = tm + th; // always: t2 > t1
+        if (alignZero(t2) <= 0) return null;
+
         double t1 = tm - th;
-        double t2 = tm + th;
-        if (t1 > 0 && t2 > 0) {
-            return List.of(ray.getPoint(t1), ray.getPoint(t2));
-        }
-
-        if (t1 > 0) {
-            return List.of(ray.getPoint(t1));
-        }
-        if (t2 > 0) {
-            return List.of(ray.getPoint(t2));
-        }
-        return null;
+        return alignZero(t1) <= 0
+                ? List.of(ray.getPoint(t2))
+                : List.of(ray.getPoint(t1), ray.getPoint(t2));
     }
 }
 

@@ -4,9 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
 import primitives.*;
-
 
 /**
  * Testing Cylinder class
@@ -33,10 +31,5 @@ class CylinderTest {
 
         // TC12: Point at the center of 2nd base
         assertEquals(new Vector(0, 1, 0), cyl.getNormal(new Point(0, 1, 1)), "Bad normal to center of upper base");
-    }
-
-    @Test
-    void findIntsersections() {
-
     }
 }

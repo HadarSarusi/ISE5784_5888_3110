@@ -5,6 +5,7 @@ import primitives.Ray;
 import primitives.Vector;
 
 import java.util.List;
+
 import static primitives.Util.alignZero;
 
 /**
@@ -23,6 +24,7 @@ public class Triangle extends Polygon {
     Triangle(Point point1, Point point2, Point point3) {
         super(point1, point2, point3);
     }
+
     /**
      * Retrieves the normal vector to the triangle.
      *
@@ -45,22 +47,27 @@ public class Triangle extends Polygon {
      * @param ray the ray to find intersections with
      * @return a list of intersection points, or {@code null} if there are no intersections
      */
-    public List<Point> findIntersections(Ray ray){
-        if(this.plane.findIntersections(ray) == null){
-            return null;
-        }
+    public List<Point> findIntersections(Ray ray) {
+        var intersection = this.plane.findIntersections(ray);
+        if (intersection == null) return null;
+
         Point p0 = ray.getHead();
         Vector v = ray.getDirection();
         Vector v1 = this.vertices.get(0).subtract(p0);
-        Vector v2 =this.vertices.get(1).subtract(p0);
-        Vector v3 =this.vertices.get(2).subtract(p0);
+        Vector v2 = this.vertices.get(1).subtract(p0);
         Vector n1 = v1.crossProduct(v2).normalize();
+        double s1 = alignZero(v.dotProduct(n1));
+        if (s1 == 0) return null;
+
+        Vector v3 = this.vertices.get(2).subtract(p0);
         Vector n2 = v2.crossProduct(v3).normalize();
+        double s2 = alignZero(v.dotProduct(n2));
+        if (s1 * s2 <= 0) return null;
+
         Vector n3 = v3.crossProduct(v1).normalize();
-        if ((alignZero(v.dotProduct(n1)) > 0 && alignZero(v.dotProduct(n2)) > 0 && alignZero(v.dotProduct(n3)) > 0) ||
-                (alignZero(v.dotProduct(n1)) < 0 && alignZero(v.dotProduct(n2)) < 0 && alignZero(v.dotProduct(n3)) < 0)){
-            return  plane.findIntersections(ray);
-        }
-        return null;
+        double s3 = alignZero(v.dotProduct(n3));
+        if (s1 * s3 <= 0) return null;
+
+        return intersection;
     }
 }
