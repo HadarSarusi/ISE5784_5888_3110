@@ -3,7 +3,12 @@ package primitives;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+/**
+ * Unit tests for the geometries.Ray class.
+ * This class contains test methods to verify the functionality of the ray class.
+ * <p>
+ * Author: Lea &amp; Hadar
+ */
 class RayTest {
 
     /**

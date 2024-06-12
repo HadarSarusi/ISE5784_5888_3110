@@ -26,6 +26,7 @@ class CameraTest {
     /**
      * Test method for
      * {@link renderer.Camera#constructRay(int, int, int, int)}.
+     * @throws java.lang.CloneNotSupportedException if cloning is not supported
      */
     @Test
     void testConstructRay() throws CloneNotSupportedException {

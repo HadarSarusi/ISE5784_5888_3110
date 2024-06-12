@@ -13,18 +13,46 @@ import static primitives.Util.isZero;
  * @author Lea &amp; Hadar.
  */
 public class Camera implements Cloneable {
+    /**
+     * The position of the camera in 3D space.
+     */
     private Point p0;
+
+    /**
+     * The upward direction vector of the camera.
+     */
     private Vector vUp;
+
+    /**
+     * The forward direction vector of the camera.
+     */
     private Vector vTo;
+
+    /**
+     * The rightward direction vector of the camera.
+     */
     private Vector vRight;
+
+    /**
+     * The width of the camera's viewport.
+     */
     private double width = 0.0;
+
+    /**
+     * The height of the camera's viewport.
+     */
     private double height = 0.0;
+
+    /**
+     * The distance from the camera to the viewport.
+     */
     private double distance = 0.0;
 
     private Camera() {
     }
 
     /**
+     * get width
      * @return the width of the view plane
      */
     public double getWidth() {
@@ -32,6 +60,7 @@ public class Camera implements Cloneable {
     }
 
     /**
+     * get height
      * @return the height of the view plane
      */
     public double getHeight() {
@@ -39,6 +68,7 @@ public class Camera implements Cloneable {
     }
 
     /**
+     * get distance
      * @return the distance from the camera to the view plane
      */
     public double getDistance() {
@@ -46,6 +76,7 @@ public class Camera implements Cloneable {
     }
 
     /**
+     * get p0
      * @return the location of the camera
      */
     public Point getP0() {
@@ -53,6 +84,7 @@ public class Camera implements Cloneable {
     }
 
     /**
+     * get vup
      * @return the up direction vector of the camera
      */
     public Vector getvUp() {
@@ -60,6 +92,7 @@ public class Camera implements Cloneable {
     }
 
     /**
+     * get vto
      * @return the forward direction vector of the camera
      */
     public Vector getvTo() {
@@ -67,6 +100,7 @@ public class Camera implements Cloneable {
     }
 
     /**
+     * get builder
      * @return a new {@code Builder} instance
      */
     public static Builder getBuilder() {
@@ -99,9 +133,13 @@ public class Camera implements Cloneable {
      * The {@code Builder} class is used to construct instances of the {@code Camera} class.
      */
     public static class Builder {
+        /**
+         * A {@link Camera} instance initialized with default settings.
+         */
         private final Camera camera = new Camera();
 
         /**
+         * set the location of the camera
          * @param location the location of the camera
          * @return the current {@code Builder} instance
          */
@@ -111,6 +149,7 @@ public class Camera implements Cloneable {
         }
 
         /**
+         * set direction of the camera
          * @param to the forward direction vector
          * @param up the up direction vector
          * @return the current {@code Builder} instance
@@ -126,6 +165,7 @@ public class Camera implements Cloneable {
         }
 
         /**
+         * set view plane size
          * @param width  the width of the view plane
          * @param height the height of the view plane
          * @return the current {@code Builder} instance
@@ -137,6 +177,7 @@ public class Camera implements Cloneable {
         }
 
         /**
+         * the distance to the view plane
          * @param distance the distance to the view plane
          * @return the current {@code Builder} instance
          */

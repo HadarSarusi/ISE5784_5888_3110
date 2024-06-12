@@ -18,7 +18,10 @@ import java.util.List;
  */
 
 class TriangleTest {
-
+    /**
+     * A small constant value used to determine the acceptable margin of error
+     * in floating-point comparisons. The value of DELTA is 0.0001.
+     */
     public static final double DELTA = 0.0001;
 
     /**

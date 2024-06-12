@@ -14,6 +14,10 @@ import java.util.List;
  * </p>
  */
 public class Geometries implements Intersectable {
+
+    /**
+     * A list of geometries to be intersected, initialized as an empty {@link LinkedList}.
+     */
     private final List<Intersectable> geometries = new LinkedList<>();
 
     /**

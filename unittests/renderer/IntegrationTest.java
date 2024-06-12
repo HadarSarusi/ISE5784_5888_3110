@@ -21,9 +21,15 @@ import java.util.List;
  */
 class IntegrationTest {
 
-    private static final int Nx = 3;
-    private static final int Ny = 3;
-
+    /**
+     * A builder for constructing a {@link Camera} with specific configurations:
+     * <ul>
+     *   <li>Viewport size: 3.0 by 3.0 units</li>
+     *   <li>Direction vectors: (0, 0, -1) and (0, -1, 0)</li>
+     *   <li>Viewport distance: 1.0 unit</li>
+     * </ul>
+     * Optional ray tracer and image writer settings are commented out.
+     */
     private final Camera.Builder cameraBuilder = Camera.getBuilder()
             // .setRayTracer(new SimpleRayTracer(new Scene("Test")))
             //.setImageWriter(new ImageWriter("Test", 1, 1))
@@ -48,6 +54,10 @@ class IntegrationTest {
         }
         return count;
     }
+    /**
+     * A {@link Camera} instance built with the configured builder,
+     * located at the origin (0, 0, 0).
+     */
     Camera camera = cameraBuilder.setLocation(new Point(0, 0, 0)).build();
 
     /**

@@ -11,7 +11,17 @@ import java.util.Comparator;
 import static geometries.TriangleTest.DELTA;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Unit tests for the geometries.Geometries class.
+ * This class contains test methods to verify the functionality of the Geometries class.
+ * <p>
+ * Author: Lea &amp; Hadar
+ */
 class GeometriesTest {
+    /**
+     * Test method for
+     * {@link Geometries#findIntersections(Ray)}.
+     */
     @Test
     void findIntsersections() {
         Plane plane = new Plane(new Point(1, 0, 0), new Point(2, 0, 0), new Point(1.5, 0, 1));

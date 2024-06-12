@@ -36,8 +36,19 @@ class SphereTest {
     }
 
 
+    /**
+     * A point with coordinates (1, 0, 0).
+     */
     private final Point p100 = new Point(1, 0, 0);
+
+    /**
+     * A point with coordinates (2, 2, 0)
+     */
     private final Point p220 = new Point(2, 2, 0);
+
+    /**
+     * A point with coordinates (2, 1, 0).
+     */
     private final Point p210 = new Point(2, 1, 0);
 
     /**

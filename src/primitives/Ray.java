@@ -61,6 +61,7 @@ public class Ray {
     }
 
     /**
+     * The parameter value along the ray. If t is zero, the head point is returned.
      * @param t The parameter value along the ray. If t is zero, the head point is returned.
      * @return The point on the ray at the parameter t.
      */
