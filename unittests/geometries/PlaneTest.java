@@ -2,6 +2,7 @@ package geometries;
 
 import org.junit.jupiter.api.Test;
 
+import static geometries.TriangleTest.DELTA;
 import static org.junit.jupiter.api.Assertions.*;
 import static primitives.Util.isZero;
 
@@ -57,12 +58,12 @@ class PlaneTest {
         Vector result = plane.getNormal(new Point(1, 1, 0));
 
         // Ensure that the length of the normal vector is 1
-        assertEquals(1, result.length(), 0.00000001, "Plane's normal is not a unit vector");
+        assertEquals(1, result.length(), DELTA, "Plane's normal is not a unit vector");
 
         // Ensure that the normal vector is orthogonal to all the edges of the plane
-        assertEquals(0, result.dotProduct(p1.subtract(p2)), "Plane's normal is not orthogonal to one of the edges");
-        assertEquals(0, result.dotProduct(p2.subtract(p3)), "Plane's normal is not orthogonal to one of the edges");
-        assertEquals(0, result.dotProduct(p3.subtract(p1)), "Plane's normal is not orthogonal to one of the edges");
+        assertEquals(0, result.dotProduct(p1.subtract(p2)),DELTA, "Plane's normal is not orthogonal to one of the edges");
+        assertEquals(0, result.dotProduct(p2.subtract(p3)), DELTA,"Plane's normal is not orthogonal to one of the edges");
+        assertEquals(0, result.dotProduct(p3.subtract(p1)),DELTA, "Plane's normal is not orthogonal to one of the edges");
     }
 
     /**
@@ -78,7 +79,7 @@ class PlaneTest {
         // TC01: The ray is neither perpendicular nor parallel to the plane and trace the plane
         final var result = plane.findIntersections(new Ray(p0_20, new Vector(1, 4, -1)))
                 .stream().sorted(Comparator.comparingDouble(p -> p.distance(p0_20))).toList();
-        assertEquals(1, result.size(), "Wrong number of points");
+        assertEquals(1, result.size(),DELTA, "Wrong number of points");
         assertEquals(List.of(new Point(1, 2, -1)), result, "Ray crosses plane");
 
         // TC02: The ray is neither perpendicular nor parallel to the plane and not trace the plane
@@ -97,7 +98,7 @@ class PlaneTest {
         // TC13: Ray start outside  the plane and goes inside the plane (1 point)
         final var result1 = plane.findIntersections(new Ray(p_200, new Vector(2, 1, 2)))
                 .stream().sorted(Comparator.comparingDouble(p -> p.distance(p_200))).toList();
-        assertEquals(1, result1.size(), "Wrong number of points");
+        assertEquals(1, result1.size(), DELTA,"Wrong number of points");
         assertEquals(List.of(new Point(-0.6666666666666667, 0.6666666666666666, 1.3333333333333333)), result1, "Ray crosses plane");
 
         // TC14: Ray start outside  the plane (0 point)

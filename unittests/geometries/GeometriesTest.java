@@ -7,6 +7,8 @@ import primitives.Vector;
 
 import java.util.Comparator;
 
+
+import static geometries.TriangleTest.DELTA;
 import static org.junit.jupiter.api.Assertions.*;
 
 class GeometriesTest {
@@ -21,7 +23,7 @@ class GeometriesTest {
         //TC01: some shapes but not all are intersect
         Ray rayManyObjectIntersect = new Ray(new Point(1, 1.5, 1), new Vector(0, -1, 0));
         assertEquals(3, geometries.findIntersections(rayManyObjectIntersect).size(),
-                "More then one object intersect (but not all the objects)");
+                DELTA,"More then one object intersect (but not all the objects)");
 
         // =============== Boundary Values Tests ==================
         //TC10: Empty list
@@ -36,12 +38,12 @@ class GeometriesTest {
         //TC12: One object intersect
         Ray rayOneObjectIntersect = new Ray(new Point(1.5, 1.5, 0.5), new Vector(0, 1, 0));
         assertEquals(1, geometries.findIntersections(rayOneObjectIntersect).size(),
-                "Suppose to be one intersection point (one object intersect)");
+                DELTA,"Suppose to be one intersection point (one object intersect)");
 
         //TC13: All the objects intersect
         Ray rayAllObjectIntersect = new Ray(new Point(1.5, 2.5, 0.5), new Vector(0, -1, 0));
         assertEquals(4, geometries.findIntersections(rayAllObjectIntersect).size(),
-                "Suppose to be 4 intersection points");
+                DELTA, "Suppose to be 4 intersection points");
     }
 
 }

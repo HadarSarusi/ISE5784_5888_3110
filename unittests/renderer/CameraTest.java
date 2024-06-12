@@ -35,7 +35,7 @@ class CameraTest {
         // EP01: 4X4 Inside (1,1)
         Camera camera1 = cameraBuilder.setVpSize(8.0, 8.0).build();
         assertEquals(new Ray(Point.ZERO, new Vector(1, -1, -10)),
-                camera1.constructRay(4, 4, 1, 1), badRay);
+                camera1.constructRay(4, 4, 1, 1),badRay);
 
         // =============== Boundary Values Tests ==================
         // BV01: 4X4 Corner (0,0)

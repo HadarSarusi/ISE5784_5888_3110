@@ -6,6 +6,12 @@ import java.util.MissingResourceException;
 
 import static primitives.Util.isZero;
 
+/**
+ * The {@code Camera} class represents a camera in a 3D scene, used to construct rays
+ * for ray tracing.
+ *
+ * @author Lea &amp; Hadar.
+ */
 public class Camera implements Cloneable {
     private Point p0;
     private Vector vUp;
@@ -18,58 +24,98 @@ public class Camera implements Cloneable {
     private Camera() {
     }
 
+    /**
+     * @return the width of the view plane
+     */
     public double getWidth() {
         return width;
     }
 
+    /**
+     * @return the height of the view plane
+     */
     public double getHeight() {
         return height;
     }
 
+    /**
+     * @return the distance from the camera to the view plane
+     */
     public double getDistance() {
         return distance;
     }
 
+    /**
+     * @return the location of the camera
+     */
     public Point getP0() {
         return p0;
     }
 
+    /**
+     * @return the up direction vector of the camera
+     */
     public Vector getvUp() {
         return vUp;
     }
 
+    /**
+     * @return the forward direction vector of the camera
+     */
     public Vector getvTo() {
         return vTo;
     }
 
+    /**
+     * @return a new {@code Builder} instance
+     */
     public static Builder getBuilder() {
         return new Builder();
     }
 
-    public Ray constructRay(int nX, int nY, int i, int j) {
+    /**
+     * Constructs a ray through a specific pixel on the view plane.
+     *
+     * @param nX number of horizontal pixels
+     * @param nY number of vertical pixels
+     * @param j  horizontal index of the pixel
+     * @param i  vertical index of the pixel
+     * @return the constructed ray
+     */
+    public Ray constructRay(int nX, int nY, int j, int i) {
         Point pC = p0.add(vTo.scale(distance));
         double Ry = height / nY;
         double Rx = width / nX;
-        double yi = -(i - (nY - 1) / 2) * Ry;
-        double xj = (j - (nX - 1) / 2) * Rx;
-        // in the beginning pIJ is the center pixel, and if we need to move up and down or right and left
+        double yi = -(i - (nY - 1) / 2d) * Ry;
+        double xj = (j - (nX - 1) / 2d) * Rx;
         Point pIJ = pC;
         if (!isZero(xj)) pIJ = pIJ.add(vRight.scale(xj));
         if (!isZero(yi)) pIJ = pIJ.add(vUp.scale(yi));
-
         Vector vIJ = pIJ.subtract(p0);
         return new Ray(p0, vIJ);
-
     }
 
+    /**
+     * The {@code Builder} class is used to construct instances of the {@code Camera} class.
+     */
     public static class Builder {
         private final Camera camera = new Camera();
 
+        /**
+         * @param location the location of the camera
+         * @return the current {@code Builder} instance
+         */
         public Builder setLocation(Point location) {
             camera.p0 = location;
             return this;
         }
 
+        /**
+         * @param to the forward direction vector
+         * @param up the up direction vector
+         * @return the current {@code Builder} instance
+         * @throws IllegalArgumentException if the direction vectors are not orthogonal
+         */
         public Builder setDirection(Vector to, Vector up) {
             if (isZero(to.dotProduct(up))) {
                 camera.vTo = to.normalize();
@@ -79,20 +125,34 @@ public class Camera implements Cloneable {
             throw new IllegalArgumentException("the vector are not orthogonal");
         }
 
+        /**
+         * @param width  the width of the view plane
+         * @param height the height of the view plane
+         * @return the current {@code Builder} instance
+         */
         public Builder setVpSize(Double width, Double height) {
             camera.width = width;
             camera.height = height;
             return this;
         }
 
+        /**
+         * @param distance the distance to the view plane
+         * @return the current {@code Builder} instance
+         */
         public Builder setVpDistance(Double distance) {
             camera.distance = distance;
             return this;
         }
 
+        /**
+         * Builds and returns a {@code Camera} instance.
+         *
+         * @return the constructed {@code Camera} instance
+         * @throws MissingResourceException if required parameters are missing
+         * @throws IllegalArgumentException if dimensions or distance are non-positive
+         */
         public Camera build() {
-            //if (camera.imageWriter == null) throw new MissingResourceException(…);
-            //if (camera.rayTracer == null) throw new ...
             String errorMessage = "Missing data for rendering";
             if (camera.p0 == null) throw new MissingResourceException(errorMessage, "Camera", "p0");
             if (camera.vUp == null) throw new MissingResourceException(errorMessage, "Camera", "vUp");
@@ -104,16 +164,12 @@ public class Camera implements Cloneable {
             camera.vRight = camera.vTo.crossProduct(camera.vUp).normalize();
             if (!isZero(camera.vRight.dotProduct(camera.vTo)))
                 throw new IllegalArgumentException("wrong values in vRight");
-            //camera.viewPlanePC = camera.p0.add(camera.vTo.scale(camera.distance));
             try {
                 return (Camera) camera.clone();
             } catch (CloneNotSupportedException e) {
                 return null;
             }
         }
-
-
     }
-
-
 }
+

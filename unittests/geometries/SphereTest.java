@@ -2,6 +2,7 @@ package geometries;
 
 import org.junit.jupiter.api.Test;
 
+import static geometries.TriangleTest.DELTA;
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,7 +25,6 @@ class SphereTest {
      * Test method for {@link geometries.Sphere#getNormal(Point)}.
      * This test method verifies the behavior of the getNormal method in the Sphere class.
      */
-    public static final double DELTA = 0.0001;
 
     @Test
     void getNormal() {
@@ -35,9 +35,8 @@ class SphereTest {
         assertEquals(new Vector(1, 0, 0), sphere.getNormal(new Point(2, 0, 0)), "the normal is not correct");
     }
 
-    private final Point p001 = new Point(0, 0, 1);
+
     private final Point p100 = new Point(1, 0, 0);
-    private final Vector v001 = new Vector(0, 0, 1);
     private final Point p220 = new Point(2, 2, 0);
     private final Point p210 = new Point(2, 1, 0);
 
@@ -75,13 +74,13 @@ class SphereTest {
         // TC02: Ray starts before and crosses the sphere (2 points)
         final var result1 = sphere.findIntersections(new Ray(p01, v310))
                 .stream().sorted(Comparator.comparingDouble(p -> p.distance(p01))).toList();
-        assertEquals(2, result1.size(), "Wrong number of points");
+        assertEquals(2, result1.size(),DELTA, "Wrong number of points");
         assertEquals(exp, result1, "Ray crosses sphere");
 
         // TC03: Ray starts inside the sphere (1 point)
         final var result2 = sphere.findIntersections(new Ray(p11_50, v010))
                 .stream().sorted(Comparator.comparingDouble(p -> p.distance(p11_50))).toList();
-        assertEquals(1, result2.size(), "Wrong number of points");
+        assertEquals(1, result2.size(), DELTA, "Wrong number of points");
         assertEquals(exp1, result2, "Ray crosses sphere");
 
         // TC04: Ray starts after the sphere (0 points)
@@ -100,7 +99,7 @@ class SphereTest {
         final var exp8 = List.of(p210);
         final var result8 = sphere1.findIntersections(new Ray(p320, v_1_10))
                 .stream().sorted(Comparator.comparingDouble(p -> p.distance(p320))).toList();
-        assertEquals(1, result8.size(), "Wrong number of points");
+        assertEquals(1, result8.size(), DELTA, "Wrong number of points");
         assertEquals(exp8, result8, "Ray crosses sphere");
 
         // TC12: Ray starts at sphere and goes outside (0 points)
@@ -111,28 +110,28 @@ class SphereTest {
         final var exp6 = List.of(p120, p320);
         final var result6 = sphere1.findIntersections(new Ray(p020, v100))
                 .stream().sorted(Comparator.comparingDouble(p -> p.distance(p020))).toList();
-        assertEquals(2, result6.size(), "Wrong number of points");
+        assertEquals(2, result6.size(),DELTA, "Wrong number of points");
         assertEquals(exp6, result6, "Ray crosses sphere");
 
         // TC14: Ray starts at sphere and goes inside (1 point)
         final var exp5 = List.of(p320);
         final var result5 = sphere1.findIntersections(new Ray(p120, v100))
                 .stream().sorted(Comparator.comparingDouble(p -> p.distance(p120))).toList();
-        assertEquals(1, result5.size(), "Wrong number of points");
+        assertEquals(1, result5.size(),DELTA, "Wrong number of points");
         assertEquals(exp5, result5, "Ray crosses sphere");
 
         // TC15: Ray starts inside (1 point)
         final var exp3 = List.of(p120);
         final var result3 = sphere1.findIntersections(new Ray(p1_520, v_100))
                 .stream().sorted(Comparator.comparingDouble(p -> p.distance(p1_520))).toList();
-        assertEquals(1, result3.size(), "Wrong number of points");
+        assertEquals(1, result3.size(), DELTA,"Wrong number of points");
         assertEquals(exp3, result3, "Ray crosses sphere");
 
         // TC16: Ray starts at the center 1 points
         final var exp4 = List.of(p120);
         final var result4 = sphere1.findIntersections(new Ray(p220, v_100))
                 .stream().sorted(Comparator.comparingDouble(p -> p.distance(p220))).toList();
-        assertEquals(1, result4.size(), "Wrong number of points");
+        assertEquals(1, result4.size(),DELTA, "Wrong number of points");
         assertEquals(exp4, result4, "Ray crosses sphere");
 
         // TC17: Ray starts at sphere and goes outside (0 points)
@@ -162,7 +161,7 @@ class SphereTest {
         final var exp9 = List.of(p1_52_866);
         final var result9 = sphere1.findIntersections(new Ray(p1_520, v010))
                 .stream().sorted(Comparator.comparingDouble(p -> p.distance(p1_520))).toList();
-        assertEquals(1, result9.size(), "Wrong number of points");
+        assertEquals(1, result9.size(),DELTA, "Wrong number of points");
         assertEquals(exp9, result9, "Ray crosses sphere");
 
         // TC23: Ray's line is inside, ray is orthogonal to ray start to sphere's center line

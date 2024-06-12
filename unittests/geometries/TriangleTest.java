@@ -56,7 +56,7 @@ class TriangleTest {
         Point p130 = new Point(1, 3, 0);
         final var result = triangle.findIntersections(new Ray(p130, new Vector(-1, 0, 1)))
                 .stream().sorted(Comparator.comparingDouble(p -> p.distance(p130))).toList();
-        assertEquals(1, result.size(), "Wrong number of points");
+        assertEquals(1, result.size(),DELTA, "Wrong number of points");
         assertEquals(List.of(new Point(0, 3, 1)),
                 triangle.findIntersections(new Ray(new Point(1, 3, 0), new Vector(-1, 0, 1))),
                 "The point supposed to be in the triangle");

@@ -60,6 +60,10 @@ public class Ray {
         return direction;
     }
 
+    /**
+     * @param t The parameter value along the ray. If t is zero, the head point is returned.
+     * @return The point on the ray at the parameter t.
+     */
     public Point getPoint(double t) {
         return isZero(t) ? head : head.add(direction.scale(t));
     }
