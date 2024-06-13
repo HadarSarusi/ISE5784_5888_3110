@@ -61,7 +61,8 @@ public class Cylinder extends Tube {
         return null;//impossible case
     }
 
-    public List<Point> findIntsersections(Ray ray) {
+    @Override
+    public List<Point> findIntersections(Ray ray) {
         return null;
     }
 }
