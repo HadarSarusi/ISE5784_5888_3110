@@ -118,11 +118,11 @@ class IntegrationTest {
     @Test
     void triangleIntegrationTest() {
 
-        //TC01: small triangle
+        //TC01:
         Triangle triangle = new Triangle(new Point(0, 1, -2), new Point(-1, -1, -2), new Point(1, -1, -2));
         assertEquals(1, helpTest(camera, triangle));
 
-        //TC02: big triangle
+        //TC02:
         Triangle triangle1 = new Triangle(new Point(0, 20, -2), new Point(-1, -1, -2), new Point(1, -1, -2));
         assertEquals(2, helpTest(camera, triangle1));
 
