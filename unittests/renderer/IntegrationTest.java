@@ -17,6 +17,7 @@ import java.util.List;
 
 /**
  * Testing integration between Camera and Geometry.
+ *
  * @author Hadar &amp; Lea
  */
 class IntegrationTest {
@@ -39,6 +40,7 @@ class IntegrationTest {
 
     /**
      * Counts the number of intersection points between rays constructed by the camera and the given geometry.
+     *
      * @param camera   the camera used to construct the rays
      * @param geometry the geometry to test for intersections
      * @return the number of intersection points
@@ -54,6 +56,7 @@ class IntegrationTest {
         }
         return count;
     }
+
     /**
      * A {@link Camera} instance built with the configured builder,
      * located at the origin (0, 0, 0).
@@ -61,9 +64,10 @@ class IntegrationTest {
     Camera camera = cameraBuilder.setLocation(new Point(0, 0, 0)).build();
 
     /**
-     *  Test integration  method for
-     *  {@link renderer.Camera#constructRay(int, int, int, int) and
-     *  @link geometries.Sphere#findIntersections(Ray)}.
+     * Test integration  method for
+     * {@link renderer.Camera#constructRay(int, int, int, int) and
+     *
+     * @link geometries.Sphere#findIntersections(Ray)}.
      */
     @Test
     void sphereIntegrationTest() {
@@ -72,7 +76,7 @@ class IntegrationTest {
         Sphere sphere = new Sphere(new Point(0, 0, -3), 1d);
         assertEquals(2, helpTest(camera, sphere));
         //TC02: Big Sphere 18 points
-        Camera camera1 =cameraBuilder.setLocation(new Point(0, 0, 0.5)).build();
+        Camera camera1 = cameraBuilder.setLocation(new Point(0, 0, 0.5)).build();
         Sphere sphere1 = new Sphere(new Point(0, 0, -2.5), 2.5);
         assertEquals(18, helpTest(camera1, sphere1));
         //TC03: Medium Sphere 10 points
@@ -87,37 +91,39 @@ class IntegrationTest {
     }
 
     /**
-     *  Test integration  method for
-     *  {@link renderer.Camera#constructRay(int, int, int, int) and
-     *  @link geometries.Plane#findIntersections(Ray)}.
+     * Test integration  method for
+     * {@link renderer.Camera#constructRay(int, int, int, int) and
+     *
+     * @link geometries.Plane#findIntersections(Ray)}.
      */
     @Test
     void planeIntegrationTest() {
         //TC01: The plane is parallel to the view plane
-        Plane plane=new Plane(new Point(0,0,-3),new Vector(0,0,-1));
+        Plane plane = new Plane(new Point(0, 0, -3), new Vector(0, 0, -1));
         assertEquals(9, helpTest(camera, plane));
         //TC02:
-        Plane plane1=new Plane(new Point(0,0,-3),new Vector(0.25,0.25,-1));
+        Plane plane1 = new Plane(new Point(0, 0, -3), new Vector(0.25, 0.25, -1));
         assertEquals(9, helpTest(camera, plane1));
         //TC03:
-        Plane plane2=new Plane(new Point(0,0,-3),new Vector(1,1,-1));
+        Plane plane2 = new Plane(new Point(0, 0, -3), new Vector(1, 1, -1));
         assertEquals(6, helpTest(camera, plane2));
     }
 
     /**
-     *  Test integration  method for
-     *  {@link renderer.Camera#constructRay(int, int, int, int) and
-     *  @link geometries.Triangle#findIntersections(Ray)}.
+     * Test integration  method for
+     * {@link renderer.Camera#constructRay(int, int, int, int) and
+     *
+     * @link geometries.Triangle#findIntersections(Ray)}.
      */
     @Test
     void triangleIntegrationTest() {
 
-        //TC01:
-        Triangle triangle=new Triangle(new Point(0,1,-2),new Point(-1,-1,-2),new Point(1,-1,-2));
+        //TC01: small triangle
+        Triangle triangle = new Triangle(new Point(0, 1, -2), new Point(-1, -1, -2), new Point(1, -1, -2));
         assertEquals(1, helpTest(camera, triangle));
 
-        //TC02:
-        Triangle triangle1=new Triangle(new Point(0,20,-2),new Point(-1,-1,-2),new Point(1,-1,-2));
+        //TC02: big triangle
+        Triangle triangle1 = new Triangle(new Point(0, 20, -2), new Point(-1, -1, -2), new Point(1, -1, -2));
         assertEquals(2, helpTest(camera, triangle1));
 
     }

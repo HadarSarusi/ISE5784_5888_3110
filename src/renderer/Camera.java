@@ -53,6 +53,7 @@ public class Camera implements Cloneable {
 
     /**
      * get width
+     *
      * @return the width of the view plane
      */
     public double getWidth() {
@@ -61,6 +62,7 @@ public class Camera implements Cloneable {
 
     /**
      * get height
+     *
      * @return the height of the view plane
      */
     public double getHeight() {
@@ -69,6 +71,7 @@ public class Camera implements Cloneable {
 
     /**
      * get distance
+     *
      * @return the distance from the camera to the view plane
      */
     public double getDistance() {
@@ -77,6 +80,7 @@ public class Camera implements Cloneable {
 
     /**
      * get p0
+     *
      * @return the location of the camera
      */
     public Point getP0() {
@@ -85,6 +89,7 @@ public class Camera implements Cloneable {
 
     /**
      * get vup
+     *
      * @return the up direction vector of the camera
      */
     public Vector getvUp() {
@@ -93,6 +98,7 @@ public class Camera implements Cloneable {
 
     /**
      * get vto
+     *
      * @return the forward direction vector of the camera
      */
     public Vector getvTo() {
@@ -101,6 +107,7 @@ public class Camera implements Cloneable {
 
     /**
      * get builder
+     *
      * @return a new {@code Builder} instance
      */
     public static Builder getBuilder() {
@@ -140,6 +147,7 @@ public class Camera implements Cloneable {
 
         /**
          * set the location of the camera
+         *
          * @param location the location of the camera
          * @return the current {@code Builder} instance
          */
@@ -150,6 +158,7 @@ public class Camera implements Cloneable {
 
         /**
          * set direction of the camera
+         *
          * @param to the forward direction vector
          * @param up the up direction vector
          * @return the current {@code Builder} instance
@@ -166,6 +175,7 @@ public class Camera implements Cloneable {
 
         /**
          * set view plane size
+         *
          * @param width  the width of the view plane
          * @param height the height of the view plane
          * @return the current {@code Builder} instance
@@ -178,6 +188,7 @@ public class Camera implements Cloneable {
 
         /**
          * the distance to the view plane
+         *
          * @param distance the distance to the view plane
          * @return the current {@code Builder} instance
          */
