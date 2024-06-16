@@ -12,9 +12,6 @@ import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
 
-import java.security.KeyStore;
-import java.util.List;
-
 /**
  * Testing integration between Camera and Geometry.
  *
@@ -49,12 +46,22 @@ class IntegrationTest {
         int count = 0;
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                Ray ray = camera.constructRay(3, 3, i, j);
-                if (geometry.findIntersections(ray) != null)
-                    count += geometry.findIntersections(ray).size();
+                var intersections = geometry.findIntersections(camera.constructRay(3, 3, i, j));
+                if (intersections != null)
+                    count += intersections.size();
             }
         }
         return count;
+    }
+
+    /**
+     * Assert the expected amount of intersections
+     * @param expected expected amount of intersections
+     * @param camera   the camera used to construct the rays
+     * @param geometry the geometry to test for intersections
+     */
+    void helpTest(int expected, Camera camera, Intersectable geometry) {
+        assertEquals(expected, helpTest(camera, geometry), "wrong number of intersections");
     }
 
     /**
@@ -65,20 +72,19 @@ class IntegrationTest {
 
     /**
      * Test integration  method for
-     * {@link renderer.Camera#constructRay(int, int, int, int) and
-     *
-     * @link geometries.Sphere#findIntersections(Ray)}.
+     * {@link renderer.Camera#constructRay(int, int, int, int)} and
+     * {@link geometries.Sphere#findIntersections(Ray)}.
      */
     @Test
     void sphereIntegrationTest() {
 
         //TC01: Small Sphere 2 points
         Sphere sphere = new Sphere(new Point(0, 0, -3), 1d);
-        assertEquals(2, helpTest(camera, sphere));
+        helpTest(2, camera, sphere);
         //TC02: Big Sphere 18 points
         Camera camera1 = cameraBuilder.setLocation(new Point(0, 0, 0.5)).build();
         Sphere sphere1 = new Sphere(new Point(0, 0, -2.5), 2.5);
-        assertEquals(18, helpTest(camera1, sphere1));
+        helpTest(18, camera1, sphere1);
         //TC03: Medium Sphere 10 points
         Sphere sphere2 = new Sphere(new Point(0, 0, -2), 2);
         assertEquals(10, helpTest(camera1, sphere2));
@@ -92,9 +98,8 @@ class IntegrationTest {
 
     /**
      * Test integration  method for
-     * {@link renderer.Camera#constructRay(int, int, int, int) and
-     *
-     * @link geometries.Plane#findIntersections(Ray)}.
+     * {@link renderer.Camera#constructRay(int, int, int, int)} and
+     * {@link geometries.Plane#findIntersections(Ray)}.
      */
     @Test
     void planeIntegrationTest() {
@@ -111,9 +116,8 @@ class IntegrationTest {
 
     /**
      * Test integration  method for
-     * {@link renderer.Camera#constructRay(int, int, int, int) and
-     *
-     * @link geometries.Triangle#findIntersections(Ray)}.
+     * {@link renderer.Camera#constructRay(int, int, int, int)} and
+     * {@link geometries.Triangle#findIntersections(Ray)}.
      */
     @Test
     void triangleIntegrationTest() {

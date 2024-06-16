@@ -21,6 +21,7 @@ class PointTest {
      * A sample point.
      */
     public static final Point point = new Point(1, 2, 3);
+    private static final double DELTA = 0.000001;
 
     /**
      * Test method for {@link primitives.Point#add(Vector)}.
@@ -75,10 +76,10 @@ class PointTest {
     void distance() {
         // ============ Equivalence Partitions Tests ==============
         // TC01: test if calculating the distance between two points produces the correct result
-        assertEquals(Math.sqrt(5), ONE.distance(point));
+        assertEquals(Math.sqrt(5), ONE.distance(point), DELTA, "wrong distance");
 
         // ============ Boundary Value Analysis (BVA) ==============
         // TC11: test if calculating the distance between a point and itself produces zero
-        assertEquals(0, point.distance(point));
+        assertEquals(0, point.distance(point), DELTA, "wrong distance from itself");
     }
 }

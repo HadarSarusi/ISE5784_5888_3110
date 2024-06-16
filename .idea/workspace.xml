@@ -5,16 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="21087c2b-fa54-4989-b039-4ac151d13dc5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Cylinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Cylinder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unittests/geometries/TubeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/geometries/TubeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unittests/primitives/PointTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/primitives/PointTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unittests/renderer/IntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/renderer/IntegrationTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ChangesViewManager" show_ignored="true" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -394,7 +395,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1718230312785</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL‎-00020" summary="reformat all">
+      <option name="closed" value="true" />
+      <created>1718267253968</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL‎-00020" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1718267253968</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -432,7 +441,8 @@
     <MESSAGE value="stage3 sphera EP test" />
     <MESSAGE value="stage 4 intersection test" />
     <MESSAGE value="stage 4 with javaDoc" />
-    <option name="LAST_COMMIT_MESSAGE" value="stage 4 with javaDoc" />
+    <MESSAGE value="reformat all" />
+    <option name="LAST_COMMIT_MESSAGE" value="reformat all" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

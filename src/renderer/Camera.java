@@ -4,6 +4,7 @@ import primitives.*;
 
 import java.util.MissingResourceException;
 
+import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
 
 /**
@@ -209,9 +210,9 @@ public class Camera implements Cloneable {
             if (camera.p0 == null) throw new MissingResourceException(errorMessage, "Camera", "p0");
             if (camera.vUp == null) throw new MissingResourceException(errorMessage, "Camera", "vUp");
             if (camera.vTo == null) throw new MissingResourceException(errorMessage, "Camera", "vTo");
-            if (Util.alignZero(camera.width) <= 0) throw new IllegalArgumentException("width can't be negative or 0");
-            if (Util.alignZero(camera.height) <= 0) throw new IllegalArgumentException("height can't be negative or 0");
-            if (Util.alignZero(camera.distance) <= 0)
+            if (alignZero(camera.width) <= 0) throw new IllegalArgumentException("width can't be negative or 0");
+            if (alignZero(camera.height) <= 0) throw new IllegalArgumentException("height can't be negative or 0");
+            if (alignZero(camera.distance) <= 0)
                 throw new IllegalArgumentException("distance can't be negative or 0");
             camera.vRight = camera.vTo.crossProduct(camera.vUp).normalize();
             if (!isZero(camera.vRight.dotProduct(camera.vTo)))
