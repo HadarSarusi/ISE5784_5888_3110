@@ -13,9 +13,9 @@ class ImageWriterTest {
      * filling it with a specific color, and drawing a grid on it.
      */
     @Test
-    void ImageWriterTest() {
-        ImageWriter imageWriter = new ImageWriter("imageWriterTest", 800, 500);
-        Color color = new Color(255, 192, 203);
+    void imageWriterTest() {
+        final ImageWriter imageWriter = new ImageWriter("imageWriterTest", 800, 500);
+        final Color color = new Color(255, 192, 203);
 
         // Fill the image with the specified color
         for (int i = 0; i < 800; i++) {

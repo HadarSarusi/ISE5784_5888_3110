@@ -79,16 +79,15 @@ public class Ray {
      * @return the closest point to this point, or {@code null} if the list is empty
      */
     public Point findClosestPoint(List<Point> points) {
-        if (points.isEmpty()) {
+        if (points == null || points.isEmpty())
             return null;
-        }
-        double tempDistanceSquare = points.get(0).distanceSquared(this.head);
-        double distanceSquare;
-        Point minPoint = points.get(0);
+
+        double minDistanceSquare = Double.POSITIVE_INFINITY;
+        Point minPoint = null;
         for (Point point : points) {
-            distanceSquare = point.distanceSquared(this.head);
-            if (distanceSquare < tempDistanceSquare) {
-                tempDistanceSquare = distanceSquare;
+            double distanceSquare = point.distanceSquared(this.head);
+            if (distanceSquare < minDistanceSquare) {
+                minDistanceSquare = distanceSquare;
                 minPoint = point;
             }
         }

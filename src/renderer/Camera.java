@@ -267,14 +267,13 @@ public class Camera implements Cloneable {
      * Renders the image by casting rays through each pixel and setting the color of each pixel accordingly.
      *
      * @return the current {@code Camera} instance
-     * @throws UnsupportedOperationException if the image writer or ray tracer is not set
      */
-    public Camera renderImage() throws UnsupportedOperationException {
+    public Camera renderImage() {
         int nX = this.imageWriter.getNx();
         int nY = this.imageWriter.getNy();
         for (int i = 0; i < nY; i++) {
             for (int j = 0; j < nX; j++) {
-                this.castRay(nY, nX, j, i);
+                this.castRay(nX, nY, j, i);
             }
         }
         return this;
