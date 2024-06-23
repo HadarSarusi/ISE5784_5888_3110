@@ -81,6 +81,7 @@ class IntegrationTest {
      * {@link renderer.Camera#constructRay(int, int, int, int)} and
      * {@link geometries.Sphere#findIntersections(Ray)}.
      */
+
     @Test
     void sphereIntegrationTest() {
 
@@ -137,4 +138,4 @@ class IntegrationTest {
         assertEquals(2, helpTest(camera, triangle1), DELTA);
 
     }
-}
+} 
