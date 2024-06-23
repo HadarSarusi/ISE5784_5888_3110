@@ -9,6 +9,18 @@ import static primitives.Double3.ZERO;
  * @author Lea &amp; Hadar
  */
 public class Vector extends Point {
+    /**
+     * Represents the unit vector along the x-axis.
+     */
+    public final static Vector X = new Vector(1, 0, 0);
+    /**
+     * Represents the unit vector along the y-axis.
+     */
+    public final static Vector Y = new Vector(0, 1, 0);
+    /**
+     * Represents the unit vector along the z-axis.
+     */
+    public final static Vector Z = new Vector(0, 0, 1);
 
     /**
      * Constructs a vector with the specified coordinates.

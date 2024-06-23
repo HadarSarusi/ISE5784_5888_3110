@@ -102,11 +102,11 @@ class VectorTest {
     void dotProduct() {
         // ============ Equivalence Partitions Tests ==============
         // TC01: Calculating the dot product of two vectors should produce the correct result
-        assertEquals(28, v1.dotProduct(v3), "dot product failed");
+        assertEquals(28, v1.dotProduct(v3), DELTA, "dot product failed");
 
         // ============ Boundary Value Analysis (BVA) ==============
         // TC11: Dot product of orthogonal vectors should be zero
-        assertEquals(0, v4.dotProduct(v5), "dot product for orthogonal vectors is not zero");
+        assertEquals(0, v4.dotProduct(v5), DELTA, "dot product for orthogonal vectors is not zero");
     }
 
     /**
@@ -136,7 +136,7 @@ class VectorTest {
     void lengthSquared() {
         // ============ Equivalence Partitions Tests ==============
         // TC01: Calculating the squared length of a vector should produce the correct result
-        assertEquals(14, v1.lengthSquared(), "vector length squared failed");
+        assertEquals(14, v1.lengthSquared(), DELTA, "vector length squared failed");
     }
 
     /**
@@ -147,7 +147,7 @@ class VectorTest {
     void length() {
         // ============ Equivalence Partitions Tests ==============
         // TC01: Calculating the length of a vector should produce the correct result
-        assertEquals(Math.sqrt(14), v1.length(), "vector length failed");
+        assertEquals(Math.sqrt(14), v1.length(), DELTA, "vector length failed");
     }
 
     /**
@@ -158,7 +158,7 @@ class VectorTest {
     void normalize() {
         // ============ Equivalence Partitions Tests ==============
         // TC01: Normalizing a vector should produce a vector with length 1
-        assertEquals(1, v1.normalize().length(), "normalize vector failed");
+        assertEquals(1, v1.normalize().length(), DELTA, "normalize vector failed");
 
         // ============ Boundary Value Analysis (BVA) ==============
         // TC11: The normalized vector should be parallel to the original one

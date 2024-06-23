@@ -21,6 +21,9 @@ class PointTest {
      * A sample point.
      */
     public static final Point point = new Point(1, 2, 3);
+    /**
+     * A small constant value used for numerical stability and precision checks.
+     */
     private static final double DELTA = 0.000001;
 
     /**
@@ -61,11 +64,11 @@ class PointTest {
     void distanceSquared() {
         // ============ Equivalence Partitions Tests ==============
         // TC01: test if calculating the squared distance between two points produces the correct result
-        assertEquals(5, ONE.distanceSquared(point));
+        assertEquals(5, ONE.distanceSquared(point), DELTA);
 
         // ============ Boundary Value Analysis (BVA) ==============
         // TC11: test if calculating the squared distance between a point and itself produces zero
-        assertEquals(0, point.distanceSquared(point));
+        assertEquals(0, point.distanceSquared(point), DELTA);
     }
 
     /**
