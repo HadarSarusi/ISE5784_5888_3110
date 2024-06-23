@@ -242,7 +242,7 @@ public class Camera implements Cloneable {
          */
         public Camera build() {
             String errorMessage = "Missing data for rendering";
-            if (camera.imageWriter == null) throw new MissingResourceException(errorMessage, "Camera", "p0");
+            if (camera.imageWriter == null) throw new MissingResourceException(errorMessage, "Camera", "imageWriter");
             if (camera.rayTracer == null) throw new MissingResourceException(errorMessage, "Camera", "rayTracer");
             if (camera.p0 == null) throw new MissingResourceException(errorMessage, "Camera", "p0");
             if (camera.vUp == null) throw new MissingResourceException(errorMessage, "Camera", "vUp");

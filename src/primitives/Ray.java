@@ -82,13 +82,13 @@ public class Ray {
         if (points.isEmpty()) {
             return null;
         }
-        double distance = points.get(0).distanceSquared(this.head);
+        double tempDistanceSquare = points.get(0).distanceSquared(this.head);
         double distanceSquare;
         Point minPoint = points.get(0);
         for (Point point : points) {
             distanceSquare = point.distanceSquared(this.head);
-            if (distanceSquare < distance) {
-                distance = distanceSquare;
+            if (distanceSquare < tempDistanceSquare) {
+                tempDistanceSquare = distanceSquare;
                 minPoint = point;
             }
         }

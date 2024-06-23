@@ -2,6 +2,7 @@ package primitives;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -40,15 +41,10 @@ class RayTest {
     @Test
     void findClosestPoint() {
 
-        List<Point> points = new LinkedList<>();
-
         Point p1 = new Point(1, 1, 1);
         Point p2 = new Point(2, 2, 2);
         Point p3 = new Point(3, 3, 3);
-
-        points.add(p1);
-        points.add(p2);
-        points.add(p3);
+        List<Point> points = new LinkedList<>(Arrays.asList(p1, p2, p3));
 
         Vector dirVector = new Vector(0, -0.5, 0);
 
