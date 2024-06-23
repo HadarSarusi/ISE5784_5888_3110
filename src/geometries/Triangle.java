@@ -47,8 +47,9 @@ public class Triangle extends Polygon {
      * @param ray the ray to find intersections with
      * @return a list of intersection points, or {@code null} if there are no intersections
      */
-    public List<Point> findIntersections(Ray ray) {
-        var intersection = this.plane.findIntersections(ray);
+    @Override
+    protected  List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+        var intersection = this.plane.findGeoIntersectionsHelper(ray);
         if (intersection == null) return null;
 
         Point p0 = ray.getHead();

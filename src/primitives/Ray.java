@@ -3,6 +3,7 @@ package primitives;
 import java.util.*;
 
 import static primitives.Util.isZero;
+import geometries.Intersectable.GeoPoint;
 
 /**
  * Ray class representing a ray.
@@ -79,20 +80,25 @@ public class Ray {
      * @return the closest point to this point, or {@code null} if the list is empty
      */
     public Point findClosestPoint(List<Point> points) {
-        if (points == null || points.isEmpty())
+        return points == null || points.isEmpty() ? null
+                : findClosestGeoPoint(points.stream().map(p -> new GeoPoint(null, p)).toList()).point;
+
+    }
+    public GeoPoint findClosestGeoPoint(List<GeoPoint> intersections)
+    {
+        if (intersections == null || intersections.isEmpty())
             return null;
 
         double minDistanceSquare = Double.POSITIVE_INFINITY;
-        Point minPoint = null;
-        for (Point point : points) {
-            double distanceSquare = point.distanceSquared(this.head);
+        GeoPoint minPoint = null;
+        for (GeoPoint geoPoint : intersections) {
+            double distanceSquare = geoPoint.point.distanceSquared(this.head);
             if (distanceSquare < minDistanceSquare) {
                 minDistanceSquare = distanceSquare;
-                minPoint = point;
+                minPoint=geoPoint;
             }
         }
         return minPoint;
     }
-
 }
 

@@ -14,7 +14,7 @@ import primitives.Vector;
  *
  * @author Dan
  */
-public class Polygon implements Geometry {
+public class Polygon extends Geometry {
     /**
      * List of polygon's vertices
      */
@@ -91,8 +91,8 @@ public class Polygon implements Geometry {
     public Vector getNormal(Point point) {
         return plane.getNormal();
     }
-
-    public List<Point> findIntersections(Ray ray) {
+    @Override
+    protected  List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
         return null;
     }
 

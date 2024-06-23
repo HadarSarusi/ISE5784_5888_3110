@@ -13,7 +13,7 @@ import java.util.List;
  * It supports adding multiple geometric objects and finding intersections of a given ray with these objects.
  * </p>
  */
-public class Geometries implements Intersectable {
+public class Geometries extends Intersectable {
 
     /**
      * A list of geometries to be intersected, initialized as an empty {@link LinkedList}.
@@ -57,10 +57,10 @@ public class Geometries implements Intersectable {
      * @return a list of intersection points, or {@code null} if there are no intersections
      */
     @Override
-    public List<Point> findIntersections(Ray ray) {
-        List<Point> result = null;
+    protected  List<GeoPoint> findGeoIntersectionsHelper(Ray ray){
+        List<GeoPoint> result = null;
         for (Intersectable geometry : geometries) {
-            List<Point> intersections = geometry.findIntersections(ray);
+            List<GeoPoint> intersections = geometry.findGeoIntersections(ray);
             if (intersections != null) {
                 if (result == null)
                     result = new LinkedList<>(intersections);

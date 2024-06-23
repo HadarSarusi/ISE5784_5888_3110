@@ -8,12 +8,26 @@ import primitives.*;
  *
  * @author Lea &amp; Hadar
  */
-public interface Geometry extends Intersectable {
+public abstract class Geometry extends Intersectable {
+
+    protected Color emission=Color.BLACK;
+
     /**
      * Calculates the normal vector to the geometry at the specified point.
      *
      * @param point The point on the geometry's surface.
      * @return The normal vector to the geometry at the given point.
      */
-    public Vector getNormal(Point point);
+    public abstract Vector getNormal(Point point);
+
+    public Color getEmission()
+    {
+        return this.emission;
+    }
+
+    public Geometry setEmission(Color emission) {
+        this.emission = emission;
+        return this;
+    }
+
 }
