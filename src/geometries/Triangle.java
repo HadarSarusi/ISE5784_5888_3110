@@ -49,7 +49,7 @@ public class Triangle extends Polygon {
      */
     @Override
     protected  List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
-        var intersection = this.plane.findGeoIntersectionsHelper(ray);
+        List<GeoPoint> intersection = this.plane.findGeoIntersectionsHelper(ray);
         if (intersection == null) return null;
 
         Point p0 = ray.getHead();
@@ -69,6 +69,8 @@ public class Triangle extends Polygon {
         double s3 = alignZero(v.dotProduct(n3));
         if (s1 * s3 <= 0) return null;
 
+        for(GeoPoint geoPoint: intersection )
+            geoPoint.geometry=this;
         return intersection;
     }
 }
