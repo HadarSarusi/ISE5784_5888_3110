@@ -41,7 +41,8 @@ public class Scene {
         this.name = name;
     }
 
-    public List<LightSource> lights=new LinkedList<>();
+    public List<LightSource> lights = new LinkedList<>();
+
     /**
      * Sets the background color of the scene.
      *
@@ -63,10 +64,12 @@ public class Scene {
         this.ambientLight = ambientLight;
         return this;
     }
-    public Scene setLights(List<LightSource> lights){
-        this.lights=lights;
+
+    public Scene setLights(List<LightSource> lights) {
+        this.lights = lights;
         return this;
     }
+
     /**
      * Sets the geometries of the scene.
      *

@@ -19,7 +19,7 @@ public abstract class Intersectable {
      * @return a list of intersection points with the geometric object.
      * If there are no intersections, null is returned.
      */
-    public  List<Point> findIntersections(Ray ray){
+    public List<Point> findIntersections(Ray ray) {
         var geoList = findGeoIntersections(ray);
         return geoList == null ? null : geoList.stream().map(gp -> gp.point).toList();
     }
@@ -27,27 +27,31 @@ public abstract class Intersectable {
     public static class GeoPoint {
         public Geometry geometry;
         public Point point;
-        public GeoPoint(Geometry geometry,Point point)
-        {
-            this.geometry=geometry;
-            this.point=point;
+
+        public GeoPoint(Geometry geometry, Point point) {
+            this.geometry = geometry;
+            this.point = point;
         }
+
         @Override
         public boolean equals(Object obj) {
             if (this == obj) return true;
             return (obj instanceof GeoPoint geoPoint) &&
                     this.geometry.equals(geoPoint.geometry)
-                    &&this.point.equals(geoPoint.point);
+                    && this.point.equals(geoPoint.point);
         }
+
         @Override
         public String toString() {
-            return "" + geometry+""+point;
+            return "" + geometry + "" + point;
         }
 
     }
-    public List<GeoPoint> findGeoIntersections(Ray ray){
+
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
         return findGeoIntersectionsHelper(ray);
     }
+
     protected abstract List<GeoPoint> findGeoIntersectionsHelper(Ray ray);
 
 }

@@ -41,6 +41,7 @@ public class Tube extends RadialGeometry {
         double t = axis.getDirection().dotProduct(point.subtract(axis.getHead()));
         return point.subtract(axis.getPoint(t)).normalize();
     }
+
     @Override
     protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
         return null;

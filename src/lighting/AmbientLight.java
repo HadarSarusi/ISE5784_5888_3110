@@ -35,6 +35,5 @@ public class AmbientLight extends Light {
     }
 
 
-
 }
 

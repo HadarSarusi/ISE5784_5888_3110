@@ -10,8 +10,9 @@ import primitives.*;
  */
 public abstract class Geometry extends Intersectable {
 
-    protected Color emission=Color.BLACK;
-    private Material material=new Material();
+    protected Color emission = Color.BLACK;
+    private Material material = new Material();
+
     /**
      * Calculates the normal vector to the geometry at the specified point.
      *
@@ -20,8 +21,7 @@ public abstract class Geometry extends Intersectable {
      */
     public abstract Vector getNormal(Point point);
 
-    public Color getEmission()
-    {
+    public Color getEmission() {
         return this.emission;
     }
 
@@ -33,9 +33,9 @@ public abstract class Geometry extends Intersectable {
     public Material getMaterial() {
         return material;
     }
-    public Geometry setMaterial(Material material)
-    {
-        this.material=material;
+
+    public Geometry setMaterial(Material material) {
+        this.material = material;
         return this;
     }
 }

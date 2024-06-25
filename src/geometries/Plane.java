@@ -89,6 +89,6 @@ public class Plane extends Geometry {
 
         double nQMinusP0 = this.normal.dotProduct(this.point.subtract(p0));
         double t = alignZero(nQMinusP0 / nv);
-        return t <= 0 ? null : List.of(new GeoPoint(this,ray.getPoint(t)));
+        return t <= 0 ? null : List.of(new GeoPoint(this, ray.getPoint(t)));
     }
 }
