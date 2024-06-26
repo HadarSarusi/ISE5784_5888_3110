@@ -1,6 +1,7 @@
 package renderer;
 
 import lighting.LightSource;
+import lighting.SpotLight;
 import primitives.*;
 import scene.Scene;
 import geometries.Intersectable.GeoPoint;
@@ -65,7 +66,8 @@ public class SimpleRayTracer extends RayTracerBase {
             double nl = alignZero(n.dotProduct(l));
             if (nl * nv > 0) { // sign(nl) == sing(nv)
                 Color iL = lightSource.getIntensity(gp.point);
-                color = color.add(iL.scale(calcDiffusive(material, nl))).add(iL.scale(calcSpecular(material, n, l, nl, v)));
+                color = color.add(iL.scale(calcDiffusive(material, nl)))
+                        .add(iL.scale(calcSpecular(material, n, l, nl, v)));
             }
         }
         return color;
