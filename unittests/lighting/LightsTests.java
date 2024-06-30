@@ -255,6 +255,9 @@ public class LightsTests {
                 .writeToImage();
     }
 
+    /**
+     * Produce a picture of sphere lighted by all the sources of lights.
+     */
     @Test
     public void sphereIntegrationTest() {
         scene1.geometries.add(sphere);
@@ -280,6 +283,9 @@ public class LightsTests {
                 .writeToImage(); //
     }
 
+    /**
+     * Produce a picture of 2 triangles lighted by all the sources of lights.
+     */
     @Test
     public void triangleIntegrationTest() {
         scene2.geometries.add(triangle1, triangle2);
@@ -289,13 +295,16 @@ public class LightsTests {
                         new Point(0, -10, 0),
                         new Vector(50, 400, 2))
                 .setKl(0.0001).setKq(0.00001));
+
         scene2.lights.add(new PointLight(
                 new Color(255, 255, 255),
                 new Point(20, -20, -10))
                 .setKl(0.0001).setKq(0.0002));
+
         scene2.lights.add(new DirectionalLight(
                 new Color(255, 210, 0),
                 new Vector(100, -400, 50)));
+
         camera2.setImageWriter(new ImageWriter("twoTrianglesIntegrationTest", 500, 500)) //
                 .setRayTracer(new SimpleRayTracer(scene2)).build() //
                 .renderImage() //

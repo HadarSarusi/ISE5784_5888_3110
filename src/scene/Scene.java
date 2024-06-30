@@ -41,6 +41,9 @@ public class Scene {
         this.name = name;
     }
 
+    /**
+     * A list of light sources in the scene.
+     */
     public List<LightSource> lights = new LinkedList<>();
 
     /**
@@ -62,11 +65,6 @@ public class Scene {
      */
     public Scene setAmbientLight(AmbientLight ambientLight) {
         this.ambientLight = ambientLight;
-        return this;
-    }
-
-    public Scene setLights(List<LightSource> lights) {
-        this.lights = lights;
         return this;
     }
 
