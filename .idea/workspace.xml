@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="21087c2b-fa54-4989-b039-4ac151d13dc5" name="Changes" comment="stage 7 shadow">
-      <change afterPath="$PROJECT_DIR$/unittests/renderer/ShadowTests.java" afterDir="false" />
+    <list default="true" id="21087c2b-fa54-4989-b039-4ac151d13dc5" name="Changes" comment="Pro7.1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Material.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Material.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -498,7 +499,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1720335794381</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL‎-00030" summary="Pro7.1">
+      <option name="closed" value="true" />
+      <created>1720346727093</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL‎-00030" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1720346727093</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -516,7 +525,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Merge remote-tracking branch 'origin/master'" />
     <MESSAGE value="Stage1 finish" />
     <MESSAGE value="Stage 2.1" />
     <MESSAGE value="Stage 1 refactoring" />
@@ -541,7 +549,8 @@
     <MESSAGE value="stage 6 spotlight fix" />
     <MESSAGE value="stage 6 final" />
     <MESSAGE value="stage 7 shadow" />
-    <option name="LAST_COMMIT_MESSAGE" value="stage 7 shadow" />
+    <MESSAGE value="Pro7.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pro7.1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

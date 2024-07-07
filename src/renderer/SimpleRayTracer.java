@@ -21,7 +21,14 @@ public class SimpleRayTracer extends RayTracerBase {
      * a const for ray head offset size for shading rays
      */
     private static final double DELTA = 0.1;
-
+    /**
+     * *Recursion stopping condition for transparency
+     */
+    private static final int MAX_CALC_COLOR_LEVEL = 10;
+    /**
+     * *Recursion stopping condition for reflection
+     */
+    private static final Double3 MIN_CALC_COLOR_K =new Double3 (0.001);
     /**
      * Constructs a {@code SimpleRayTracer} with the specified scene.
      *
@@ -55,9 +62,40 @@ public class SimpleRayTracer extends RayTracerBase {
      * @return the color at the specified point
      */
     private Color calcColor(GeoPoint geoPoint, Ray ray) {
-        return this.scene.ambientLight.getIntensity().add(calcLocalEffects(geoPoint, ray));
+        return calcColor(geoPoint, ray, MAX_CALC_COLOR_LEVEL, MIN_CALC_COLOR_K)
+                .add(scene.ambientLight.getIntensity());
+    }
+    /**
+     * Calculates the color at the specified point by considering both local and global effects.
+     *
+     * @param gp    the point at which the color is calculated
+     * @param ray   the ray that intersected the geometry
+     * @param level the recursion level for global effects calculation
+     * @param k     the attenuation coefficient for the global effects
+     * @return the color at the specified point
+     */
+    private Color calcColor(GeoPoint gp, Ray ray, int level, Double3 k) {
+        Color color = calcLocalEffects(gp, ray);
+        return 1 == level ? color : color.add(calcGlobalEffects(gp, ray, level, k));
     }
 
+    private Color calcGlobalEffects(GeoPoint gp, Ray ray, int level, Double3 k) {
+        Material material = gp.geometry.getMaterial();
+        return calcGlobalEffect(constructRefractedRay(gp, ray), material.kT, level, k)
+                .add(calcGlobalEffect(constructReflectedRay(gp, ray), material.kR, level, k));
+    }
+
+    private Ray constructRefractedRay(GeoPoint gp, Ray ray) {
+        return new Ray(new Point(gp.point.add(gp.geometry.getNormal(gp.point).scale()))),ray);
+    }
+
+    private Color calcGlobalEffect(Ray ray, Double3 kx, int level, Double3 k) {
+        Double3 kkx = kx.product(k);
+        if (kkx.lowerThan(MIN_CALC_COLOR_K)) return Color.BLACK;
+        GeoPoint gp = ray.findClosestGeoPoint(scene.geometries.findGeoIntersections(ray));
+        return (gp == null ? scene.background : calcColor(gp, ray, level-1, kkx))
+                .scale(kx);
+    }
     /**
      * Calculates the local effects at the specified point, including diffuse and specular reflection.
      *

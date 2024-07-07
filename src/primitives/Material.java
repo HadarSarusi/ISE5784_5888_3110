@@ -21,7 +21,14 @@ public class Material {
      * The shininess exponent of the material, affecting the size and intensity of specular highlights.
      */
     public int nShininess = 0;
-
+    /**
+     * Attenuation coefficient of transparency
+     */
+    public Double3 kT=Double3.ZERO;
+    /**
+     *reflection attenuation coefficient
+     */
+    public Double3 kR=Double3.ZERO;
     /**
      * Sets the diffuse reflection coefficient (kD) of the material.
      *
@@ -74,6 +81,51 @@ public class Material {
      */
     public Material setShininess(int nShininess) {
         this.nShininess = nShininess;
+        return this;
+    }
+    /**
+     * Sets the attenuation coefficient of transparency.
+     *
+     * @param kT the attenuation coefficient of transparency
+     * @return the current instance of the Material class
+     */
+    public Material setKt(Double3 kT)
+    {
+        this.kT=kT;
+        return this;
+    }
+    /**
+     * Sets the reflection attenuation coefficient.
+     *
+     * @param kR the reflection attenuation coefficient
+     * @return the current instance of the Material class
+     */
+    public Material setKr(Double3 kR)
+    {
+        this.kR=kR;
+        return this;
+    }
+
+    /**
+     * Sets the attenuation coefficient of transparency.
+     *
+     * @param kT the attenuation coefficient of transparency
+     * @return the current instance of the Material class
+     */
+    public Material setKt(double kT)
+    {
+        this.kT=new Double3(kT);
+        return this;
+    }
+    /**
+     * Sets the reflection attenuation coefficient.
+     *
+     * @param kR the reflection attenuation coefficient
+     * @return the current instance of the Material class
+     */
+    public Material setKr(double kR)
+    {
+        this.kR=new Double3(kR);
         return this;
     }
 }
