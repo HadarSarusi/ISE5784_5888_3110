@@ -38,6 +38,10 @@ public class DirectionalLight extends Light implements LightSource {
         return this.direction;
     }
 
+    public double getDistance(Point point) {
+        return Double.POSITIVE_INFINITY;
+    }
+
     /**
      * Gets the intensity (color) of the light at a given point (p).
      * For directional lights, the intensity is constant regardless of the point.
