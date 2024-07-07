@@ -242,18 +242,24 @@ public class Camera implements Cloneable {
          */
         public Camera build() {
             String errorMessage = "Missing data for rendering";
+
+            // ray tracer & image writer - so we can build a picture
             if (camera.imageWriter == null) throw new MissingResourceException(errorMessage, "Camera", "imageWriter");
             if (camera.rayTracer == null) throw new MissingResourceException(errorMessage, "Camera", "rayTracer");
+
+            // camera location and direction
             if (camera.p0 == null) throw new MissingResourceException(errorMessage, "Camera", "p0");
             if (camera.vUp == null) throw new MissingResourceException(errorMessage, "Camera", "vUp");
             if (camera.vTo == null) throw new MissingResourceException(errorMessage, "Camera", "vTo");
+            if (!isZero(camera.vUp.dotProduct(camera.vTo)))
+                throw new IllegalArgumentException("wrong values in vRight");
+            camera.vRight = camera.vTo.crossProduct(camera.vUp).normalize();
+
+            // view plane
             if (alignZero(camera.width) <= 0) throw new IllegalArgumentException("width can't be negative or 0");
             if (alignZero(camera.height) <= 0) throw new IllegalArgumentException("height can't be negative or 0");
-            if (alignZero(camera.distance) <= 0)
-                throw new IllegalArgumentException("distance can't be negative or 0");
-            camera.vRight = camera.vTo.crossProduct(camera.vUp).normalize();
-            if (!isZero(camera.vRight.dotProduct(camera.vTo)))
-                throw new IllegalArgumentException("wrong values in vRight");
+            if (alignZero(camera.distance) <= 0) throw new IllegalArgumentException("distance can't be negative or 0");
+
             try {
                 return (Camera) camera.clone();
             } catch (CloneNotSupportedException e) {

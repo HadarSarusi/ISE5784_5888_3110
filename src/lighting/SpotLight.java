@@ -4,6 +4,8 @@ import primitives.Color;
 import primitives.Point;
 import primitives.Vector;
 
+import static primitives.Util.alignZero;
+
 /**
  * The SpotLight class represents a spotlight with a specific direction and narrow beam effect.
  * It extends the PointLight class and adds a direction vector and a narrow beam factor to control the spread of the light.
@@ -89,7 +91,8 @@ public class SpotLight extends PointLight {
      * @return the color intensity of the light at the point
      */
     public Color getIntensity(Point p) {
-        return super.getIntensity(p).scale(Math.pow(Math.max(0, this.direction.dotProduct(getL(p))), narrowBeam));
+        double cos = alignZero(this.direction.dotProduct(getL(p)));
+        return cos <= 0 ? Color.BLACK : super.getIntensity(p).scale(Math.pow(cos, narrowBeam));
     }
 }
 

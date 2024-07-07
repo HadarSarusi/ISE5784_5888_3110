@@ -14,11 +14,11 @@ class ImageWriterTest {
      */
     @Test
     void imageWriterTest() {
-        final ImageWriter imageWriter = new ImageWriter("imageWriterTest", 800, 500);
-        final Color background = new Color(255, 192, 203);
-        final Color color = new Color(0, 0, 0);
         final int nX = 800;
         final int nY = 500;
+        final ImageWriter imageWriter = new ImageWriter("imageWriterTest", nX, nY);
+        final Color background = new Color(255, 192, 203);
+        final Color color = new Color(0, 0, 0);
 
 
         // Fill the image with the specified background

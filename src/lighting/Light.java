@@ -10,7 +10,7 @@ abstract class Light {
     /**
      * The intensity of the light.
      */
-    protected Color intensity;
+    protected final Color intensity;
 
     /**
      * Constructs a light with the specified intensity.

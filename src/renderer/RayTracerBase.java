@@ -12,7 +12,7 @@ public abstract class RayTracerBase {
     /**
      * The scene to be used for ray tracing.
      */
-    protected Scene scene;
+    protected final Scene scene;
 
     /**
      * Constructs a {@code RayTracerBase} with the specified scene.
