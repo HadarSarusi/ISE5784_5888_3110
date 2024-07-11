@@ -49,6 +49,10 @@ public class Vector extends Point {
             throw new IllegalArgumentException("vector can't be zero");
     }
 
+    public Vector(Vector vector){
+        super(vector.xyz);
+    }
+
 
     @Override
     public boolean equals(Object obj) {

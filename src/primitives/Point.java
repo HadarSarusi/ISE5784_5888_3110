@@ -36,6 +36,11 @@ public class Point {
         this.xyz = xyz;
     }
 
+    public Point(Point point) {
+
+        this.xyz = point.xyz;
+    }
+
 
     @Override
     public boolean equals(Object obj) {

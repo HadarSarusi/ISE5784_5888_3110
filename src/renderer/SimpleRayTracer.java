@@ -48,11 +48,15 @@ public class SimpleRayTracer extends RayTracerBase {
      */
     @Override
     public Color traceRay(Ray ray) {
-        List<GeoPoint> intersections = this.scene.geometries.findGeoIntersections(ray);
-        return intersections == null
-                ? this.scene.background : calcColor(ray.findClosestGeoPoint(intersections), ray);
+        GeoPoint intersection = findClosestIntersection(ray);
+        return intersection == null
+                ? this.scene.background : calcColor(intersection, ray);
     }
 
+    private GeoPoint findClosestIntersection(Ray ray){
+        List<GeoPoint> intersections = this.scene.geometries.findGeoIntersections(ray);
+        return intersections == null? null: ray.findClosestGeoPoint(intersections);
+    }
     /**
      * Calculates the color at the specified point by adding the ambient light intensity
      * and the local effects such as diffuse and specular reflection.
@@ -75,24 +79,30 @@ public class SimpleRayTracer extends RayTracerBase {
      * @return the color at the specified point
      */
     private Color calcColor(GeoPoint gp, Ray ray, int level, Double3 k) {
-        Color color = calcLocalEffects(gp, ray);
-        return 1 == level ? color : color.add(calcGlobalEffects(gp, ray, level, k));
-    }
-
-    private Color calcGlobalEffects(GeoPoint gp, Ray ray, int level, Double3 k) {
         Material material = gp.geometry.getMaterial();
-        return calcGlobalEffect(constructRefractedRay(gp, ray), material.kT, level, k)
-                .add(calcGlobalEffect(constructReflectedRay(gp, ray), material.kR, level, k));
+        Vector v = ray.getDirection();
+        Vector n = gp.geometry.getNormal(gp.point);
+        Color color = calcLocalEffects(gp, material, v,n);
+        return 1 == level ? color : color.add(calcGlobalEffects(gp, level, k,  material, v,n));
     }
 
-    private Ray constructRefractedRay(GeoPoint gp, Ray ray) {
-        return new Ray(new Point(gp.point.add(gp.geometry.getNormal(gp.point).scale()))),ray);
+    private Color calcGlobalEffects(GeoPoint gp, int level, Double3 k, Material material ,Vector v, Vector n) {
+        return calcGlobalEffect(constructRefractedRay(gp.point, v,n), material.kT, level, k)//לשים לב
+                .add(calcGlobalEffect(constructReflectedRay(gp.point, v,n), material.kR, level, k));
+    }
+
+    private Ray constructReflectedRay(Point p, Vector v, Vector n) {
+        return new Ray(p,new Vector(v.subtract(n.scale(n.dotProduct(v)*-2))),n);
+    }
+
+    private Ray constructRefractedRay(Point p, Vector v,Vector n) {
+        return new Ray(p,v,n);
     }
 
     private Color calcGlobalEffect(Ray ray, Double3 kx, int level, Double3 k) {
         Double3 kkx = kx.product(k);
         if (kkx.lowerThan(MIN_CALC_COLOR_K)) return Color.BLACK;
-        GeoPoint gp = ray.findClosestGeoPoint(scene.geometries.findGeoIntersections(ray));
+        GeoPoint gp = findClosestIntersection(ray);
         return (gp == null ? scene.background : calcColor(gp, ray, level-1, kkx))
                 .scale(kx);
     }
@@ -100,15 +110,11 @@ public class SimpleRayTracer extends RayTracerBase {
      * Calculates the local effects at the specified point, including diffuse and specular reflection.
      *
      * @param gp  the geometry point at which the local effects are calculated
-     * @param ray the ray that intersected the geometry
      * @return the color resulting from the local effects
      */
-    private Color calcLocalEffects(GeoPoint gp, Ray ray) {
-        Vector n = gp.geometry.getNormal(gp.point);
-        Vector v = ray.getDirection();
+    private Color calcLocalEffects(GeoPoint gp,  Material material ,Vector v, Vector n) {
         double nv = alignZero(n.dotProduct(v));
         if (nv == 0) return Color.BLACK;
-        Material material = gp.geometry.getMaterial();
         Color color = gp.geometry.getEmission();
         for (LightSource lightSource : scene.lights) {
             Vector l = lightSource.getL(gp.point);
@@ -161,18 +167,21 @@ public class SimpleRayTracer extends RayTracerBase {
      */
     private boolean unshaded(GeoPoint gp, Vector l, Vector n, double nl, LightSource light) {
         Vector lightDirection = l.scale(-1); // from point to light source
-        Vector epsVector = n.scale(nl < 0 ? DELTA : -DELTA);
-        Point point = gp.point.add(epsVector);
-        Ray ray = new Ray(point, lightDirection);
+//        Vector epsVector = n.scale(nl < 0 ? DELTA : -DELTA);
+//        Point point = gp.point.add(epsVector);
+        if (gp.geometry.getMaterial().kT != Double3.ZERO)
+            return true;
+        Ray ray = new Ray(gp.point, lightDirection,n);
         List<GeoPoint> intersections = scene.geometries.findGeoIntersections(ray);
         if (intersections == null) return true;
         for (GeoPoint intersection : intersections) {
             double d1 = light.getDistance(intersection.point);
-            double d2 = point.distanceSquared(intersection.point);
+            double d2 = ray.getHead().distanceSquared(intersection.point);
             if (d1 > d2) return false;
         }
        return true;
     }
+
 }
 
 
