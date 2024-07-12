@@ -8,6 +8,7 @@ import geometries.Intersectable.GeoPoint;
 import java.util.List;
 
 import static primitives.Util.alignZero;
+import static primitives.Util.isZero;
 
 /**
  * The {@code SimpleRayTracer} class is a concrete implementation of {@code RayTracerBase}
@@ -16,11 +17,10 @@ import static primitives.Util.alignZero;
  */
 public class SimpleRayTracer extends RayTracerBase {
 
-
     /**
      * a const for ray head offset size for shading rays
      */
-    private static final double DELTA = 0.1;
+    //  private static final double DELTA = 0.1;
     /**
      * *Recursion stopping condition for transparency
      */
@@ -53,9 +53,9 @@ public class SimpleRayTracer extends RayTracerBase {
                 ? this.scene.background : calcColor(intersection, ray);
     }
 
-    private GeoPoint findClosestIntersection(Ray ray){
+    private GeoPoint findClosestIntersection(Ray ray) {
         List<GeoPoint> intersections = this.scene.geometries.findGeoIntersections(ray);
-        return intersections == null? null: ray.findClosestGeoPoint(intersections);
+        return intersections == null ? null: ray.findClosestGeoPoint(intersections);
     }
     /**
      * Calculates the color at the specified point by adding the ambient light intensity
@@ -92,7 +92,7 @@ public class SimpleRayTracer extends RayTracerBase {
     }
 
     private Ray constructReflectedRay(Point p, Vector v, Vector n) {
-        return new Ray(p,new Vector(v.subtract(n.scale(n.dotProduct(v)*-2))),n);
+        return new Ray(p,new Vector(v.subtract(n.scale(v.dotProduct(n)*2))),n);
     }
 
     private Ray constructRefractedRay(Point p, Vector v,Vector n) {
@@ -167,17 +167,17 @@ public class SimpleRayTracer extends RayTracerBase {
      */
     private boolean unshaded(GeoPoint gp, Vector l, Vector n, double nl, LightSource light) {
         Vector lightDirection = l.scale(-1); // from point to light source
-//        Vector epsVector = n.scale(nl < 0 ? DELTA : -DELTA);
+//       Vector epsVector = n.scale(nl < 0 ? DELTA : -DELTA);
 //        Point point = gp.point.add(epsVector);
-        if (gp.geometry.getMaterial().kT != Double3.ZERO)
-            return true;
-        Ray ray = new Ray(gp.point, lightDirection,n);
-        List<GeoPoint> intersections = scene.geometries.findGeoIntersections(ray);
-        if (intersections == null) return true;
-        for (GeoPoint intersection : intersections) {
-            double d1 = light.getDistance(intersection.point);
-            double d2 = ray.getHead().distanceSquared(intersection.point);
-            if (d1 > d2) return false;
+        if (gp.geometry.getMaterial().kT == Double3.ZERO) {
+            Ray ray = new Ray(gp.point, lightDirection, n);
+            List<GeoPoint> intersections = scene.geometries.findGeoIntersections(ray);
+            if (intersections == null) return true;
+            for (GeoPoint intersection : intersections) {
+                double d1 = light.getDistance(intersection.point);
+                double d2 = ray.getHead().distanceSquared(intersection.point);
+                if (d1 > d2) return false;
+            }
         }
        return true;
     }
