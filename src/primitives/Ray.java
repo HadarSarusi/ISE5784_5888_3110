@@ -16,7 +16,7 @@ import static primitives.Util.isZero;
  */
 public class Ray {
 
-    private static final double DELTA = 0.1 ;
+    private static final double DELTA = 0.1;
     /**
      * The starting point (head) of the ray.
      */
@@ -36,16 +36,12 @@ public class Ray {
         this.head = head;
         this.direction = direction.normalize();
     }
-    //Vector epsVector = n.scale(nl < 0 ? DELTA : -DELTA);
-    public Ray(Point head, Vector direction, Vector normal){
-        if(!isZero(direction.dotProduct(normal))){
-            Vector delta = normal.scale( normal.dotProduct(direction) > 0 ? DELTA : -DELTA);
-            this.head = head.add(delta);}
-        else{
-            this.head = head;
-        }
-        this.direction= direction.normalize();
-        }
+
+    public Ray(Point head, Vector direction, Vector normal) {
+        Vector delta = normal.scale(normal.dotProduct(direction) >= 0 ? DELTA : -DELTA);
+        this.head = head.add(delta);
+        this.direction = direction;
+    }
 
     /**
      * Checks if this ray is equal to another object.
