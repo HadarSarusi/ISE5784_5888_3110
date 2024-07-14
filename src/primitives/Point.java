@@ -35,7 +35,12 @@ public class Point {
     public Point(Double3 xyz) {
         this.xyz = xyz;
     }
-
+    /**
+     * Copy constructor that creates a new Point instance with the same coordinates
+     * as the specified Point instance.
+     *
+     * @param point The Point instance to copy the coordinates from.
+     */
     public Point(Point point) {
 
         this.xyz = point.xyz;

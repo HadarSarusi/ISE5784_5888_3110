@@ -115,6 +115,12 @@ public class ReflectionRefractionTests {
                 .renderImage()
                 .writeToImage();
     }
+
+    /**
+     * Test method to create and render a complex scene with various geometries and lighting.
+     * This method sets up a scene with ambient light, geometries (triangles and spheres),
+     * and multiple light sources, then renders the image using a camera.
+     */
     @Test
     public void complexImageTest() {
         // Create a camera object with position, direction, and up vector

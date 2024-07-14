@@ -49,6 +49,11 @@ public class Vector extends Point {
             throw new IllegalArgumentException("vector can't be zero");
     }
 
+    /**
+     * Constructs a new {@code Vector} object by copying the values from an existing {@code Vector}.
+     *
+     * @param vector the {@code Vector} object to copy from
+     */
     public Vector(Vector vector){
         super(vector.xyz);
     }

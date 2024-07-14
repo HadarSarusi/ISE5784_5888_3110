@@ -16,17 +16,13 @@ import static primitives.Util.isZero;
  * the color based on the scene's ambient light and local effects such as diffuse and specular reflection.
  */
 public class SimpleRayTracer extends RayTracerBase {
-    private static final boolean UNSHADED = false;
     /**
-     * a const for ray head offset size for shading rays
-     */
-    //  private static final double DELTA = 0.1;
-    /**
-     * *Recursion stopping condition for transparency
+     * Recursion stopping condition for reflection and refraction calculations.
      */
     private static final int MAX_CALC_COLOR_LEVEL = 10;
+
     /**
-     * *Recursion stopping condition for reflection
+     * Minimum coefficient for color contribution to stop recursion.
      */
     private static final Double3 MIN_CALC_COLOR_K = new Double3(0.001);
 
@@ -54,6 +50,12 @@ public class SimpleRayTracer extends RayTracerBase {
                 ? this.scene.background : calcColor(intersection, ray);
     }
 
+    /**
+     * Finds the closest intersection point between the ray and the geometries in the scene.
+     *
+     * @param ray the ray to be traced
+     * @return the closest intersection point, or null if no intersections are found
+     */
     private GeoPoint findClosestIntersection(Ray ray) {
         List<GeoPoint> intersections = this.scene.geometries.findGeoIntersections(ray);
         return ray.findClosestGeoPoint(intersections);
@@ -89,19 +91,55 @@ public class SimpleRayTracer extends RayTracerBase {
         return 1 == level ? color : color.add(calcGlobalEffects(gp, level, k, material, v, n));
     }
 
+    /**
+     * Calculates the global effects (reflection and refraction) at the specified point.
+     *
+     * @param gp     the point at which the global effects are calculated
+     * @param level  the recursion level for global effects calculation
+     * @param k      the attenuation coefficient for the global effects
+     * @param material the material properties of the geometry at the given point
+     * @param v      the view vector from the point to the camera
+     * @param n      the normal vector at the point on the geometry
+     * @return the color at the specified point after applying global effects
+     */
     private Color calcGlobalEffects(GeoPoint gp, int level, Double3 k, Material material, Vector v, Vector n) {
         return calcGlobalEffect(constructRefractedRay(gp.point, v, n), material.kT, level, k)
                 .add(calcGlobalEffect(constructReflectedRay(gp.point, v, n), material.kR, level, k));
     }
 
+    /**
+     * Constructs a reflected ray from the specified point.
+     *
+     * @param p the point from which the reflected ray is constructed
+     * @param v the view vector
+     * @param n the normal vector at the point on the geometry
+     * @return the reflected ray
+     */
     private Ray constructReflectedRay(Point p, Vector v, Vector n) {
         return new Ray(p, v.subtract(n.scale(v.dotProduct(n) * 2)), n);
     }
 
+    /**
+     * Constructs a refracted ray from the specified point.
+     *
+     * @param p the point from which the refracted ray is constructed
+     * @param v the view vector
+     * @param n the normal vector at the point on the geometry
+     * @return the refracted ray
+     */
     private Ray constructRefractedRay(Point p, Vector v, Vector n) {
         return new Ray(p, v, n);
     }
 
+    /**
+     * Calculates the global effect (reflection or refraction) at the specified point.
+     *
+     * @param ray   the ray to be traced
+     * @param kx    the attenuation coefficient for the effect
+     * @param level the recursion level for global effects calculation
+     * @param k     the attenuation coefficient for the global effects
+     * @return the color at the specified point after applying the global effect
+     */
     private Color calcGlobalEffect(Ray ray, Double3 kx, int level, Double3 k) {
         Double3 kkx = kx.product(k);
         if (kkx.lowerThan(MIN_CALC_COLOR_K)) return Color.BLACK;
@@ -111,10 +149,16 @@ public class SimpleRayTracer extends RayTracerBase {
     }
 
     /**
-     * Calculates the local effects at the specified point, including diffuse and specular reflection.
+     * Calculates the local lighting effects at a given point on a geometry in the scene.
+     * The method considers the emission of the geometry, as well as the diffuse and
+     * specular reflections from each light source.
      *
-     * @param gp the geometry point at which the local effects are calculated
-     * @return the color resulting from the local effects
+     * @param gp The GeoPoint representing the point on the geometry.
+     * @param material The material properties of the geometry at the given point.
+     * @param v The view vector from the point to the camera.
+     * @param n The normal vector at the point on the geometry.
+     * @param k The attenuation factor of the reflection.
+     * @return The color at the point after applying local lighting effects.
      */
     private Color calcLocalEffects(GeoPoint gp, Material material, Vector v, Vector n, Double3 k) {
         double nv = alignZero(n.dotProduct(v));
@@ -124,7 +168,7 @@ public class SimpleRayTracer extends RayTracerBase {
             Vector l = lightSource.getL(gp.point);
             double nl = alignZero(n.dotProduct(l));
             if ((nl * nv > 0)) {// sign(nl) == sign(nv)
-                Double3 ktr = UNSHADED ? (unshaded(gp, l, n, nl, lightSource) ? Double3.ONE : Double3.ZERO) : transparency(gp, l, n, nl, lightSource, k);
+                Double3 ktr = transparency(gp, l, n, nl, lightSource, k);
                 if (!ktr.equals(Double3.ZERO)) {
                     Color iL = lightSource.getIntensity(gp.point).scale(ktr);
                     color = color.add(iL.scale(calcDiffusive(material, nl)))
@@ -189,6 +233,17 @@ public class SimpleRayTracer extends RayTracerBase {
         return true;
     }
 
+    /**
+     * Calculates the transparency factor at the specified point considering the light source.
+     *
+     * @param gp The GeoPoint representing the point on the geometry.
+     * @param l The light vector.
+     * @param n The normal vector at the point on the geometry.
+     * @param nl The dot product of the normal vector and the light vector.
+     * @param light The light source.
+     * @param k The attenuation factor of the reflection.
+     * @return The transparency factor.
+     */
     private Double3 transparency(GeoPoint gp, Vector l, Vector n, double nl, LightSource light, Double3 k) {
         Vector lightDirection = l.scale(-1);
         Ray ray = new Ray(gp.point, lightDirection, n);
@@ -205,7 +260,7 @@ public class SimpleRayTracer extends RayTracerBase {
         }
         return ktr;
     }
-
 }
+
 
 

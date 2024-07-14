@@ -16,6 +16,10 @@ import static primitives.Util.isZero;
  */
 public class Ray {
 
+
+    /**
+     * A small delta value used for epsilon that moves to the direction to the normal.
+     */
     private static final double DELTA = 0.1;
     /**
      * The starting point (head) of the ray.
@@ -37,6 +41,14 @@ public class Ray {
         this.direction = direction.normalize();
     }
 
+    /**
+     * Constructs a new Ray with the specified origin point, direction vector, and normal vector.
+     * Adjusts the origin point by a small delta value to account for numerical precision.
+     *
+     * @param head The origin point of the ray.
+     * @param direction The direction vector of the ray.
+     * @param normal The normal vector used to adjust the origin point for numerical precision.
+     */
     public Ray(Point head, Vector direction, Vector normal) {
         Vector delta = normal.scale(normal.dotProduct(direction) >= 0 ? DELTA : -DELTA);
         this.head = head.add(delta);
