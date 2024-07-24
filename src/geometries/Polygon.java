@@ -1,5 +1,6 @@
 package geometries;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import static primitives.Util.isZero;
@@ -92,9 +93,48 @@ public class Polygon extends Geometry {
         return plane.getNormal();
     }
 
-    @Override
-    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
-        return null;
-    }
+//    @Override
+//    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+//        return null;
+//    }
 
+    /**
+     * Helper method to find the geometric intersections between a ray and the polygon.
+     *
+     * @param ray         The ray to intersect with the polygon
+     * @return A list of GeoPoint objects representing the geometric intersections,
+     *         or null if no intersection is found
+     */
+    @Override
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray ) {
+        // Step 1: check if the ray intersects the plane of the polygon
+        List<GeoPoint> planeGeoIntersections = plane.findGeoIntersections(ray);
+
+        if (planeGeoIntersections == null) {
+            return List.of(); // no intersection
+        }
+        GeoPoint intersectionPoint = planeGeoIntersections.get(0);
+        LinkedList<Vector> vectors = new LinkedList<>();
+
+        Point prePoint = vertices.get(vertices.size() - 1);
+        try {
+            for (Point point : vertices) {
+                vectors.add(point.subtract(prePoint).crossProduct(prePoint.subtract(intersectionPoint.point)));
+                prePoint = point;
+            }
+
+            Vector preVector = vectors.get(vectors.size()-1);
+            for (Vector vector:vectors) {
+                if(vector.dotProduct(preVector)<0){
+                    return null;
+                }
+                preVector = vector;
+            }
+        }
+        catch (IllegalArgumentException exception)
+        {
+            return null;
+        }
+        return List.of(new GeoPoint(this,intersectionPoint.point)) ;
+    }
 }

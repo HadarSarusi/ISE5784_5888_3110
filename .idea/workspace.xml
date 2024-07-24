@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="21087c2b-fa54-4989-b039-4ac151d13dc5" name="Changes" comment="stage 7 reflection+ refraction">
+      <change afterPath="$PROJECT_DIR$/unittests/finalScene/Can.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unittests/finalScene/Soda_Can.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unittests/finalScene/Stl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unittests/renderer/ReflectionRefractionTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/renderer/ReflectionRefractionTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Polygon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Polygon.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +68,7 @@
     "JUnit.All in ISE5784_5888_3110.executor": "Run",
     "JUnit.CameraTest.executor": "Run",
     "JUnit.CameraTest.testConstructRay.executor": "Run",
+    "JUnit.Can.can.executor": "Run",
     "JUnit.ImageWriterTest.ImageWriterTest.executor": "Run",
     "JUnit.ImageWriterTest.executor": "Run",
     "JUnit.ImageWriterTest.imageWriterTest.executor": "Run",
@@ -146,11 +151,27 @@
       <recent name="primitives" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ReflectionRefractionTests.finalScene">
+  <component name="RunManager" selected="JUnit.All in ISE5784_5888_3110">
     <configuration name="All in ISE5784_5888_3110" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5784_5888_3110" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Can.can" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5784_5888_3110" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="finalScene.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="finalScene" />
+      <option name="MAIN_CLASS_NAME" value="finalScene.Can" />
+      <option name="METHOD_NAME" value="can" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -203,29 +224,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ReflectionRefractionTests.twoSpheres" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5784_5888_3110" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="renderer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.ReflectionRefractionTests" />
-      <option name="METHOD_NAME" value="twoSpheres" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ReflectionRefractionTests.finalScene" />
         <item itemvalue="JUnit.All in ISE5784_5888_3110" />
+        <item itemvalue="JUnit.Can.can" />
+        <item itemvalue="JUnit.ReflectionRefractionTests.finalScene" />
         <item itemvalue="JUnit.ReflectionRefractionTests.myTest" />
         <item itemvalue="JUnit.ReflectionRefractionTests.complexSceneTest" />
-        <item itemvalue="JUnit.ReflectionRefractionTests.twoSpheres" />
       </list>
     </recent_temporary>
   </component>
