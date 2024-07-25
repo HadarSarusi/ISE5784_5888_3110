@@ -170,11 +170,11 @@ public class Can {
         );
         canScene.lights.add(
                 new SpotLight(new Color(255,255,255), new Point(-100, -100, 500), new Vector(-1, -1, -2))
-                        .setKl(0.004).setKq(0.00006).setKc(0.000002)
+                        .setKl(0.004).setKq(0.00006)
         );
         canScene.lights.add(
                 new PointLight(new Color(255,255,255), new Point(0, 0, 0))
-                        .setKl(0.004).setKq(0.00006).setKc(0.000002)
+                        .setKl(0.004).setKq(0.00006)
         );
 
         cameraBuilder.setLocation(new Point(15, 0, 10)).setVpDistance(370d)
