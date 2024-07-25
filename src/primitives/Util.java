@@ -1,5 +1,7 @@
 package primitives;
 
+import java.util.Random;
+
 /**
  * Util class is used for some internal utilities, e.g. controlling accuracy
  *
@@ -10,6 +12,9 @@ public final class Util {
      * It is binary, equivalent to ~1/1,000,000,000,000 in decimal (12 digits)
      */
     private static final int ACCURACY = -40;
+    private static final double EPSILON = 0.0000001;
+
+    private static Random random = new Random();
 
     /**
      * Don't let anyone instantiate this class.
@@ -77,6 +82,18 @@ public final class Util {
      */
     public static double random(double min, double max) {
         return Math.random() * (max - min) + min;
+    }
+
+    /**
+     * A function that calculates a random number in a particular field
+     *
+     * @param min minimum
+     * @param max maximum
+     * @return random number in particular field
+     */
+    public static double randomDoubleBetweenTwoNumbers(double min, double max) {
+        min += EPSILON;
+        return min + (max - min) * random.nextDouble();
     }
 
 }

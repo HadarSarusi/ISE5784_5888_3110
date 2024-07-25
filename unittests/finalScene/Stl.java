@@ -1,14 +1,9 @@
 package finalScene;
-
-//import geometries.GMesh;
 import geometries.Geometries;
 import geometries.Triangle;
 import primitives.Color;
 import primitives.Material;
-//import primitives.Mesh;
 import primitives.Point;
-import renderer.Camera;
-
 import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -17,20 +12,6 @@ import java.util.List;
 
 public class Stl {
 
-//    public static Geometries ConvertStlToGeometrys(String path, int numOfTriangles, Material material, Color color){
-//        List<Triangle> triangles =  convertSTLToTriangles(path);
-//        System.out.print("convertSTLToTriangles\n");
-//        Mesh mesh = Mesh.trianglesToMesh(triangles);
-//        System.out.print("trianglesToMesh\n");
-//        mesh = Mesh.edgeCollapseAlgorithm(mesh,numOfTriangles);
-//        System.out.print("edgeCollapseAlgorithm\n");
-//        triangles = Mesh.meshToTriangles(mesh);
-//        System.out.print("meshToTriangles\n");
-//        Geometries geometries = triangleToGeometries(triangles, material, color);
-//        System.out.print("triangleToGeometries\n");
-//        return geometries;
-//    }
-
     public static Geometries ConvertStlToGeometrys(String path, Material material, Color color){
         List<Triangle> triangles =  convertSTLToTriangles(path);
         System.out.print("convertSTLToTriangles\n");
@@ -38,32 +19,6 @@ public class Stl {
         System.out.print("triangleToGeometries\n");
         return geometries;
     }
-
-//    public static Geometries ConvertStlToGeometrysB(String path, Material material, Color color){
-//        List<Triangle> triangles =  convertSTLToTriangles(path);
-//        System.out.print("convertSTLToTriangles\n");
-//        Mesh mesh = Mesh.trianglesToMesh(triangles);
-//        System.out.print("trianglesToMesh\n");
-//        GMesh gMesh = new GMesh(mesh);
-//        Geometries geometries = new Geometries(gMesh.setMaterial(material).setEmission(color));
-//        return geometries;
-//    }
-//    public static String ConvertStlToGeometrysFile(String path, int numOfTriangles, Material material, Color color)
-//    {
-//        List<Triangle> triangles =  convertSTLToTriangles(path);
-//        Mesh mesh = Mesh.trianglesToMesh(triangles);
-//        mesh = Mesh.edgeCollapseAlgorithm(mesh,numOfTriangles);
-//        triangles = Mesh.meshToTriangles(mesh);
-//        Geometries geometries = triangleToGeometries(triangles, material, color);
-//        //saveGeometriesToFile(geometries,)
-//
-//        return null;
-//    }
-
-//    public static Geometries geometriesFromFile(String path)
-//    {
-//        return null;
-//    }
 
     /**
      * Converts an STL file to a list of triangles.
@@ -134,10 +89,4 @@ public class Stl {
         }
         return  geometries;
     }
-
-
-
-
-
-
 }

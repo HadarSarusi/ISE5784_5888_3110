@@ -4,13 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="21087c2b-fa54-4989-b039-4ac151d13dc5" name="Changes" comment="stage 7 reflection+ refraction">
-      <change afterPath="$PROJECT_DIR$/unittests/finalScene/Can.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/unittests/finalScene/Soda_Can.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/unittests/finalScene/Stl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="21087c2b-fa54-4989-b039-4ac151d13dc5" name="Changes" comment="Minip 1 start">
+      <change afterPath="$PROJECT_DIR$/unittests/finalScene/FinalSceneCan.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Polygon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Polygon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Plane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Plane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Color.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Material.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Material.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Point.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Util.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Vector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Vector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unittests/finalScene/Can.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/finalScene/Can.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unittests/finalScene/Stl.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/finalScene/Stl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unittests/renderer/ReflectionRefractionTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/renderer/ReflectionRefractionTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,8 +27,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -69,6 +75,9 @@
     "JUnit.CameraTest.executor": "Run",
     "JUnit.CameraTest.testConstructRay.executor": "Run",
     "JUnit.Can.can.executor": "Run",
+    "JUnit.Can.executor": "Run",
+    "JUnit.FinalImage2.executor": "Run",
+    "JUnit.FinalSceneCan.executor": "Run",
     "JUnit.ImageWriterTest.ImageWriterTest.executor": "Run",
     "JUnit.ImageWriterTest.executor": "Run",
     "JUnit.ImageWriterTest.imageWriterTest.executor": "Run",
@@ -94,7 +103,8 @@
     "JUnit.ReflectionRefractionTests.executor": "Run",
     "JUnit.ReflectionRefractionTests.finalScene.executor": "Run",
     "JUnit.ReflectionRefractionTests.myTest.executor": "Run",
-    "JUnit.ReflectionRefractionTests.twoSpheres.executor": "Debug",
+    "JUnit.ReflectionRefractionTests.twoSpheres.executor": "Run",
+    "JUnit.ReflectionRefractionTests.twoSpheresImproved.executor": "Run",
     "JUnit.RenderTests.basicRenderXml.executor": "Run",
     "JUnit.RenderTests.executor": "Run",
     "JUnit.RenderTests.renderMultiColorTest.executor": "Run",
@@ -106,6 +116,7 @@
     "JUnit.ShadowTests.sphereTriangleSpot1.executor": "Run",
     "JUnit.SphereTest.getNormal.executor": "Run",
     "JUnit.SphereTest.testFindIntersections.executor": "Run",
+    "JUnit.SphereWall.executor": "Run",
     "JUnit.TriangleTest.findIntsersections.executor": "Run",
     "JUnit.TriangleTest.testGetNormal.executor": "Run",
     "JUnit.TubeTest.getNormal.executor": "Run",
@@ -151,7 +162,7 @@
       <recent name="primitives" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in ISE5784_5888_3110">
+  <component name="RunManager">
     <configuration name="All in ISE5784_5888_3110" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5784_5888_3110" />
       <option name="PACKAGE_NAME" value="" />
@@ -176,7 +187,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ReflectionRefractionTests.complexSceneTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="FinalImage2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5784_5888_3110" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="finalScene.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="finalScene" />
+      <option name="MAIN_CLASS_NAME" value="finalScene.FinalImage2" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReflectionRefractionTests.twoSpheres" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5784_5888_3110" />
       <extension name="coverage">
         <pattern>
@@ -186,13 +212,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="renderer" />
       <option name="MAIN_CLASS_NAME" value="renderer.ReflectionRefractionTests" />
-      <option name="METHOD_NAME" value="complexSceneTest" />
+      <option name="METHOD_NAME" value="twoSpheres" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ReflectionRefractionTests.finalScene" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ReflectionRefractionTests.twoSpheresImproved" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5784_5888_3110" />
       <extension name="coverage">
         <pattern>
@@ -202,23 +228,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="renderer" />
       <option name="MAIN_CLASS_NAME" value="renderer.ReflectionRefractionTests" />
-      <option name="METHOD_NAME" value="finalScene" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ReflectionRefractionTests.myTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5784_5888_3110" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="renderer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.ReflectionRefractionTests" />
-      <option name="METHOD_NAME" value="myTest" />
+      <option name="METHOD_NAME" value="twoSpheresImproved" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -226,11 +236,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ReflectionRefractionTests.twoSpheres" />
+        <item itemvalue="JUnit.ReflectionRefractionTests.twoSpheresImproved" />
         <item itemvalue="JUnit.All in ISE5784_5888_3110" />
+        <item itemvalue="JUnit.FinalImage2" />
         <item itemvalue="JUnit.Can.can" />
-        <item itemvalue="JUnit.ReflectionRefractionTests.finalScene" />
-        <item itemvalue="JUnit.ReflectionRefractionTests.myTest" />
-        <item itemvalue="JUnit.ReflectionRefractionTests.complexSceneTest" />
       </list>
     </recent_temporary>
   </component>
@@ -278,6 +288,10 @@
       <workItem from="1719418575419" duration="9391000" />
       <workItem from="1719734946420" duration="2144000" />
       <workItem from="1720767188992" duration="7025000" />
+      <workItem from="1721812839223" duration="2000" />
+      <workItem from="1721813963199" duration="5000" />
+      <workItem from="1721816252483" duration="3332000" />
+      <workItem from="1721821593223" duration="36248000" />
     </task>
     <task id="LOCAL‎-00001" summary="upload">
       <option name="closed" value="true" />
@@ -527,7 +541,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1720767222027</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL‎-00032" summary="Minip 1 start">
+      <option name="closed" value="true" />
+      <created>1721807008809</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL‎-00032" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1721807008809</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -545,7 +567,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Stage 2.1" />
     <MESSAGE value="Stage 1 refactoring" />
     <MESSAGE value="Stage 2.1 PointTest" />
     <MESSAGE value="Stage2 implement getNormal" />
@@ -570,7 +591,8 @@
     <MESSAGE value="stage 7 shadow" />
     <MESSAGE value="Pro7.1" />
     <MESSAGE value="stage 7 reflection+ refraction" />
-    <option name="LAST_COMMIT_MESSAGE" value="stage 7 reflection+ refraction" />
+    <MESSAGE value="Minip 1 start" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minip 1 start" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

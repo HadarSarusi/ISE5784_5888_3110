@@ -85,7 +85,7 @@
 //                .build()
 //                .renderImage()
 //                .writeToImage();
-//    }
+//    }.
 //}
 
 package finalScene;
@@ -95,6 +95,7 @@ import geometries.Plane;
 import geometries.Polygon;
 import geometries.Sphere;
 import lighting.AmbientLight;
+import lighting.DirectionalLight;
 import lighting.PointLight;
 import lighting.SpotLight;
 import org.junit.jupiter.api.Test;
@@ -115,17 +116,11 @@ public class Can {
     public void can() {
         Color color = new Color(255,0,0);
         Material material1 = new Material()
-                .setShininess(70) // ערך גבוה לברק
-                .setKd(0.6)        // מקדם דיפוזיה נמוך
-                .setKs(0.4)          // מקדם ספוקולרי גבוה כדי להדגיש את הברק
-                .setKt(0)          // מקדם העברה (transmission) נמוך, כי זה לא חומר שקוף
-                .setKr(0.7);
-        Material material = new Material()
-                .setShininess(30)
-                .setKd(0.5)//diffuse
-                .setKs(0.5)//specular
-                .setKt(0)//transmission
-                .setKr(0);//reflection
+                .setShininess(100) // ברק
+                .setKd(0.4)        //דיפיוז
+                .setKs(0.9)          // ספקולר
+                .setKt(0.2)          //שקיפות
+                .setKr(0.4);    //השתקפות
 
         Material transparentMaterial = new Material()
                 .setShininess(30)
@@ -145,13 +140,13 @@ public class Can {
                 .setShininess(50)
                 .setKd(0.5)
                 .setKs(0.3)
-                .setKt(0.8) // משטח שקוף
-                .setKr(0.2);
+                .setKt(0) // משטח שקוף
+                .setKr(1);
 
         Geometries geometries = Stl.ConvertStlToGeometrys
                 ("unittests/finalScene/Soda_Can.stl", material1, color);
 
-        final Scene canScene = new Scene("canScene").setBackground(new Color(0, 0, 0)).setAmbientLight(new AmbientLight(new Color(0, 216, 230), 0.5));
+        final Scene canScene = new Scene("canScene").setBackground(new Color(0, 0, 10)).setAmbientLight(new AmbientLight(new Color(0, 216, 230), 0.5));
 
         Camera.Builder cameraBuilder = Camera.getBuilder()
                 .setDirection( new Vector(-1, 0, -0.5),new Vector(-1, 0, -0.5).crossProduct(Vector.Y).scale(-1))
@@ -167,25 +162,24 @@ public class Can {
                 new Sphere(new Point(0,0,6.9),0.23d).setEmission(new Color(77,10,20)).setMaterial(transparentMaterial),
                 new Sphere(new Point(0,-1.4,5),0.23d).setEmission(new Color(77,10,20)).setMaterial(reflectiveMaterial),
                 new Polygon(
-                        new Point(15,10,-5),
+                        new Point(20,10,-5),
                         new Point(-15,10,-5),
                         new Point(-15,-10,-5),
-                        new Point(15,-10,-5)
+                        new Point(20,-10,-5)
                 ).setEmission(new Color(0,0,0)).setMaterial(surfaceMaterial)
         );
         canScene.lights.add(
                 new SpotLight(new Color(255,255,255), new Point(-100, -100, 500), new Vector(-1, -1, -2))
-                        .setKl(0.0004).setKq(0.0000006)
+                        .setKl(0.004).setKq(0.00006).setKc(0.000002)
         );
         canScene.lights.add(
                 new PointLight(new Color(255,255,255), new Point(0, 0, 0))
-                        .setKl(0.0004).setKq(0.0000006)
+                        .setKl(0.004).setKq(0.00006).setKc(0.000002)
         );
 
-
-        cameraBuilder.setLocation(new Point(15, 0, 10)).setVpDistance(500d)
+        cameraBuilder.setLocation(new Point(15, 0, 10)).setVpDistance(370d)
                 .setVpSize(500d, 500d)
-                .setImageWriter(new ImageWriter("canScene", 500, 500))
+                .setImageWriter(new ImageWriter("test4", 500, 500))
                 .build()
                 .renderImage()
                 .writeToImage();

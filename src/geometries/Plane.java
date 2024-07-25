@@ -2,6 +2,7 @@ package geometries;
 
 import primitives.*;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import static primitives.Util.alignZero;
@@ -90,5 +91,43 @@ public class Plane extends Geometry {
         double nQMinusP0 = this.normal.dotProduct(this.point.subtract(p0));
         double t = alignZero(nQMinusP0 / nv);
         return t <= 0 ? null : List.of(new GeoPoint(this, ray.getPoint(t)));
+    }
+
+    public List<Vector> findVectorsOfPlane() {
+        List<Vector> vectors = new LinkedList<>();
+
+        Vector normalVector = getNormal();
+        Point p0 = this.point;
+
+        double nX = normalVector.getX(), nY = normalVector.getY(), nZ = normalVector.getZ();
+        double pX = p0.getX(), pY = p0.getY(), pZ = p0.getZ();
+
+        double[] normal = {nX, nY, nZ};
+
+
+        double d = -(nX * pX + nY * pY + nZ * pZ);
+
+
+        int i;
+        double val = 0;
+        for (i = 0; i < 3; i++) {
+            if(!isZero(normal[i])) {
+                val = normal[i];
+                break;
+            }
+        }
+
+        Vector v1 = null;
+        switch (i) {
+            case 0 -> v1 = new Vector(val, 0, 0);
+            case 1 -> v1 = new Vector(0, val, 0);
+            case 2 -> v1 = new Vector(0, 0, val);
+        }
+
+
+        assert v1 != null;
+        Vector v2 = v1.crossProduct(normalVector);
+
+        return List.of(v1.normalize(), v2.normalize());
     }
 }

@@ -29,6 +29,23 @@ public class Material {
      *reflection attenuation coefficient
      */
     public Double3 kR=Double3.ZERO;
+
+    /**
+     * the number of reflected rays, set to 1 to turn off Glossy Surfaces
+     */
+    public int numRaysReflected = 1;
+    /**
+     * the angle of the cone which we generate rays the bigger the cone angle the more the rays are scattered
+     */
+    public double coneAngleReflected = 0.0;
+    /**
+     * the number of reflected rays, set to 1 to turn off Diffused Glass
+     */
+    public int numRaysRefracted = 1;
+    /**
+     * the angle of the cone which we generate rays the bigger the cone angle the more the rays are scattered
+     */
+    public double coneAngleRefracted = 0.0;
     /**
      * Sets the diffuse reflection coefficient (kD) of the material.
      *
@@ -128,5 +145,39 @@ public class Material {
         this.kR=new Double3(kR);
         return this;
     }
-}
+
+    /**
+     * @param amount the amount of rays for Glossy Surfaces
+     * @return this According to the Builder Pattern
+     */
+    public Material setNumRaysReflected(int amount) {
+        this.numRaysReflected = amount;
+        return this;
+    }
+
+    /**
+     * @param angle the angle of the cone in degree
+     * @return this According to the Builder Pattern
+     */
+    public Material setConeAngleReflected(double angle) {
+        this.coneAngleReflected = Math.toRadians(angle);
+        return this;
+    }
+    /**
+     * @param amount the amount of rays for Diffused Glass
+     * @return this According to the Builder Pattern
+     */
+    public Material setNumRaysRefracted(int amount) {
+        this.numRaysRefracted = amount;
+        return this;
+    }
+    /**
+     * @param angle the angle of the cone in degree
+     * @return this According to the Builder Pattern
+     */
+    public Material setConeAngleRefracted(double angle) {
+        this.coneAngleRefracted = Math.toRadians(angle);
+        return this;
+    }
+    }
 

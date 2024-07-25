@@ -5,6 +5,7 @@ import primitives.*;
 import scene.Scene;
 import geometries.Intersectable.GeoPoint;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static primitives.Util.alignZero;
@@ -162,8 +163,9 @@ public class SimpleRayTracer extends RayTracerBase {
      */
     private Color calcLocalEffects(GeoPoint gp, Material material, Vector v, Vector n, Double3 k) {
         double nv = alignZero(n.dotProduct(v));
-        if (nv == 0) return Color.BLACK;
         Color color = gp.geometry.getEmission();
+        if (nv == 0) return color;
+
         for (LightSource lightSource : scene.lights) {
             Vector l = lightSource.getL(gp.point);
             double nl = alignZero(n.dotProduct(l));
@@ -259,6 +261,85 @@ public class SimpleRayTracer extends RayTracerBase {
             }
         }
         return ktr;
+    }
+    /**
+     * @param rays the list of rays hitting the geometry
+     * @param level the level of recursion if level == 1 we stop the recursion
+     * @param k the parameter helping us calculate how much color each ray is giving to the final pixel
+     * @param kx a parameter helping us stop the recursion is the effect of the recursion is too small to notice
+     * @return the color at the intersection with ray
+     */
+    private Color calcGlobalEffect(List<Ray> rays, int level, Double3 k, Double3 kx) {
+        Color color = new Color(0,0,0);
+
+        Double3 kkx = k.product(kx);
+        if (kkx.lowerThan(MIN_CALC_COLOR_K)) return Color.BLACK;
+
+        for(Ray ray: rays) {
+            GeoPoint gp = findClosestIntersection(ray);
+            if (gp == null) return scene.background.scale(kx);
+            color = color.add(isZero(gp.geometry.getNormal(gp.point).dotProduct(ray.getDirection())) ? Color.BLACK : calcColor(gp, ray, level - 1, kkx).scale(kx));
+        }
+        return color.scale((double) 1 / rays.size());
+    }
+    /**
+     * Constructs a list of random reflected rays within the cone of the normal vector at the given surface point.
+     *
+     * @param gp The GeoPoint at the surface of the geometry.
+     * @param v The direction of the original ray.
+     * @param n The normal to the surface of the geometry at the point of gp.point.
+     * @return A list of random reflected rays within the cone of the normal vector.
+     */
+    private List<Ray> constructReflectedRays(GeoPoint gp, Vector v, Vector n) {
+        Material material = gp.geometry.getMaterial();
+
+        if (material.numRaysReflected == 1 || isZero(material.coneAngleReflected))
+            return List.of(constructReflectedRay(gp.point, v, n));
+
+        List<Ray> rays = new ArrayList<>();
+
+        // Generate random direction vectors within the cone of the normal vector
+        List<Vector> randomDirection = Vector.generateRandomDirectionInCone(gp, n, material.coneAngleReflected, material.numRaysReflected);
+
+        // Construct rays using the random direction vectors and add them to the list
+        for (int i = 0; i < randomDirection.size() && i < material.numRaysReflected; i++) {
+            Vector u = randomDirection.get(i);
+            Ray reflectedRay = new Ray(gp.point, u, n);
+            rays.add(reflectedRay);
+        }
+
+        rays.add(constructRefractedRay(gp.point, v, n));
+
+        return rays;
+    }
+    /**
+     * Constructs a list of random refracted rays within the cone of the inverted normal vector at the given surface point.
+     *
+     * @param gp The GeoPoint at the surface of the geometry.
+     * @param v The direction of the original ray.
+     * @param n The normal to the surface of the geometry at the point of gp.point.
+     * @return A list of random refracted rays within the cone of the inverted normal vector.
+     */
+    private List<Ray> constructRefractedRays(GeoPoint gp, Vector v, Vector n) {
+        Material material = gp.geometry.getMaterial();
+
+        if (material.numRaysRefracted == 1 || isZero(material.coneAngleRefracted))
+            return List.of(constructRefractedRay(gp.point, v, n));
+
+        List<Ray> rays = new ArrayList<>();
+
+        // Generate random direction vectors within the cone of the inverted normal vector
+        List<Vector> randomDirection = Vector.generateRandomDirectionInCone(gp, v, material.coneAngleRefracted, material.numRaysRefracted);
+
+        // Construct rays using the random direction vectors and add them to the list
+        for (int i = 0; i < randomDirection.size() && i < material.numRaysRefracted; i++) {
+            Vector u = randomDirection.get(i);
+            Ray refractedRay = new Ray(gp.point, u, n);
+            rays.add(refractedRay);
+        }
+        rays.add(constructRefractedRay(gp.point , v, n));
+
+        return rays;
     }
 }
 

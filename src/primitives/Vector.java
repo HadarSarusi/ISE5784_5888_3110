@@ -1,6 +1,13 @@
 package primitives;
 
+import geometries.Intersectable;
+import geometries.Plane;
+
+import java.util.LinkedList;
+import java.util.List;
+
 import static primitives.Double3.ZERO;
+import static primitives.Util.randomDoubleBetweenTwoNumbers;
 
 /**
  * Vector class representing a vector.
@@ -137,5 +144,49 @@ public class Vector extends Point {
      */
     public Vector normalize() {
         return new Vector(this.xyz.reduce(length()));
+    }
+
+    /**
+     * @param gp gp the GeoPoint at the surface of the geometry
+     * @param n n the normal to the surface of the geometry at the point of gp.point
+     * @param coneAngle coneAngle the angle of the cone in which the random rays will be generated (in radians)
+     * @param amount the number of random vector to generate
+     * @return list of random direction vector within the cone defined by the normal vector
+     */
+    public static List<Vector> generateRandomDirectionInCone(Intersectable.GeoPoint gp, Vector n, double coneAngle, int amount) {
+        List<Vector> result = new LinkedList<>();
+
+        double size = Math.tan(coneAngle) / 2;
+
+        Plane plane = new Plane(gp.point, n);
+        List<Vector> vectors = plane.findVectorsOfPlane();
+        Vector v = vectors.get(0), u = vectors.get(1);
+
+        List<Point> points = generatePoints(u, v, amount, gp.point.add(n), size);
+
+        for (Point p: points) {
+            result.add(
+                    p.subtract(gp.point)
+            );
+        }
+
+        return result;
+    }
+    /**
+     * @param vX the x vector of the plane
+     * @param vY the y vector of the plane
+     * @param size the size of the circle of the generation
+     * @return a random combination of a*vX + b*vY such as a,b in [-size,size]
+     */
+    public static Vector generateVector(Vector vX, Vector vY, double size) {
+        while(true) {
+            try {
+                return vX.scale(randomDoubleBetweenTwoNumbers(-size, size))
+                        .add(vY.scale(randomDoubleBetweenTwoNumbers(-size, size)));
+            } catch (Exception e) {
+                // if the random number is 0, and we don't have 0 vector
+            }
+        }
+
     }
 }

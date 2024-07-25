@@ -56,6 +56,33 @@ public class ReflectionRefractionTests {
                 .writeToImage();
     }
 
+    @Test
+    public void twoSpheresImproved() {
+        scene.geometries.add(
+                new Sphere(new Point(0, 0, -50), 50d).setEmission(new Color(BLUE))
+                        .setMaterial(new Material().setKd(0.4).setKs(0.3).setShininess(100)
+                                .setKt(0.7) // הגדלת הקומפוננטה של ריפרקציה
+                                .setNumRaysReflected(100).setConeAngleReflected(60) // הגדלת מספר הקרניים וזווית האלומה
+                                .setNumRaysRefracted(100).setConeAngleRefracted(60)),
+                new Sphere(new Point(0, 0, -50), 25d).setEmission(new Color(RED))
+                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(100)
+                                .setNumRaysReflected(100).setConeAngleReflected(60)
+                                .setNumRaysRefracted(100).setConeAngleRefracted(60)));
+
+        scene.lights.add(
+                new SpotLight(new Color(1000, 600, 0), new Point(-100, -100, 500), new Vector(-1, -1, -2))
+                        .setKl(0.0004).setKq(0.0000006));
+
+        cameraBuilder.setLocation(new Point(0, 0, 1000)).setVpDistance(1000d)
+                .setVpSize(150d, 150d)
+                .setImageWriter(new ImageWriter("refractionTwoSpheresImproved", 500, 500))
+                //.setRayTracer(new SimpleRayTracer(scene)) // שימוש ב-SimpleRayTracer
+                .build()
+                .renderImage()
+                .writeToImage();
+    }
+
+
     /**
      * Produce a picture of a sphere lighted by a spot light
      */

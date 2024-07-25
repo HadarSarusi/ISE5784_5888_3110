@@ -1,5 +1,11 @@
 package primitives;
 
+import java.util.LinkedList;
+import java.util.List;
+
+import static primitives.Util.alignZero;
+import static primitives.Vector.generateVector;
+
 /**
  * The `Point` class represents a point in 3D space.
  *
@@ -47,6 +53,26 @@ public class Point {
     }
 
 
+    /**
+     * @return the x value
+     */
+    public double getX() {
+        return xyz.d1;
+    }
+
+    /**
+     * @return the y value
+     */
+    public double getY() {
+        return xyz.d2;
+    }
+
+    /**
+     * @return the z value
+     */
+    public double getZ() {
+        return xyz.d3;
+    }
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -103,6 +129,44 @@ public class Point {
      */
     public double distance(Point point) {
         return Math.sqrt(this.distanceSquared(point));
+    }
+    /**
+     * @param vX the x vector of the plane
+     * @param vY the y vector of the plane
+     * @param amount the amount of point to generate
+     * @param center the 'center' of the generation
+     * @param size the size of the circle of the generation
+     * @return a list of point generated using Jittered Pattern inside a circle around center
+     */
+    public static List<Point> generatePoints(Vector vX, Vector vY, int amount, Point center, double size) {
+        List<Point> points = new LinkedList<>();
+
+//        amount = (int) (1.273 * amount);
+
+        double divider = Math.sqrt(amount);
+        double r = size / divider;
+
+//        double size2 = size * size;
+
+        for (int k = 0; k < divider; k++) {
+            for (int l = 0; l < divider; l++) {
+                double yI = alignZero( -(k - (divider - 1) / 2) * r);
+                double xJ = alignZero( -(l - (divider - 1) / 2) * r);
+
+                Point pIJ = center;
+
+                if (xJ != 0) pIJ = pIJ.add(vX.scale(xJ));
+                if (yI != 0) pIJ = pIJ.add(vY.scale(yI));
+
+                // adding some random jitter
+                pIJ = pIJ.add(generateVector(vX, vY, r));
+
+//                if(alignZero(pIJ.distanceSquared(center)) < size2)
+                points.add(pIJ);
+            }
+        }
+
+        return points;
     }
 }
 
