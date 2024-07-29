@@ -147,6 +147,8 @@ public class Vector extends Point {
     }
 
     /**
+     * Generates a list of random vectors within a specified cone.
+     *
      * @param gp gp the GeoPoint at the surface of the geometry
      * @param n n the normal to the surface of the geometry at the point of gp.point
      * @param coneAngle coneAngle the angle of the cone in which the random rays will be generated (in radians)
@@ -173,6 +175,8 @@ public class Vector extends Point {
         return result;
     }
     /**
+     * * Generates a random vector within a specified range using two base vectors.
+     *  *
      * @param vX the x vector of the plane
      * @param vY the y vector of the plane
      * @param size the size of the circle of the generation

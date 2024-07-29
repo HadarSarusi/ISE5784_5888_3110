@@ -265,6 +265,8 @@ public class SimpleRayTracer extends RayTracerBase {
         return ktr;
     }
     /**
+     *  Calculates the global effect of a given list of rays on the color at a point.
+     *
      * @param rays the list of rays hitting the geometry
      * @param level the level of recursion if level == 1 we stop the recursion
      * @param k the parameter helping us calculate how much color each ray is giving to the final pixel

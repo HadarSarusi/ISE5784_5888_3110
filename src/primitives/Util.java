@@ -12,8 +12,14 @@ public final class Util {
      * It is binary, equivalent to ~1/1,000,000,000,000 in decimal (12 digits)
      */
     private static final int ACCURACY = -40;
+    /**
+     * A small constant value used to compare floating-point numbers for equality.
+     * This value helps to account for the precision errors inherent in floating-point arithmetic.
+     */
     private static final double EPSILON = 0.0000001;
-
+    /**
+     * A static instance of the Random class used for generating random numbers.
+     */
     private static Random random = new Random();
 
     /**

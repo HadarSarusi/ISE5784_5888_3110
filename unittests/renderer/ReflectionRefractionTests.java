@@ -51,7 +51,17 @@ public class ReflectionRefractionTests {
                 .renderImage()
                 .writeToImage();
     }
-
+    /**
+     * Test method to render a scene with two improved spheres and a spotlight.
+     *
+     * The scene includes:
+     * - A large blue sphere with high refraction and reflection components.
+     * - A smaller red sphere inside the larger sphere.
+     * - A spotlight to illuminate the scene.
+     *
+     * The camera is positioned to capture the scene with specified view plane distance and size.
+     * The image is rendered and saved to a file named "refractionTwoSpheresImproved".
+     */
     @Test
     public void twoSpheresImproved() {
         scene.geometries.add(

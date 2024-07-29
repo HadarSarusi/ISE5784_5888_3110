@@ -8,6 +8,18 @@ import static primitives.Vector.generateVector;
 
 /**
  * The `Point` class represents a point in 3D space.
+ * It provides methods to manipulate and perform operations with points.
+ * This class includes methods for point addition, subtraction, distance calculations,
+ * and generating points in a grid pattern with random jitter.
+ *
+ * <pre>
+ * Point p1 = new Point(1, 2, 3);
+ * Point p2 = new Point(4, 5, 6);
+ * Vector v = p2.subtract(p1);
+ * Point p3 = p1.add(v);
+ * double distance = p1.distance(p2);
+ * </pre>
+
  *
  * @author Lea &amp; Hadar
  */
@@ -41,43 +53,48 @@ public class Point {
     public Point(Double3 xyz) {
         this.xyz = xyz;
     }
+
     /**
-     * Copy constructor that creates a new Point instance with the same coordinates
-     * as the specified Point instance.
+     * Copy constructor that creates a new `Point` instance with the same coordinates
+     * as the specified `Point` instance.
      *
-     * @param point The Point instance to copy the coordinates from.
+     * @param point The `Point` instance to copy the coordinates from.
      */
     public Point(Point point) {
-
         this.xyz = point.xyz;
     }
 
-
     /**
-     * @return the x value
+     * Returns the x-coordinate of this point.
+     *
+     * @return the x-coordinate.
      */
     public double getX() {
         return xyz.d1;
     }
 
     /**
-     * @return the y value
+     * Returns the y-coordinate of this point.
+     *
+     * @return the y-coordinate.
      */
     public double getY() {
         return xyz.d2;
     }
 
     /**
-     * @return the z value
+     * Returns the z-coordinate of this point.
+     *
+     * @return the z-coordinate.
      */
     public double getZ() {
         return xyz.d3;
     }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
-        return (obj instanceof Point point) &&
-                this.xyz.equals(point.xyz);
+        return (obj instanceof Point point) && this.xyz.equals(point.xyz);
     }
 
     @Override
@@ -130,28 +147,28 @@ public class Point {
     public double distance(Point point) {
         return Math.sqrt(this.distanceSquared(point));
     }
+
     /**
-     * @param vX the x vector of the plane
-     * @param vY the y vector of the plane
-     * @param amount the amount of point to generate
-     * @param center the 'center' of the generation
-     * @param size the size of the circle of the generation
-     * @return a list of point generated using Jittered Pattern inside a circle around center
+     * Generates a list of points distributed within a square grid around a center point,
+     * with added random jitter to each point.
+     *
+     * @param vX     the x vector of the plane used to determine the grid orientation.
+     * @param vY     the y vector of the plane used to determine the grid orientation.
+     * @param amount the number of points to generate.
+     * @param center the center point of the grid.
+     * @param size   the size of the circle of the grid.
+     * @return a list of generated points with jitter applied.
      */
     public static List<Point> generatePoints(Vector vX, Vector vY, int amount, Point center, double size) {
         List<Point> points = new LinkedList<>();
 
-//        amount = (int) (1.273 * amount);
-
         double divider = Math.sqrt(amount);
         double r = size / divider;
 
-//        double size2 = size * size;
-
         for (int k = 0; k < divider; k++) {
             for (int l = 0; l < divider; l++) {
-                double yI = alignZero( -(k - (divider - 1) / 2) * r);
-                double xJ = alignZero( -(l - (divider - 1) / 2) * r);
+                double yI = alignZero(-(k - (divider - 1) / 2) * r);
+                double xJ = alignZero(-(l - (divider - 1) / 2) * r);
 
                 Point pIJ = center;
 
@@ -161,7 +178,6 @@ public class Point {
                 // adding some random jitter
                 pIJ = pIJ.add(generateVector(vX, vY, r));
 
-//                if(alignZero(pIJ.distanceSquared(center)) < size2)
                 points.add(pIJ);
             }
         }

@@ -1,56 +1,62 @@
 package primitives;
 
 /**
- * The Material class represents the material properties of an object in a 3D scene.
- * It defines the diffuse reflection coefficient (kD), specular reflection coefficient (kS),
- * and the shininess exponent (nShininess) for determining the appearance of the material.
+ * The {@code Material} class represents the material properties of an object in a 3D scene.
+ * It defines various attributes that affect the appearance of the material, such as reflection, specular highlights,
+ * and transparency. The class supports configuring material properties using the builder pattern for convenience.
  */
 public class Material {
 
     /**
-     * The diffuse reflection coefficient of the material.
+     * The diffuse reflection coefficient of the material, determining how much light is scattered when it hits the surface.
      */
     public Double3 kD = Double3.ZERO;
 
     /**
-     * The specular reflection coefficient of the material.
+     * The specular reflection coefficient of the material, influencing the size and intensity of specular highlights.
      */
     public Double3 kS = Double3.ZERO;
 
     /**
-     * The shininess exponent of the material, affecting the size and intensity of specular highlights.
+     * The shininess exponent of the material, affecting the sharpness of specular highlights.
      */
     public int nShininess = 0;
-    /**
-     * Attenuation coefficient of transparency
-     */
-    public Double3 kT=Double3.ZERO;
-    /**
-     *reflection attenuation coefficient
-     */
-    public Double3 kR=Double3.ZERO;
 
     /**
-     * the number of reflected rays, set to 1 to turn off Glossy Surfaces
+     * The attenuation coefficient of transparency, determining how much light is transmitted through the material.
+     */
+    public Double3 kT = Double3.ZERO;
+
+    /**
+     * The reflection attenuation coefficient, affecting how much light is reflected off the surface.
+     */
+    public Double3 kR = Double3.ZERO;
+
+    /**
+     * The number of rays used for simulating reflection. Set to 1 to disable glossy surfaces.
      */
     public int numRaysReflected = 1;
+
     /**
-     * the angle of the cone which we generate rays the bigger the cone angle the more the rays are scattered
+     * The angle of the cone used for generating reflected rays. A larger angle scatters rays more.
      */
     public double coneAngleReflected = 0.0;
+
     /**
-     * the number of reflected rays, set to 1 to turn off Diffused Glass
+     * The number of rays used for simulating refraction. Set to 1 to disable diffused glass effects.
      */
     public int numRaysRefracted = 1;
+
     /**
-     * the angle of the cone which we generate rays the bigger the cone angle the more the rays are scattered
+     * The angle of the cone used for generating refracted rays. A larger angle scatters rays more.
      */
     public double coneAngleRefracted = 0.0;
+
     /**
-     * Sets the diffuse reflection coefficient (kD) of the material.
+     * Sets the diffuse reflection coefficient ({@code kD}) of the material.
      *
      * @param kd the diffuse reflection coefficient to set
-     * @return the Material object itself for method chaining
+     * @return the {@code Material} object itself for method chaining
      */
     public Material setKd(double kd) {
         this.kD = new Double3(kd);
@@ -58,10 +64,10 @@ public class Material {
     }
 
     /**
-     * Sets the diffuse reflection coefficient (kD) of the material.
+     * Sets the diffuse reflection coefficient ({@code kD}) of the material using a {@code Double3} object.
      *
-     * @param kd the diffuse reflection coefficient to set as a Double3 object
-     * @return the Material object itself for method chaining
+     * @param kd the diffuse reflection coefficient to set as a {@code Double3} object
+     * @return the {@code Material} object itself for method chaining
      */
     public Material setKd(Double3 kd) {
         this.kD = kd;
@@ -69,10 +75,10 @@ public class Material {
     }
 
     /**
-     * Sets the specular reflection coefficient (kS) of the material.
+     * Sets the specular reflection coefficient ({@code kS}) of the material.
      *
      * @param ks the specular reflection coefficient to set
-     * @return the Material object itself for method chaining
+     * @return the {@code Material} object itself for method chaining
      */
     public Material setKs(double ks) {
         this.kS = new Double3(ks);
@@ -80,10 +86,10 @@ public class Material {
     }
 
     /**
-     * Sets the specular reflection coefficient (kS) of the material.
+     * Sets the specular reflection coefficient ({@code kS}) of the material using a {@code Double3} object.
      *
-     * @param ks the specular reflection coefficient to set as a Double3 object
-     * @return the Material object itself for method chaining
+     * @param ks the specular reflection coefficient to set as a {@code Double3} object
+     * @return the {@code Material} object itself for method chaining
      */
     public Material setKs(Double3 ks) {
         this.kS = ks;
@@ -91,64 +97,65 @@ public class Material {
     }
 
     /**
-     * Sets the shininess exponent (nShininess) of the material.
+     * Sets the shininess exponent ({@code nShininess}) of the material.
      *
      * @param nShininess the shininess exponent to set
-     * @return the Material object itself for method chaining
+     * @return the {@code Material} object itself for method chaining
      */
     public Material setShininess(int nShininess) {
         this.nShininess = nShininess;
         return this;
     }
+
     /**
-     * Sets the attenuation coefficient of transparency.
+     * Sets the attenuation coefficient of transparency ({@code kT}) of the material using a {@code Double3} object.
      *
-     * @param kT the attenuation coefficient of transparency
-     * @return the current instance of the Material class
+     * @param kT the attenuation coefficient of transparency to set
+     * @return the current instance of the {@code Material} class for method chaining
      */
-    public Material setKt(Double3 kT)
-    {
-        this.kT=kT;
-        return this;
-    }
-    /**
-     * Sets the reflection attenuation coefficient.
-     *
-     * @param kR the reflection attenuation coefficient
-     * @return the current instance of the Material class
-     */
-    public Material setKr(Double3 kR)
-    {
-        this.kR=kR;
+    public Material setKt(Double3 kT) {
+        this.kT = kT;
         return this;
     }
 
     /**
-     * Sets the attenuation coefficient of transparency.
+     * Sets the reflection attenuation coefficient ({@code kR}) of the material using a {@code Double3} object.
      *
-     * @param kT the attenuation coefficient of transparency
-     * @return the current instance of the Material class
+     * @param kR the reflection attenuation coefficient to set
+     * @return the current instance of the {@code Material} class for method chaining
      */
-    public Material setKt(double kT)
-    {
-        this.kT=new Double3(kT);
-        return this;
-    }
-    /**
-     * Sets the reflection attenuation coefficient.
-     *
-     * @param kR the reflection attenuation coefficient
-     * @return the current instance of the Material class
-     */
-    public Material setKr(double kR)
-    {
-        this.kR=new Double3(kR);
+    public Material setKr(Double3 kR) {
+        this.kR = kR;
         return this;
     }
 
     /**
-     * @param amount the amount of rays for Glossy Surfaces
-     * @return this According to the Builder Pattern
+     * Sets the attenuation coefficient of transparency ({@code kT}) of the material.
+     *
+     * @param kT the attenuation coefficient of transparency to set
+     * @return the current instance of the {@code Material} class for method chaining
+     */
+    public Material setKt(double kT) {
+        this.kT = new Double3(kT);
+        return this;
+    }
+
+    /**
+     * Sets the reflection attenuation coefficient ({@code kR}) of the material.
+     *
+     * @param kR the reflection attenuation coefficient to set
+     * @return the current instance of the {@code Material} class for method chaining
+     */
+    public Material setKr(double kR) {
+        this.kR = new Double3(kR);
+        return this;
+    }
+
+    /**
+     * Sets the number of rays used for simulating reflection.
+     *
+     * @param amount the number of rays for glossy surfaces
+     * @return the current instance of the {@code Material} class for method chaining
      */
     public Material setNumRaysReflected(int amount) {
         this.numRaysReflected = amount;
@@ -156,28 +163,37 @@ public class Material {
     }
 
     /**
-     * @param angle the angle of the cone in degree
-     * @return this According to the Builder Pattern
+     * Sets the angle of the cone used for generating reflected rays.
+     *
+     * @param angle the angle of the cone in degrees
+     * @return the current instance of the {@code Material} class for method chaining
      */
     public Material setConeAngleReflected(double angle) {
         this.coneAngleReflected = Math.toRadians(angle);
         return this;
     }
+
     /**
-     * @param amount the amount of rays for Diffused Glass
-     * @return this According to the Builder Pattern
+     * Sets the number of rays used for simulating refraction.
+     *
+     * @param amount the number of rays for diffused glass
+     * @return the current instance of the {@code Material} class for method chaining
      */
     public Material setNumRaysRefracted(int amount) {
         this.numRaysRefracted = amount;
         return this;
     }
+
     /**
-     * @param angle the angle of the cone in degree
-     * @return this According to the Builder Pattern
+     * Sets the angle of the cone used for generating refracted rays.
+     *
+     * @param angle the angle of the cone in degrees
+     * @return the current instance of the {@code Material} class for method chaining
      */
     public Material setConeAngleRefracted(double angle) {
         this.coneAngleRefracted = Math.toRadians(angle);
         return this;
     }
-    }
+}
+
 

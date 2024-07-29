@@ -9,14 +9,16 @@ import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
 
 /**
- * Plane class representing a two-dimensional plane in 3D Cartesian coordinate system.
+ * The {@code Plane} class represents a two-dimensional plane in a 3D Cartesian coordinate system.
+ * It is defined by a point on the plane and a normal vector perpendicular to the plane.
+ * The plane can be used for geometric calculations and intersection tests with rays.
  *
  * @author Lea &amp; Hadar
  */
 public class Plane extends Geometry {
 
     /**
-     * The point on the plane.
+     * A point on the plane.
      */
     private final Point point;
 
@@ -26,8 +28,8 @@ public class Plane extends Geometry {
     private final Vector normal;
 
     /**
-     * Constructs a plane with three points.
-     * The normal vector is calculated as the cross product of vectors from the first point to the other two points.
+     * Constructs a plane using three distinct points. The normal vector is calculated as the cross product
+     * of vectors formed by these points.
      *
      * @param point1 The first point on the plane.
      * @param point2 The second point on the plane.
@@ -39,7 +41,7 @@ public class Plane extends Geometry {
     }
 
     /**
-     * Constructs a plane with a point and a normal vector.
+     * Constructs a plane using a point and a normal vector. The normal vector is normalized.
      *
      * @param point  The point on the plane.
      * @param normal The normal vector to the plane.
@@ -53,7 +55,8 @@ public class Plane extends Geometry {
      * Retrieves the normal vector to the plane at a given point on its surface.
      *
      * @param point The point on the surface of the plane.
-     * @return The normal vector to the plane at the given point.
+     * @return The normal vector to the plane at the given point. For a plane, the normal vector is constant
+     *         across the entire surface, so the returned vector is always the same.
      */
     public Vector getNormal(Point point) {
         return normal;
@@ -69,16 +72,14 @@ public class Plane extends Geometry {
     }
 
     /**
-     * Finds the intersections of a given ray with a surface.
+     * Finds the intersections of a given ray with the plane.
      *
-     * <p>This method calculates the intersection points of the ray with the plane defined
-     * by the object on which the method is called. If the ray intersects the plane,
-     * the intersection points are returned as a list. If there are no intersections,
-     * the method returns {@code null}.
+     * <p>This method calculates the intersection points of the ray with the plane. If the ray intersects the plane,
+     * the intersection points are returned as a list. If there are no intersections, the method returns {@code null}.
      * </p>
      *
-     * @param ray the ray to find intersections with
-     * @return a list of intersection points, or {@code null} if there are no intersections
+     * @param ray The ray to find intersections with.
+     * @return A list of intersection points, or {@code null} if there are no intersections.
      */
     @Override
     protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
@@ -93,41 +94,61 @@ public class Plane extends Geometry {
         return t <= 0 ? null : List.of(new GeoPoint(this, ray.getPoint(t)));
     }
 
+    /**
+     * Finds two vectors that lie on the plane and are perpendicular to each other.
+     * These vectors can be used to describe the orientation of the plane in 3D space.
+     *
+     * @return A list of two orthogonal vectors that lie on the plane.
+     */
     public List<Vector> findVectorsOfPlane() {
-        List<Vector> vectors = new LinkedList<>();
-
         Vector normalVector = getNormal();
         Point p0 = this.point;
 
         double nX = normalVector.getX(), nY = normalVector.getY(), nZ = normalVector.getZ();
-        double pX = p0.getX(), pY = p0.getY(), pZ = p0.getZ();
-
-        double[] normal = {nX, nY, nZ};
-
-
-        double d = -(nX * pX + nY * pY + nZ * pZ);
-
-
-        int i;
-        double val = 0;
-        for (i = 0; i < 3; i++) {
-            if(!isZero(normal[i])) {
-                val = normal[i];
-                break;
-            }
+        Vector v1;
+        if (!isZero(nX)) {
+            v1 = new Vector(nY, -nX, 0);
+        } else if (!isZero(nY)) {
+            v1 = new Vector(0, nZ, -nY);
+        } else {
+            v1 = new Vector(-nZ, 0, nX);
         }
 
-        Vector v1 = null;
-        switch (i) {
-            case 0 -> v1 = new Vector(val, 0, 0);
-            case 1 -> v1 = new Vector(0, val, 0);
-            case 2 -> v1 = new Vector(0, 0, val);
-        }
-
-
-        assert v1 != null;
         Vector v2 = v1.crossProduct(normalVector);
-
         return List.of(v1.normalize(), v2.normalize());
     }
+//    public List<Vector> findVectorsOfPlane() {
+//        List<Vector> vectors = new LinkedList<>();
+//
+//        Vector normalVector = getNormal();
+//        Point p0 = this.point;
+//
+//        double nX = normalVector.getX(), nY = normalVector.getY(), nZ = normalVector.getZ();
+//        double pX = p0.getX(), pY = p0.getY(), pZ = p0.getZ();
+//
+//        double[] normal = {nX, nY, nZ};
+//        double d = -(nX * pX + nY * pY + nZ * pZ);
+//
+//        int i;
+//        double val = 0;
+//        for (i = 0; i < 3; i++) {
+//            if (!isZero(normal[i])) {
+//                val = normal[i];
+//                break;
+//            }
+//        }
+//
+//        Vector v1 = null;
+//        switch (i) {
+//            case 0 -> v1 = new Vector(val, 0, 0);
+//            case 1 -> v1 = new Vector(0, val, 0);
+//            case 2 -> v1 = new Vector(0, 0, val);
+//        }
+//
+//        assert v1 != null;
+//        Vector v2 = v1.crossProduct(normalVector);
+//
+//        return List.of(v1.normalize(), v2.normalize());
+//    }
 }
+
