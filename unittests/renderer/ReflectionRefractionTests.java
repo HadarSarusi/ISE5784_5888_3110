@@ -5,9 +5,6 @@ package renderer;
 
 import static java.awt.Color.*;
 
-import geometries.Plane;
-import lighting.DirectionalLight;
-import lighting.PointLight;
 import org.junit.jupiter.api.Test;
 
 import geometries.Sphere;
@@ -15,7 +12,6 @@ import geometries.Triangle;
 import lighting.AmbientLight;
 import lighting.SpotLight;
 import primitives.*;
-import renderer.*;
 import scene.Scene;
 
 /** Tests for reflection and transparency functionality, test for partial
@@ -35,7 +31,7 @@ public class ReflectionRefractionTests {
             .setRayTracer(new SimpleRayTracer(scene));
 
     /**
-     * Produce a picture of a sphere lighted by a spot light
+     * Produce a picture of a sphere lighted by a spotlight
      */
     @Test
     public void twoSpheres() {
@@ -84,7 +80,7 @@ public class ReflectionRefractionTests {
 
 
     /**
-     * Produce a picture of a sphere lighted by a spot light
+     * Produce a picture of a sphere lighted by a spotlight
      */
     @Test
     public void twoSpheresOnMirrors() {
@@ -115,7 +111,7 @@ public class ReflectionRefractionTests {
     }
 
     /**
-     * Produce a picture of a two triangles lighted by a spot light with a
+     * Produce a picture of  two triangles lighted by a spotlight with a
      * partially
      * transparent Sphere producing partial shadow
      */

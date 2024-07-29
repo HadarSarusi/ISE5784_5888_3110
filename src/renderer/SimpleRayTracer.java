@@ -104,8 +104,10 @@ public class SimpleRayTracer extends RayTracerBase {
      * @return the color at the specified point after applying global effects
      */
     private Color calcGlobalEffects(GeoPoint gp, int level, Double3 k, Material material, Vector v, Vector n) {
-        return calcGlobalEffect(constructRefractedRay(gp.point, v, n), material.kT, level, k)
-                .add(calcGlobalEffect(constructReflectedRay(gp.point, v, n), material.kR, level, k));
+            return calcGlobalEffect(constructRefractedRays(gp,v,n),level,k,material.kT).
+                    add(calcGlobalEffect(constructReflectedRays(gp,v,n),level,k,material.kR));
+//        return calcGlobalEffect(constructRefractedRay(gp.point, v, n), material.kT, level, k)
+//                .add(calcGlobalEffect(constructReflectedRay(gp.point, v, n), material.kR, level, k));
     }
 
     /**
@@ -141,13 +143,13 @@ public class SimpleRayTracer extends RayTracerBase {
      * @param k     the attenuation coefficient for the global effects
      * @return the color at the specified point after applying the global effect
      */
-    private Color calcGlobalEffect(Ray ray, Double3 kx, int level, Double3 k) {
-        Double3 kkx = kx.product(k);
-        if (kkx.lowerThan(MIN_CALC_COLOR_K)) return Color.BLACK;
-        GeoPoint gp = findClosestIntersection(ray);
-        return (gp == null ? scene.background : calcColor(gp, ray, level - 1, kkx))
-                .scale(kx);
-    }
+//    private Color calcGlobalEffect(Ray ray, Double3 kx, int level, Double3 k) {
+//        Double3 kkx = kx.product(k);
+//        if (kkx.lowerThan(MIN_CALC_COLOR_K)) return Color.BLACK;
+//        GeoPoint gp = findClosestIntersection(ray);
+//        return (gp == null ? scene.background : calcColor(gp, ray, level - 1, kkx))
+//                .scale(kx);
+//    }
 
     /**
      * Calculates the local lighting effects at a given point on a geometry in the scene.

@@ -114,13 +114,15 @@ import java.util.Random;
 public class Can {
     @Test
     public void can() {
-        Color color = new Color(255,0,0);
+        Color canColor = new Color(100,120,10);
+        Color bubbleColor = new Color(10, 10, 10);
+
         Material material1 = new Material()
-                .setShininess(100) // ברק
-                .setKd(0.4)        //דיפיוז
-                .setKs(0.9)          // ספקולר
-                .setKt(0.2)          //שקיפות
-                .setKr(0.4);    //השתקפות
+                .setShininess(100) // shine
+                .setKd(0.4)        //diffuse
+                .setKs(0.9)          // specular
+                .setKt(0)          //reflection
+                .setKr(0.9);    //refrection
 
         Material transparentMaterial = new Material()
                 .setShininess(30)
@@ -140,46 +142,80 @@ public class Can {
                 .setShininess(50)
                 .setKd(0.5)
                 .setKs(0.3)
-                .setKt(0) // משטח שקוף
+                .setKt(0)
                 .setKr(1);
 
-        Geometries geometries = Stl.ConvertStlToGeometrys
-                ("unittests/finalScene/Soda_Can.stl", material1, color);
+        Material wallsMaterial = new Material()
+                .setShininess(50)
+                .setKd(0.5)
+                .setKs(0.3)
+                .setKt(0)
+                .setKr(0.1);
 
-        final Scene canScene = new Scene("canScene").setBackground(new Color(0, 0, 10)).setAmbientLight(new AmbientLight(new Color(0, 216, 230), 0.5));
+        Geometries geometries = Stl.ConvertStlToGeometrys
+                ("unittests/finalScene/Soda_Can.stl", material1, canColor);
+
+        final Scene canScene = new Scene("canScene").setBackground(new Color(0, 0, 10)).setAmbientLight(new AmbientLight(new Color(10, 20, 30), 1d));
 
         Camera.Builder cameraBuilder = Camera.getBuilder()
                 .setDirection( new Vector(-1, 0, -0.5),new Vector(-1, 0, -0.5).crossProduct(Vector.Y).scale(-1))
                 .setRayTracer(new SimpleRayTracer(canScene));
-        Random random = new Random();
+
         canScene.geometries.add(geometries,
-                new Sphere(new Point(0,-1,6),0.3d).setEmission(new Color(77,10,20)).setMaterial(transparentMaterial),
-                new Sphere(new Point(0,-1.3,7),0.2d).setEmission(new Color(77,10,20)).setMaterial(reflectiveMaterial),
-                new Sphere(new Point(0,-0.7,5),0.25d).setEmission(new Color(77,10,20)).setMaterial(transparentMaterial),
-                new Sphere(new Point(0,-0.3,6.4),0.22d).setEmission(new Color(77,10,20)).setMaterial(reflectiveMaterial),
-                new Sphere(new Point(0,-0.5,5.6),0.21d).setEmission(new Color(77,10,20)).setMaterial(transparentMaterial),
-                new Sphere(new Point(0,0,5.9),0.19d).setEmission(new Color(77,10,20)).setMaterial(reflectiveMaterial),
-                new Sphere(new Point(0,0,6.9),0.23d).setEmission(new Color(77,10,20)).setMaterial(transparentMaterial),
-                new Sphere(new Point(0,-1.4,5),0.23d).setEmission(new Color(77,10,20)).setMaterial(reflectiveMaterial),
+                new Sphere(new Point(0,-1,6),0.3d).setEmission(bubbleColor).setMaterial(transparentMaterial),
+                new Sphere(new Point(0,-1.3,7),0.2d).setEmission(bubbleColor).setMaterial(reflectiveMaterial),
+                new Sphere(new Point(0,-0.7,5),0.25d).setEmission(bubbleColor).setMaterial(transparentMaterial),
+                new Sphere(new Point(0,-0.3,6.4),0.22d).setEmission(bubbleColor).setMaterial(reflectiveMaterial),
+                new Sphere(new Point(0,-0.5,5.6),0.21d).setEmission(bubbleColor).setMaterial(transparentMaterial),
+                new Sphere(new Point(0,0,5.9),0.19d).setEmission(bubbleColor).setMaterial(reflectiveMaterial),
+                new Sphere(new Point(0,0,6.9),0.23d).setEmission(bubbleColor).setMaterial(transparentMaterial),
+                new Sphere(new Point(0,-1.4,5),0.23d).setEmission(bubbleColor).setMaterial(reflectiveMaterial),
+
+                // floor
                 new Polygon(
                         new Point(20,10,-5),
                         new Point(-15,10,-5),
                         new Point(-15,-10,-5),
                         new Point(20,-10,-5)
-                ).setEmission(new Color(0,0,0)).setMaterial(surfaceMaterial)
+                ).setEmission(new Color(0,0,0)).setMaterial(wallsMaterial),
+
+                // walls
+                // right wall
+                new Polygon(
+                        new Point(-15, 10, -5),
+                        new Point(20, 10, -5),
+                        new Point(20,10,12),
+                        new Point(-15,10,12)
+                ).setEmission(new Color(0,0,0)).setMaterial(wallsMaterial),
+
+                // back
+                new Polygon(
+                        new Point(-15, -10, -5),
+                        new Point(-15, 10, -5),
+                        new Point(-15, 10, 12),
+                        new Point(-15, -10, 12)
+                ).setEmission(new Color(0,0,0)).setMaterial(wallsMaterial),
+
+                // left
+                new Polygon(
+                        new Point(-15, -10, -5),
+                        new Point(20, -10, -5),
+                        new Point(20, -10, 12),
+                        new Point(-15, -10, 12)
+                ).setEmission(new Color(0,0,0)).setMaterial(wallsMaterial)
         );
         canScene.lights.add(
-                new SpotLight(new Color(255,255,255), new Point(-100, -100, 500), new Vector(-1, -1, -2))
+                new SpotLight(new Color(255,255,255), new Point(-100, -100, 300), new Vector(-1, -1, -2))
                         .setKl(0.004).setKq(0.00006)
         );
         canScene.lights.add(
-                new PointLight(new Color(255,255,255), new Point(0, 0, 0))
-                        .setKl(0.004).setKq(0.00006)
+                new PointLight(new Color(255,255,255), new Point(-10, -5, 10))
+                        .setKl(0.0004).setKq(0.00006)
         );
 
         cameraBuilder.setLocation(new Point(15, 0, 10)).setVpDistance(370d)
                 .setVpSize(500d, 500d)
-                .setImageWriter(new ImageWriter("test4", 500, 500))
+                .setImageWriter(new ImageWriter("test7-newCanColor-newAmbientColor-2", 500, 500))
                 .build()
                 .renderImage()
                 .writeToImage();
