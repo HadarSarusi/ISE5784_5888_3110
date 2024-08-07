@@ -18,7 +18,7 @@ public class Color {
     /**
      * Black color = (0,0,0)
      */
-    public static final Color BLACK = new Color(0,0,0);
+    public static final Color BLACK = new Color(0, 0, 0);
 
     /**
      * Default constructor - to generate Black Color (privately)

@@ -45,9 +45,9 @@ public class Ray {
      * Constructs a new Ray with the specified origin point, direction vector, and normal vector.
      * Adjusts the origin point by a small delta value to account for numerical precision.
      *
-     * @param head The origin point of the ray.
+     * @param head      The origin point of the ray.
      * @param direction The direction vector of the ray.
-     * @param normal The normal vector used to adjust the origin point for numerical precision.
+     * @param normal    The normal vector used to adjust the origin point for numerical precision.
      */
     public Ray(Point head, Vector direction, Vector normal) {
         Vector delta = normal.scale(normal.dotProduct(direction) >= 0 ? DELTA : -DELTA);

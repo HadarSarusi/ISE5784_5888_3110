@@ -56,7 +56,7 @@ public class Plane extends Geometry {
      *
      * @param point The point on the surface of the plane.
      * @return The normal vector to the plane at the given point. For a plane, the normal vector is constant
-     *         across the entire surface, so the returned vector is always the same.
+     * across the entire surface, so the returned vector is always the same.
      */
     public Vector getNormal(Point point) {
         return normal;
@@ -101,10 +101,7 @@ public class Plane extends Geometry {
      * @return A list of two orthogonal vectors that lie on the plane.
      */
     public List<Vector> findVectorsOfPlane() {
-        Vector normalVector = getNormal();
-        Point p0 = this.point;
-
-        double nX = normalVector.getX(), nY = normalVector.getY(), nZ = normalVector.getZ();
+        double nX = this.normal.getX(), nY = this.normal.getY(), nZ = this.normal.getZ();
         Vector v1;
         if (!isZero(nX)) {
             v1 = new Vector(nY, -nX, 0);
@@ -114,20 +111,14 @@ public class Plane extends Geometry {
             v1 = new Vector(-nZ, 0, nX);
         }
 
-        Vector v2 = v1.crossProduct(normalVector);
+        Vector v2 = v1.crossProduct(this.normal);
         return List.of(v1.normalize(), v2.normalize());
     }
+//
 //    public List<Vector> findVectorsOfPlane() {
-//        List<Vector> vectors = new LinkedList<>();
-//
-//        Vector normalVector = getNormal();
-//        Point p0 = this.point;
-//
-//        double nX = normalVector.getX(), nY = normalVector.getY(), nZ = normalVector.getZ();
-//        double pX = p0.getX(), pY = p0.getY(), pZ = p0.getZ();
+//        double nX = this.normal.getX(), nY = this.normal.getY(), nZ = this.normal.getZ();
 //
 //        double[] normal = {nX, nY, nZ};
-//        double d = -(nX * pX + nY * pY + nZ * pZ);
 //
 //        int i;
 //        double val = 0;
@@ -146,7 +137,7 @@ public class Plane extends Geometry {
 //        }
 //
 //        assert v1 != null;
-//        Vector v2 = v1.crossProduct(normalVector);
+//        Vector v2 = v1.crossProduct(this.normal);
 //
 //        return List.of(v1.normalize(), v2.normalize());
 //    }

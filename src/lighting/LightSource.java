@@ -1,5 +1,4 @@
 package lighting;
-
 import primitives.*;
 
 /**
@@ -24,6 +23,7 @@ public interface LightSource {
      * @return the direction vector from the light source to the given point
      */
     public Vector getL(Point p);
+
     /**
      * Calculates the distance from this point to the specified point.
      *

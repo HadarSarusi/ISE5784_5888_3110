@@ -19,7 +19,6 @@ import static primitives.Vector.generateVector;
  * Point p3 = p1.add(v);
  * double distance = p1.distance(p2);
  * </pre>
-
  *
  * @author Lea &amp; Hadar
  */
@@ -156,14 +155,14 @@ public class Point {
      * @param vY     the y vector of the plane used to determine the grid orientation.
      * @param amount the number of points to generate.
      * @param center the center point of the grid.
-     * @param size   the size of the circle of the grid.
+     * @param radius   the size of the circle of the grid.
      * @return a list of generated points with jitter applied.
      */
-    public static List<Point> generatePoints(Vector vX, Vector vY, int amount, Point center, double size) {
+    public static List<Point> generatePoints(Vector vX, Vector vY, int amount, Point center, double radius) {
         List<Point> points = new LinkedList<>();
 
         double divider = Math.sqrt(amount);
-        double r = size / divider;
+        double r = radius / divider;
 
         for (int k = 0; k < divider; k++) {
             for (int l = 0; l < divider; l++) {

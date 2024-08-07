@@ -18,7 +18,7 @@ public class Geometries extends Intersectable {
     /**
      * A list of geometries to be intersected, initialized as an empty {@link LinkedList}.
      */
-   //private
+    //private
     final List<Intersectable> geometries = new LinkedList<>();
 
     /**

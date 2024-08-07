@@ -14,10 +14,13 @@ import lighting.SpotLight;
 import primitives.*;
 import scene.Scene;
 
-/** Tests for reflection and transparency functionality, test for partial
+/**
+ * Tests for reflection and transparency functionality, test for partial
  * shadows
  * (with transparency)
- * @author dzilb */
+ *
+ * @author dzilb
+ */
 public class ReflectionRefractionTests {
     /**
      * Scene for the tests
@@ -51,14 +54,15 @@ public class ReflectionRefractionTests {
                 .renderImage()
                 .writeToImage();
     }
+
     /**
      * Test method to render a scene with two improved spheres and a spotlight.
-     *
+     * <p>
      * The scene includes:
      * - A large blue sphere with high refraction and reflection components.
      * - A smaller red sphere inside the larger sphere.
      * - A spotlight to illuminate the scene.
-     *
+     * <p>
      * The camera is positioned to capture the scene with specified view plane distance and size.
      * The image is rendered and saved to a file named "refractionTwoSpheresImproved".
      */
@@ -153,16 +157,16 @@ public class ReflectionRefractionTests {
      * This method sets up a scene with ambient light, geometries (triangles and spheres),
      * and multiple light sources, then renders the image using a camera.
      */
-@Test
+    @Test
     public void finalScene() {
         scene.geometries.add(
                 new Sphere(new Point(0, 0, -50), 50d).setEmission(new Color(BLUE))
                         .setMaterial(new Material().setKd(0.4).setKs(0.3).setShininess(100).setKt(0.3)),
                 new Sphere(new Point(0, 0, -50), 25d).setEmission(new Color(RED))
                         .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(100))
-        ,new Triangle(new Point(-150, -150, -115), new Point(150, -150, -135),
-                new Point(75, 75, -150))
-                .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(60)),
+                , new Triangle(new Point(-150, -150, -115), new Point(150, -150, -135),
+                        new Point(75, 75, -150))
+                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(60)),
                 new Triangle(new Point(-150, -150, -115), new Point(-70, 70, -140), new Point(75, 75, -150))
                         .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(60)));
         scene.lights.add(

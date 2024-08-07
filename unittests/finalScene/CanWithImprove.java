@@ -44,15 +44,13 @@ public class CanWithImprove {
 
         // Define materials with enhanced properties
         Material canMaterial = new Material()
-                .setShininess(100) // High shininess for a glossy look
+                .setShininess(300) // High shininess for a glossy look
                 .setKd(0.4)        // Diffuse reflection coefficient
                 .setKs(0.9)        // Specular reflection coefficient
                 .setKt(0)          // No transmission (opaque)
-                .setKr(0.9)        // High reflection
-                .setNumRaysReflected(10) // Number of rays for reflection
-                .setConeAngleReflected(30) // Cone angle for reflection
-                .setNumRaysRefracted(10) // Number of rays for refraction
-                .setConeAngleRefracted(30); // Cone angle for refraction
+                .setKr(1)  // High reflection
+               .setNumRaysReflected(20) // Number of rays for reflection
+                .setConeAngleReflected(5); // Cone angle for reflection
 
         Material transparentMaterial = new Material()
                 .setShininess(30)
@@ -60,32 +58,33 @@ public class CanWithImprove {
                 .setKs(0.5)
                 .setKt(0.7)        // High transmission for transparency
                 .setKr(0.1)
-                .setNumRaysReflected(10)
-                .setConeAngleReflected(30)
                 .setNumRaysRefracted(10)
-                .setConeAngleRefracted(30);
+                .setConeAngleRefracted(5);
 
         Material reflectiveMaterial = new Material()
                 .setShininess(30)
                 .setKd(0.1)
                 .setKs(0.5)
                 .setKt(0.3)
-                .setKr(0.7)        // Reflective material
-                .setNumRaysReflected(10)
-                .setConeAngleReflected(30)
-                .setNumRaysRefracted(10)
-                .setConeAngleRefracted(30);
+                .setKr(0.7)     ;   // Reflective material
+//                .setNumRaysReflected(10)
+//                .setConeAngleReflected(30);
 
         Material wallsMaterial = new Material()
                 .setShininess(50)
                 .setKd(0.5)
                 .setKs(0.3)
                 .setKt(0)
-                .setKr(0.1)        // Low reflection for walls
-                .setNumRaysReflected(10)
-                .setConeAngleReflected(30)
-                .setNumRaysRefracted(10)
-                .setConeAngleRefracted(30);
+                .setKr(0.1);     // Low reflection for walls
+
+        Material wallsMaterialDiffuse = new Material()
+                .setShininess(50)
+                .setKd(0.5)
+                .setKs(0.3)
+                .setKt(1)
+                .setKr(0.1)
+                .setNumRaysRefracted(10) // Number of rays for refraction
+                .setConeAngleRefracted(5);// Low reflection for walls
 
         // Load geometries from STL file with specified material and color
         Geometries geometries = Stl.ConvertStlToGeometrys("unittests/finalScene/Soda_Can.stl", canMaterial, canColor);
@@ -136,7 +135,7 @@ public class CanWithImprove {
                         new Point(-15, 10, -5),
                         new Point(-15, 10, 12),
                         new Point(-15, -10, 12)
-                ).setEmission(new Color(0, 0, 0)).setMaterial(wallsMaterial),
+                ).setEmission(new Color(0, 0, 0)).setMaterial(wallsMaterialDiffuse),
 
                 // Left wall
                 new Polygon(
@@ -160,7 +159,7 @@ public class CanWithImprove {
         // Build and render the image
         cameraBuilder.setLocation(new Point(15, 0, 10)).setVpDistance(370d)
                 .setVpSize(500d, 500d)
-                .setImageWriter(new ImageWriter("test-9_can_with_improve", 500, 500))
+                .setImageWriter(new ImageWriter("test14", 500, 500))
                 .build()
                 .renderImage()
                 .writeToImage();

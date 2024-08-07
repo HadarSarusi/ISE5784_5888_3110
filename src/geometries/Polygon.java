@@ -101,12 +101,12 @@ public class Polygon extends Geometry {
     /**
      * Helper method to find the geometric intersections between a ray and the polygon.
      *
-     * @param ray         The ray to intersect with the polygon
+     * @param ray The ray to intersect with the polygon
      * @return A list of GeoPoint objects representing the geometric intersections,
-     *         or null if no intersection is found
+     * or null if no intersection is found
      */
     @Override
-    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray ) {
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
         // Step 1: check if the ray intersects the plane of the polygon
         List<GeoPoint> planeGeoIntersections = plane.findGeoIntersections(ray);
 
@@ -123,18 +123,16 @@ public class Polygon extends Geometry {
                 prePoint = point;
             }
 
-            Vector preVector = vectors.get(vectors.size()-1);
-            for (Vector vector:vectors) {
-                if(vector.dotProduct(preVector)<0){
+            Vector preVector = vectors.get(vectors.size() - 1);
+            for (Vector vector : vectors) {
+                if (vector.dotProduct(preVector) < 0) {
                     return null;
                 }
                 preVector = vector;
             }
-        }
-        catch (IllegalArgumentException exception)
-        {
+        } catch (IllegalArgumentException exception) {
             return null;
         }
-        return List.of(new GeoPoint(this,intersectionPoint.point)) ;
+        return List.of(new GeoPoint(this, intersectionPoint.point));
     }
 }

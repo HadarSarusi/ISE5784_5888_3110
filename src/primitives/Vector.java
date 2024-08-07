@@ -61,7 +61,7 @@ public class Vector extends Point {
      *
      * @param vector the {@code Vector} object to copy from
      */
-    public Vector(Vector vector){
+    public Vector(Vector vector) {
         super(vector.xyz);
     }
 
@@ -149,24 +149,24 @@ public class Vector extends Point {
     /**
      * Generates a list of random vectors within a specified cone.
      *
-     * @param gp gp the GeoPoint at the surface of the geometry
-     * @param n n the normal to the surface of the geometry at the point of gp.point
+     * @param gp        gp the GeoPoint at the surface of the geometry
+     * @param n         n the normal to the surface of the geometry at the point of gp.point
      * @param coneAngle coneAngle the angle of the cone in which the random rays will be generated (in radians)
-     * @param amount the number of random vector to generate
+     * @param amount    the number of random vector to generate
      * @return list of random direction vector within the cone defined by the normal vector
      */
     public static List<Vector> generateRandomDirectionInCone(Intersectable.GeoPoint gp, Vector n, double coneAngle, int amount) {
         List<Vector> result = new LinkedList<>();
 
-        double size = Math.tan(coneAngle) / 2;
+        double radius = Math.tan(coneAngle) / 2;
 
         Plane plane = new Plane(gp.point, n);
         List<Vector> vectors = plane.findVectorsOfPlane();
-        Vector v = vectors.get(0), u = vectors.get(1);
+        Vector x = vectors.get(0), y = vectors.get(1);
 
-        List<Point> points = generatePoints(u, v, amount, gp.point.add(n), size);
+        List<Point> points = generatePoints(y, x, amount, gp.point.add(n), radius);
 
-        for (Point p: points) {
+        for (Point p : points) {
             result.add(
                     p.subtract(gp.point)
             );
@@ -174,16 +174,18 @@ public class Vector extends Point {
 
         return result;
     }
+
     /**
      * * Generates a random vector within a specified range using two base vectors.
-     *  *
-     * @param vX the x vector of the plane
-     * @param vY the y vector of the plane
+     * *
+     *
+     * @param vX   the x vector of the plane
+     * @param vY   the y vector of the plane
      * @param size the size of the circle of the generation
      * @return a random combination of a*vX + b*vY such as a,b in [-size,size]
      */
     public static Vector generateVector(Vector vX, Vector vY, double size) {
-        while(true) {
+        while (true) {
             try {
                 return vX.scale(randomDoubleBetweenTwoNumbers(-size, size))
                         .add(vY.scale(randomDoubleBetweenTwoNumbers(-size, size)));
