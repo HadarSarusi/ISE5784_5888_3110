@@ -114,32 +114,5 @@ public class Plane extends Geometry {
         Vector v2 = v1.crossProduct(this.normal);
         return List.of(v1.normalize(), v2.normalize());
     }
-//
-//    public List<Vector> findVectorsOfPlane() {
-//        double nX = this.normal.getX(), nY = this.normal.getY(), nZ = this.normal.getZ();
-//
-//        double[] normal = {nX, nY, nZ};
-//
-//        int i;
-//        double val = 0;
-//        for (i = 0; i < 3; i++) {
-//            if (!isZero(normal[i])) {
-//                val = normal[i];
-//                break;
-//            }
-//        }
-//
-//        Vector v1 = null;
-//        switch (i) {
-//            case 0 -> v1 = new Vector(val, 0, 0);
-//            case 1 -> v1 = new Vector(0, val, 0);
-//            case 2 -> v1 = new Vector(0, 0, val);
-//        }
-//
-//        assert v1 != null;
-//        Vector v2 = v1.crossProduct(this.normal);
-//
-//        return List.of(v1.normalize(), v2.normalize());
-//    }
 }
 

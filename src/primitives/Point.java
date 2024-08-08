@@ -155,7 +155,7 @@ public class Point {
      * @param vY     the y vector of the plane used to determine the grid orientation.
      * @param amount the number of points to generate.
      * @param center the center point of the grid.
-     * @param radius   the size of the circle of the grid.
+     * @param radius the size of the circle of the grid.
      * @return a list of generated points with jitter applied.
      */
     public static List<Point> generatePoints(Vector vX, Vector vY, int amount, Point center, double radius) {

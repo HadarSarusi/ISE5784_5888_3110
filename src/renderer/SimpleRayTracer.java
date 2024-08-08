@@ -71,11 +71,10 @@ public class SimpleRayTracer extends RayTracerBase {
      * @return the color at the specified point
      */
     private Color calcColor(GeoPoint geoPoint, Ray ray) {
-        Color color=calcColor(geoPoint, ray, MAX_CALC_COLOR_LEVEL, Double3.ONE);
-             Color color1=   color.add(scene.ambientLight.getIntensity());
+        Color color = calcColor(geoPoint, ray, MAX_CALC_COLOR_LEVEL, Double3.ONE);
+        return color.add(scene.ambientLight.getIntensity());
 //        return calcColor(geoPoint, ray, MAX_CALC_COLOR_LEVEL, Double3.ONE)
 //                .add(scene.ambientLight.getIntensity());
-        return color1;
     }
 
     /**
