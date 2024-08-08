@@ -15,21 +15,27 @@ import renderer.Camera;
 import renderer.ImageWriter;
 import renderer.SimpleRayTracer;
 import scene.Scene;
-;
 
+/**
+ * The {@code ImageF} class contains a test method that configures and renders a scene
+ * featuring a soda can model and additional bubbles. The scene includes various
+ * geometries, materials, and light sources to enhance the visual realism.
+ */
 public class ImageF {
+
     /**
      * Configures and renders a scene with a soda can model and additional bubbles.
      * The scene includes a background color, ambient light, and various light sources.
      *
-     * <p>This method also demonstrates the use of enhanced material properties such as the number of rays
-     * reflected and refracted, as well as their cone angles.</p>
+     * <p>This method demonstrates the use of enhanced material properties such as the
+     * number of rays reflected and refracted, as well as their cone angles.</p>
      */
     @Test
     public void canI() {
         // Define colors for the soda can and bubbles
         Color bubbleColor = new Color(255, 10, 10); // Color of the bubbles
 
+        // Define materials with different properties
         Material transparentMaterial = new Material()
                 .setShininess(300)
                 .setKd(0.2)
@@ -38,7 +44,6 @@ public class ImageF {
                 .setKr(0.8)
                 .setNumRaysReflected(20)
                 .setConeAngleReflected(5);
-
 
         Material wallsMaterial = new Material()
                 .setShininess(20)
@@ -52,8 +57,11 @@ public class ImageF {
                 .setKd(0.1)
                 .setKs(0.2)
                 .setKt(0.8)
-                .setKr(0.1).setNumRaysRefracted(50).setConeAngleRefracted(20)
-                .setNumRaysReflected(5).setConeAngleReflected(5);
+                .setKr(0.1)
+                .setNumRaysRefracted(50)
+                .setConeAngleRefracted(20)
+                .setNumRaysReflected(5)
+                .setConeAngleReflected(5);
 
         // Create the scene with background color and ambient light
         final Scene canScene = new Scene("scene99")
@@ -86,7 +94,7 @@ public class ImageF {
                         new Point(-15, 10, 12)
                 ).setEmission(new Color(0, 0, 0)).setMaterial(wallsMaterial),
 
-                //  Back wall
+                // Back wall
                 new Polygon(
                         new Point(1, -10, -5),
                         new Point(1, 10, -5),
@@ -122,4 +130,5 @@ public class ImageF {
                 .writeToImage();
     }
 }
+
 
