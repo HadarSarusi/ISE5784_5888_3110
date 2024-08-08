@@ -4,33 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="21087c2b-fa54-4989-b039-4ac151d13dc5" name="Changes" comment="Minip1">
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unittests/finalScene/Can.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/unittests/finalScene/CanWithImprove.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/unittests/finalScene/ImageF.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/unittests/finalScene/Soda_Can.stl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/unittests/finalScene/Stl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/unittests/geometries/CylinderTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/unittests/geometries/GeometriesTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/unittests/geometries/PlaneTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/unittests/geometries/PolygonTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/unittests/geometries/SphereTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/unittests/geometries/TriangleTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/unittests/geometries/TubeTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/unittests/lighting/LightsTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/unittests/primitives/PointTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/unittests/primitives/RayTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/unittests/primitives/VectorTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/unittests/renderer/CameraTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/unittests/renderer/ImageWriterTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/unittests/renderer/IntegrationTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/unittests/renderer/ReflectionRefractionTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/unittests/renderer/RenderTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/unittests/renderer/ShadowTests.java" beforeDir="false" />
-    </list>
+    <list default="true" id="21087c2b-fa54-4989-b039-4ac151d13dc5" name="Changes" comment="Minip1_with dan" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -598,7 +572,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1723110547713</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL‎-00037" summary="Minip1_with dan">
+      <option name="closed" value="true" />
+      <created>1723113916802</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL‎-00037" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1723113916802</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -616,7 +598,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Stage2" />
     <MESSAGE value="fix project and folder name + restore d3 comment in Double3" />
     <MESSAGE value="small fix" />
     <MESSAGE value="stage2_full" />
@@ -641,7 +622,8 @@
     <MESSAGE value="Minip 1 can1" />
     <MESSAGE value="Minip1_fix" />
     <MESSAGE value="Minip1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minip1" />
+    <MESSAGE value="Minip1_with dan" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minip1_with dan" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
