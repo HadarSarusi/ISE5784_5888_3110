@@ -48,9 +48,9 @@ public class CanWithImprove {
                 .setKd(0.4)        // Diffuse reflection coefficient
                 .setKs(0.9)        // Specular reflection coefficient
                 .setKt(0)          // No transmission (opaque)
-                .setKr(1)  // High reflection
-                .setNumRaysReflected(20) // Number of rays for reflection
-                .setConeAngleReflected(5); // Cone angle for reflection
+                .setKr(1) ; // High reflection
+//                .setNumRaysReflected(20) // Number of rays for reflection
+//                .setConeAngleReflected(5); // Cone angle for reflection
 
         Material transparentMaterial = new Material()
                 .setShininess(30)
@@ -66,9 +66,9 @@ public class CanWithImprove {
                 .setKd(0.1)
                 .setKs(0.5)
                 .setKt(0.3)
-                .setKr(0.7);   // Reflective material
-//                .setNumRaysReflected(10)
-//                .setConeAngleReflected(30);
+                .setKr(0.7)   // Reflective material
+                .setNumRaysReflected(10)
+                .setConeAngleReflected(30);
 
         Material wallsMaterial = new Material()
                 .setShininess(50)

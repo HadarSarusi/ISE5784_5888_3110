@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="21087c2b-fa54-4989-b039-4ac151d13dc5" name="Changes" comment="Minip1_fix">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unittests/finalScene/ImageF.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/finalScene/ImageF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unittests/finalScene/CanWithImprove.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/finalScene/CanWithImprove.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

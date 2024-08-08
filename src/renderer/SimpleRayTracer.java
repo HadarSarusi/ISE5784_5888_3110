@@ -135,7 +135,6 @@ public class SimpleRayTracer extends RayTracerBase {
     private Ray constructRefractedRay(Point p, Vector v, Vector n) {
         return new Ray(p, v, n);
     }
-
     /**
      * Calculates the global effect (reflection or refraction) at the specified point.
      *
