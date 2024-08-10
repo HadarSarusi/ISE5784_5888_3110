@@ -2,7 +2,9 @@ package renderer;
 
 import primitives.*;
 
+import java.util.LinkedList;
 import java.util.MissingResourceException;
+import java.util.stream.IntStream;
 
 import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
@@ -14,6 +16,9 @@ import static primitives.Util.isZero;
  * @author Lea &amp; Hadar.
  */
 public class Camera implements Cloneable {
+    private int threadsCount = 0; // -2 auto, -1 range/stream, 0 no threads, 1+ number of threadsprivate
+    final int SPARE_THREADS = 2; // Spare threads if trying to use all the coresprivate
+    double printInterval = 0; // printing progress percentage interval
     /**
      * The position of the camera in 3D space.
      */
@@ -275,15 +280,34 @@ public class Camera implements Cloneable {
      * @return the current {@code Camera} instance
      */
     public Camera renderImage() {
-        int nX = this.imageWriter.getNx();
-        int nY = this.imageWriter.getNy();
-        for (int i = 0; i < nY; i++) {
-            for (int j = 0; j < nX; j++) {
-                this.castRay(nX, nY, j, i);
+        final int nX = imageWriter.getNx();
+        final int nY = imageWriter.getNy();
+        Pixel.initialize(nY, nX, printInterval);
+        if (threadsCount == 0)
+            for (int i = 0; i < nY; ++i)
+                for (int j = 0; j < nX; ++j)
+                    castRay(nX, nY, j, i);
+        else if (threadsCount == -1) {
+            IntStream.range(0, nY).parallel() //
+                    .forEach(i -> IntStream.range(0, nX).parallel() //
+                            .forEach(j -> castRay(nX, nY, j, i)));
+        } else {
+            var threads = new LinkedList<Thread>();
+            while (threadsCount-- > 0)
+                threads.add(new Thread(() -> {
+                    Pixel pixel;
+                    while ((pixel = Pixel.nextPixel()) != null)
+                        castRay(nX, nY, pixel.col(), pixel.row());
+                }));
+            for (var thread : threads) thread.start();
+            try {
+                for (var thread : threads) thread.join();
+            } catch (InterruptedException ignore) {
             }
         }
         return this;
     }
+
 
     /**
      * Draws a grid on the image with the specified interval and color.
@@ -327,6 +351,19 @@ public class Camera implements Cloneable {
         Ray ray = constructRay(nX, nY, j, i);
         Color color = this.rayTracer.traceRay(ray);
         this.imageWriter.writePixel(j, i, color);
+    }
+
+    public Camera setMultithreading(int threads) {
+        if (threads < -2) throw new IllegalArgumentException("Multithreading must be -2 or higher");if (threads >= -1) threadsCount = threads;
+        else { // == -2
+            int cores = Runtime.getRuntime().availableProcessors() - SPARE_THREADS;
+            threadsCount = cores <= 2 ? 1 : cores;
+        }
+        return this;
+    }
+    public Camera setDebugPrint(double interval) {
+        printInterval = interval;
+        return this;
     }
 }
 

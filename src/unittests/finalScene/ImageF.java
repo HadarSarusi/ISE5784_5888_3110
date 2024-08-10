@@ -127,6 +127,7 @@ public class ImageF {
                 .setImageWriter(new ImageWriter("test15", 500, 500))
                 .build()
                 .renderImage()
+                .setMultithreading(3)
                 .writeToImage();
     }
 }

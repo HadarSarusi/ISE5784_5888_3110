@@ -83,7 +83,7 @@ public class Can {
                 .setKr(0.1);       // Low reflection
 
         // Load geometries from STL file with specified material and color
-        Geometries geometries = Stl.ConvertStlToGeometrys("unittests/finalScene/Soda_Can.stl", material1, canColor);
+        Geometries geometries = Stl.ConvertStlToGeometrys("Soda_Can.stl", material1, canColor);
 
         // Create the scene with background color and ambient light
         final Scene canScene = new Scene("canScene")

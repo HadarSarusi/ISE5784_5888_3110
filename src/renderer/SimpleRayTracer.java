@@ -220,8 +220,10 @@ public class SimpleRayTracer extends RayTracerBase {
      * @param nl    The vector representing the dot product of the normal vector and the light direction vector.
      * @param light The light source being considered.
      * @return A boolean value indicating whether the point is unshaded (true) or shaded (false).
+     * @deprecated Please use {@link #transparency(GeoPoint, Vector, Vector, double, LightSource, Double3)} instead
      */
     @Deprecated(forRemoval = true)
+    @SuppressWarnings("unused")
     private boolean unshaded(GeoPoint gp, Vector l, Vector n, double nl, LightSource light) {
         Vector lightDirection = l.scale(-1); // from point to light source
         if (gp.geometry.getMaterial().kT == Double3.ZERO) {
@@ -286,7 +288,7 @@ public class SimpleRayTracer extends RayTracerBase {
             if (gp == null) return scene.background.scale(kx);
             color = color.add(isZero(gp.geometry.getNormal(gp.point).dotProduct(ray.getDirection())) ? Color.BLACK : calcColor(gp, ray, level - 1, kkx).scale(kx));
         }
-        return color.scale((double) 1 / rays.size());
+        return color.reduce(rays.size());
     }
 
     /**
