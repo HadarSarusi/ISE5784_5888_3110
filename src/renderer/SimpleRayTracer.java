@@ -1,5 +1,6 @@
 package renderer;
 
+import geometries.Plane;
 import lighting.LightSource;
 import primitives.*;
 import scene.Scene;
@@ -106,8 +107,9 @@ public class SimpleRayTracer extends RayTracerBase {
      * @return the color at the specified point after applying global effects
      */
     private Color calcGlobalEffects(GeoPoint gp, int level, Double3 k, Material material, Vector v, Vector n) {
-        return calcGlobalEffect(constructRefractedRays(gp, v, n), level, k, material.kT).
-                add(calcGlobalEffect(constructReflectedRays(gp, v, n), level, k, material.kR));
+        Plane plane = new Plane(gp.point, n);
+        return calcGlobalEffect(constructRefractedRays(gp, v, n,plane), level, k, material.kT).
+                add(calcGlobalEffect(constructReflectedRays(gp, v, n, plane), level, k, material.kR));
 //        return calcGlobalEffect(constructRefractedRay(gp.point, v, n), material.kT, level, k)
 //                .add(calcGlobalEffect(constructReflectedRay(gp.point, v, n), material.kR, level, k));
     }
@@ -120,19 +122,20 @@ public class SimpleRayTracer extends RayTracerBase {
      * @param n the normal vector at the point on the geometry
      * @return the reflected ray
      */
-    private Ray constructReflectedRay(Point p, Vector v, Vector n) {
+    private Ray constructReflectedRay(Point p, Vector v, Vector n, Plane plane) {
         return new Ray(p, v.subtract(n.scale(v.dotProduct(n) * 2)), n);
     }
 
     /**
      * Constructs a refracted ray from the specified point.
      *
-     * @param p the point from which the refracted ray is constructed
-     * @param v the view vector
-     * @param n the normal vector at the point on the geometry
+     * @param p     the point from which the refracted ray is constructed
+     * @param v     the view vector
+     * @param n     the normal vector at the point on the geometry
+     * @param plane
      * @return the refracted ray
      */
-    private Ray constructRefractedRay(Point p, Vector v, Vector n) {
+    private Ray constructRefractedRay(Point p, Vector v, Vector n, Plane plane) {
         return new Ray(p, v, n);
     }
     /**
@@ -173,7 +176,7 @@ public class SimpleRayTracer extends RayTracerBase {
             Vector l = lightSource.getL(gp.point);
             double nl = alignZero(n.dotProduct(l));
             if ((nl * nv > 0)) {// sign(nl) == sign(nv)
-                Double3 ktr = transparency(gp, l, n, nl, lightSource, k);
+                Double3 ktr = transparency(gp, l, n, lightSource, k);
                 if (!ktr.equals(Double3.ZERO)) {
                     Color iL = lightSource.getIntensity(gp.point).scale(ktr);
                     color = color.add(iL.scale(calcDiffusive(material, nl)))
@@ -251,7 +254,7 @@ public class SimpleRayTracer extends RayTracerBase {
      * @param k     The attenuation factor of the reflection.
      * @return The transparency factor.
      */
-    private Double3 transparency(GeoPoint gp, Vector l, Vector n, double nl, LightSource light, Double3 k) {
+    private Double3 transparency(GeoPoint gp, Vector l, Vector n, LightSource light, Double3 k) {
         Vector lightDirection = l.scale(-1);
         Ray ray = new Ray(gp.point, lightDirection, n);
         Double3 ktr = Double3.ONE;// from point to light source
@@ -278,15 +281,17 @@ public class SimpleRayTracer extends RayTracerBase {
      * @return the color at the intersection with ray
      */
     private Color calcGlobalEffect(List<Ray> rays, int level, Double3 k, Double3 kx) {
-        Color color = new Color(0, 0, 0);
+        Color color = Color.BLACK;
 
         Double3 kkx = k.product(kx);
-        if (kkx.lowerThan(MIN_CALC_COLOR_K)) return Color.BLACK;
+        if (kkx.lowerThan(MIN_CALC_COLOR_K))
+            return scene.background;
 
         for (Ray ray : rays) {
             GeoPoint gp = findClosestIntersection(ray);
-            if (gp == null) return scene.background.scale(kx);
-            color = color.add(isZero(gp.geometry.getNormal(gp.point).dotProduct(ray.getDirection())) ? Color.BLACK : calcColor(gp, ray, level - 1, kkx).scale(kx));
+            if (gp == null) return scene.background;
+            color = color.add(isZero(gp.geometry.getNormal(gp.point).dotProduct(ray.getDirection()))
+                    ? scene.background : calcColor(gp, ray, level - 1, kkx).scale(kx));
         }
         return color.reduce(rays.size());
     }
@@ -299,16 +304,16 @@ public class SimpleRayTracer extends RayTracerBase {
      * @param n  The normal to the surface of the geometry at the point of gp.point.
      * @return A list of random reflected rays within the cone of the normal vector.
      */
-    private List<Ray> constructReflectedRays(GeoPoint gp, Vector v, Vector n) {
+    private List<Ray> constructReflectedRays(GeoPoint gp, Vector v, Vector n, Plane plane) {
         Material material = gp.geometry.getMaterial();
 
         if (material.numRaysReflected == 1 || isZero(material.coneAngleReflected))
-            return List.of(constructReflectedRay(gp.point, v, n));
+            return List.of(constructReflectedRay(gp.point, v, n, plane));
 
         List<Ray> rays = new ArrayList<>();
 
         // Generate random direction vectors within the cone of the normal vector
-        List<Vector> randomDirection = Vector.generateRandomDirectionInCone(gp, n, material.coneAngleReflected, material.numRaysReflected);
+        List<Vector> randomDirection = Vector.generateRandomDirectionInCone(gp, n, material.coneAngleReflected, material.numRaysReflected, plane);
 
         // Construct rays using the random direction vectors and add them to the list
         for (int i = 0; i < randomDirection.size() && i < material.numRaysReflected; i++) {
@@ -317,7 +322,7 @@ public class SimpleRayTracer extends RayTracerBase {
             rays.add(reflectedRay);
         }
 
-        rays.add(constructRefractedRay(gp.point, v, n));
+        rays.add(constructReflectedRay(gp.point, v, n, plane));
 
         return rays;
     }
@@ -330,16 +335,15 @@ public class SimpleRayTracer extends RayTracerBase {
      * @param n  The normal to the surface of the geometry at the point of gp.point.
      * @return A list of random refracted rays within the cone of the inverted normal vector.
      */
-    private List<Ray> constructRefractedRays(GeoPoint gp, Vector v, Vector n) {
+    private List<Ray> constructRefractedRays(GeoPoint gp, Vector v, Vector n, Plane plane) {
         Material material = gp.geometry.getMaterial();
-
         if (material.numRaysRefracted == 1 || isZero(material.coneAngleRefracted))
-            return List.of(constructRefractedRay(gp.point, v, n));
+            return List.of(constructRefractedRay(gp.point, v, n, plane));
 
         List<Ray> rays = new ArrayList<>();
 
         // Generate random direction vectors within the cone of the inverted normal vector
-        List<Vector> randomDirection = Vector.generateRandomDirectionInCone(gp, v, material.coneAngleRefracted, material.numRaysRefracted);
+        List<Vector> randomDirection = Vector.generateRandomDirectionInCone(gp, v, material.coneAngleRefracted, material.numRaysRefracted, plane);
 
         // Construct rays using the random direction vectors and add them to the list
         for (int i = 0; i < randomDirection.size() && i < material.numRaysRefracted; i++) {
@@ -347,7 +351,7 @@ public class SimpleRayTracer extends RayTracerBase {
             Ray refractedRay = new Ray(gp.point, u, n);
             rays.add(refractedRay);
         }
-        rays.add(constructRefractedRay(gp.point, v, n));
+        rays.add(constructRefractedRay(gp.point, v, n, plane));
 
         return rays;
     }

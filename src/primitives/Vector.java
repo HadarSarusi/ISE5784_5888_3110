@@ -146,6 +146,33 @@ public class Vector extends Point {
         return new Vector(this.xyz.reduce(length()));
     }
 
+    // פונקציה לחישוב סינוס
+    private static double sin(double x) {
+        double term = x, sum = x;
+        for (int i = 3; term != 0; i += 2) {
+            term *= -x * x / (i * (i - 1));
+            sum += term;
+        }
+        return sum;
+    }
+
+    // פונקציה לחישוב קוסינוס
+    private static double cos(double x) {
+        double term = 1, sum = 1;
+        for (int i = 2; term != 0; i += 2) {
+            term *= -x * x / (i * (i - 1));
+            sum += term;
+        }
+        return sum;
+    }
+
+    // פונקציה לחישוב טנגנס באמצעות סינוס וקוסינוס
+    private static double tan(double x) {
+        double sinX = sin(x);
+        double cosX = cos(x);
+        return sinX / cosX;
+    }
+
     /**
      * Generates a list of random vectors within a specified cone.
      *
@@ -155,16 +182,19 @@ public class Vector extends Point {
      * @param amount    the number of random vector to generate
      * @return list of random direction vector within the cone defined by the normal vector
      */
-    public static List<Vector> generateRandomDirectionInCone(Intersectable.GeoPoint gp, Vector n, double coneAngle, int amount) {
+    public static List<Vector> generateRandomDirectionInCone(Intersectable.GeoPoint gp, Vector n, double coneAngle, int amount, Plane plane) {
         List<Vector> result = new LinkedList<>();
 
-        double radius = Math.tan(coneAngle) / 2;
+        //double radius1 = Math.tan(coneAngle) / 2;
+        double radius2 = tan(coneAngle)/2;
+        //System.out.println("this is tan"+ radius1);
+        //System.out.println("this is sin"+radius2);
 
-        Plane plane = new Plane(gp.point, n);
+        //Plane plane = new Plane(gp.point, n);
         List<Vector> vectors = plane.findVectorsOfPlane();
         Vector x = vectors.get(0), y = vectors.get(1);
 
-        List<Point> points = generatePoints(y, x, amount, gp.point.add(n), radius);
+        List<Point> points = generatePoints(y, x, amount, gp.point.add(n), radius2);
 
         for (Point p : points) {
             result.add(

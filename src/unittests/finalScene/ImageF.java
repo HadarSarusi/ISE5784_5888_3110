@@ -41,16 +41,16 @@ public class ImageF {
                 .setKd(0.2)
                 .setKs(0.8)
                 .setKt(0)        // High transmission for transparency
-                .setKr(0.8)
-                .setNumRaysReflected(20)
-                .setConeAngleReflected(5);
+                .setKr(0.8);
+                //.setNumRaysReflected(10)
+                //.setConeAngleReflected(20);
 
         Material wallsMaterial = new Material()
                 .setShininess(20)
                 .setKd(0.9)
                 .setKs(0.1)
                 .setKt(0.8)
-                .setKr(0.1);     // Low reflection for walls
+                .setKr(0);     // Low reflection for walls
 
         Material wallsMaterialDiffuse = new Material()
                 .setShininess(50)
@@ -100,7 +100,7 @@ public class ImageF {
                         new Point(1, 10, -5),
                         new Point(1, 10, 5),
                         new Point(1, -10, 5)
-                ).setEmission(new Color(0, 0, 0)).setMaterial(wallsMaterial),
+                ).setEmission(new Color(0, 0, 0)).setMaterial(wallsMaterialDiffuse),
 
                 // Left wall
                 new Polygon(
@@ -121,13 +121,14 @@ public class ImageF {
                         .setKl(0.0004).setKq(0.00006)
         );
 
+
         // Build and render the image
         cameraBuilder.setLocation(new Point(15, 0, 10)).setVpDistance(370d)
                 .setVpSize(500d, 500d)
-                .setImageWriter(new ImageWriter("test15", 500, 500))
+                .setImageWriter(new ImageWriter("test19", 500, 500))
                 .build()
+                .setMultithreading(-2)
                 .renderImage()
-                .setMultithreading(3)
                 .writeToImage();
     }
 }
