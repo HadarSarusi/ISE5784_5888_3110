@@ -4,7 +4,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import static primitives.Util.alignZero;
-import static primitives.Vector.generateVector;
 
 /**
  * The `Point` class represents a point in 3D space.
@@ -147,41 +146,6 @@ public class Point {
         return Math.sqrt(this.distanceSquared(point));
     }
 
-    /**
-     * Generates a list of points distributed within a square grid around a center point,
-     * with added random jitter to each point.
-     *
-     * @param vX     the x vector of the plane used to determine the grid orientation.
-     * @param vY     the y vector of the plane used to determine the grid orientation.
-     * @param amount the number of points to generate.
-     * @param center the center point of the grid.
-     * @param radius the size of the circle of the grid.
-     * @return a list of generated points with jitter applied.
-     */
-    public static List<Point> generatePoints(Vector vX, Vector vY, int amount, Point center, double radius) {
-        List<Point> points = new LinkedList<>();
 
-        double divider = Math.sqrt(amount);
-        double r = radius / divider;
-
-        for (int k = 0; k < divider; k++) {
-            for (int l = 0; l < divider; l++) {
-                double yI = alignZero(-(k - (divider - 1) / 2) * r);
-                double xJ = alignZero(-(l - (divider - 1) / 2) * r);
-
-                Point pIJ = center;
-
-                if (xJ != 0) pIJ = pIJ.add(vX.scale(xJ));
-                if (yI != 0) pIJ = pIJ.add(vY.scale(yI));
-
-                // adding some random jitter
-                pIJ = pIJ.add(generateVector(vX, vY, r));
-
-                points.add(pIJ);
-            }
-        }
-
-        return points;
-    }
 }
 

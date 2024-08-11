@@ -58,7 +58,7 @@ public class ImageF {
                 .setKs(0.2)
                 .setKt(0.8)
                 .setKr(0.1)
-                .setNumRaysRefracted(50)
+                .setNumRaysRefracted(5)
                 .setConeAngleRefracted(20)
                 .setNumRaysReflected(5)
                 .setConeAngleReflected(5);
@@ -71,7 +71,7 @@ public class ImageF {
         // Configure the camera
         Camera.Builder cameraBuilder = Camera.getBuilder()
                 .setDirection(new Vector(-1, 0, -0.5), new Vector(-1, 0, -0.5).crossProduct(Vector.Y).scale(-1))
-                .setRayTracer(new SimpleRayTracer(canScene));
+                .setRayTracer(new SimpleRayTracer(canScene).setAdaptiveSuperSampling(true));//here we set addaptive
 
         // Add geometries to the scene
         canScene.geometries.add(
@@ -125,7 +125,7 @@ public class ImageF {
         // Build and render the image
         cameraBuilder.setLocation(new Point(15, 0, 10)).setVpDistance(370d)
                 .setVpSize(500d, 500d)
-                .setImageWriter(new ImageWriter("test19", 500, 500))
+                .setImageWriter(new ImageWriter("test20", 500, 500))
                 .build()
                 .setMultithreading(-2)
                 .renderImage()

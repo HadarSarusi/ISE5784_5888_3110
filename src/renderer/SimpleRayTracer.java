@@ -7,6 +7,7 @@ import scene.Scene;
 import geometries.Intersectable.GeoPoint;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static primitives.Util.alignZero;
@@ -23,6 +24,8 @@ public class SimpleRayTracer extends RayTracerBase {
      */
     private static final int MAX_CALC_COLOR_LEVEL = 10;
 
+    private static boolean adaptiveSuperSampling = false;
+
     /**
      * Minimum coefficient for color contribution to stop recursion.
      */
@@ -37,6 +40,10 @@ public class SimpleRayTracer extends RayTracerBase {
         super(scene);
     }
 
+    public SimpleRayTracer setAdaptiveSuperSampling(boolean adaptiveSuperSampling){
+        this.adaptiveSuperSampling = adaptiveSuperSampling;
+        return this;
+    }
     /**
      * Traces the given ray and returns the color determined by the ray tracing algorithm.
      * If there are no intersections, the background color is returned.
@@ -74,6 +81,7 @@ public class SimpleRayTracer extends RayTracerBase {
     private Color calcColor(GeoPoint geoPoint, Ray ray) {
         Color color = calcColor(geoPoint, ray, MAX_CALC_COLOR_LEVEL, Double3.ONE);
         return color.add(scene.ambientLight.getIntensity());
+
 //        return calcColor(geoPoint, ray, MAX_CALC_COLOR_LEVEL, Double3.ONE)
 //                .add(scene.ambientLight.getIntensity());
     }
@@ -92,7 +100,9 @@ public class SimpleRayTracer extends RayTracerBase {
         Vector v = ray.getDirection();
         Vector n = gp.geometry.getNormal(gp.point);
         Color color = calcLocalEffects(gp, material, v, n, k);
-        return 1 == level ? color : color.add(calcGlobalEffects(gp, level, k, material, v, n));
+        return 1 == level ? color : color.add(calcGlobalEffects(gp, level, k, material, ray, n));
+
+
     }
 
     /**
@@ -106,13 +116,88 @@ public class SimpleRayTracer extends RayTracerBase {
      * @param n        the normal vector at the point on the geometry
      * @return the color at the specified point after applying global effects
      */
-    private Color calcGlobalEffects(GeoPoint gp, int level, Double3 k, Material material, Vector v, Vector n) {
+    private Color calcGlobalEffects(GeoPoint gp, int level, Double3 k, Material material, Ray ray, Vector n) {
         Plane plane = new Plane(gp.point, n);
-        return calcGlobalEffect(constructRefractedRays(gp, v, n,plane), level, k, material.kT).
-                add(calcGlobalEffect(constructReflectedRays(gp, v, n, plane), level, k, material.kR));
-//        return calcGlobalEffect(constructRefractedRay(gp.point, v, n), material.kT, level, k)
-//                .add(calcGlobalEffect(constructReflectedRay(gp.point, v, n), material.kR, level, k));
+        if(!adaptiveSuperSampling){
+        return calcGlobalEffect(constructRefractedRays(gp, ray.getDirection(), n,plane), level, k, material.kT).
+                add(calcGlobalEffect(constructReflectedRays(gp, ray.getDirection(), n, plane), level, k, material.kR));}
+        else{return ReflectedAddaptiveRays(ray.getHead(), material.numRaysReflected, plane, level, k, material.kR).
+                add(ReflectedAddaptiveRays(ray.getHead(), material.numRaysRefracted, plane, level, k, material.kT));
+        }
     }
+
+    private Color ReflectedAddaptiveRays(Point head, int numRaysReflected, Plane plane, int level, Double3 k, Double3 kR) {
+        //Calculate the size of each pixel
+        double rX = Math.sqrt(numRaysReflected);
+        double rY = rX;
+        //HashMap<Ray,Color> storeColor = new HashMap<>();
+        return AdaptiveSuperSampling(head,rX,rY,numRaysReflected, plane, level, k, kR );
+    }
+
+    private Color AdaptiveSuperSampling(Point head, double rX, double rY, int numRaysReflected, Plane plane, int level, Double3 k, Double3 kR) {
+        List<Vector> vectors = plane.findVectorsOfPlane();
+        // Cast rays for the four corners of the pixel
+        Color topLeft = castRayAndColor(rX, rY, -1, -1 ,head, vectors, level, k, kR);
+        Color topRight = castRayAndColor( rX, rY, 1, -1,head, vectors, level, k, kR);
+        Color bottomLeft = castRayAndColor( rX, rY, -1, 1,head, vectors, level, k, kR);
+        Color bottomRight = castRayAndColor(rX, rY, 1, 1,head, vectors , level, k, kR);
+
+        // Check if all four colors are similar or the rayNum has reached the limit
+        if ((topLeft.equals(topRight)
+                && topLeft.equals(bottomLeft)
+                && topLeft.equals(bottomRight))
+                || numRaysReflected <=0 ) {
+
+            // Return the colorRay if all four colors are similar or rayNum limit reached
+            return topLeft;
+        } else {
+            // Recursively divide the pixel and perform adaptive supersampling
+            double newRx = rX / 2;
+            double newRy = rY / 2;
+
+            // Compute the four subpixel points within the pixel
+            Point A = head
+                    .add(vectors.get(1).scale((newRy)*-1)
+                            .add(vectors.get(0).scale((newRx)*-1)));
+
+            Point B = head
+                    .add(vectors.get(1).scale((newRy)*1)
+                            .add(vectors.get(0).scale((newRx)*-1)));
+
+            Point C = head
+                    .add(vectors.get(1).scale((newRy)*-1)
+                            .add(vectors.get(0).scale((newRx)*1)));
+
+            Point D = head
+                    .add(vectors.get(1).scale((newRy)*1)
+                            .add(vectors.get(0).scale((newRx)*1)));
+
+            // Recursively compute the color of the subpixels
+            Color topLeftSubpixel = AdaptiveSuperSampling(A, newRx, newRy, numRaysReflected / 4, plane, level,k,kR);
+            Color topRightSubpixel = AdaptiveSuperSampling(B, newRx, newRy, numRaysReflected / 4, plane, level,k,kR);
+            Color bottomLeftSubpixel = AdaptiveSuperSampling(C, newRx, newRy, numRaysReflected / 4, plane, level,k,kR);
+            Color bottomRightSubpixel = AdaptiveSuperSampling(D, newRx, newRy, numRaysReflected / 4, plane, level,k,kR);
+
+            // Compute the average color of the subpixels
+            return  topLeftSubpixel
+                    .add(topRightSubpixel)
+                    .add(bottomLeftSubpixel)
+                    .add(bottomRightSubpixel)
+                    .reduce(4);
+
+        }
+    }
+
+    private Color castRayAndColor(double rX, double rY, int offsetX, int offsetY, Point head, List<Vector> vectors,int level, Double3 k, Double3 kR) {
+       //צריך לקבל את ו y x
+        Vector x = vectors.get(0), y = vectors.get(1);
+                Point cornerPoint= head.add(y.scale((rY/2)*offsetY)
+                        .add(x.scale((rX/2)*offsetX)));
+        List<Ray> cornerRay = new ArrayList<>(List.of(new Ray(head, cornerPoint.subtract(head))));
+        // Perform ray casting and return the ColorRay
+        return calcGlobalEffect(cornerRay, level, k, kR);
+    }
+
 
     /**
      * Constructs a reflected ray from the specified point.
@@ -122,7 +207,7 @@ public class SimpleRayTracer extends RayTracerBase {
      * @param n the normal vector at the point on the geometry
      * @return the reflected ray
      */
-    private Ray constructReflectedRay(Point p, Vector v, Vector n, Plane plane) {
+    private Ray constructReflectedRay(Point p, Vector v, Vector n) {
         return new Ray(p, v.subtract(n.scale(v.dotProduct(n) * 2)), n);
     }
 
@@ -135,7 +220,7 @@ public class SimpleRayTracer extends RayTracerBase {
      * @param plane
      * @return the refracted ray
      */
-    private Ray constructRefractedRay(Point p, Vector v, Vector n, Plane plane) {
+    private Ray constructRefractedRay(Point p, Vector v, Vector n) {
         return new Ray(p, v, n);
     }
     /**
@@ -289,11 +374,16 @@ public class SimpleRayTracer extends RayTracerBase {
 
         for (Ray ray : rays) {
             GeoPoint gp = findClosestIntersection(ray);
-            if (gp == null) return scene.background;
-            color = color.add(isZero(gp.geometry.getNormal(gp.point).dotProduct(ray.getDirection()))
-                    ? scene.background : calcColor(gp, ray, level - 1, kkx).scale(kx));
+            if (gp == null) return scene.background.scale(kx);
+            color = color.add(isZero(gp.geometry.getNormal(gp.point).dotProduct(ray.getDirection())) ? Color.BLACK : calcColor(gp, ray, level - 1, kkx).scale(kx));
         }
-        return color.reduce(rays.size());
+        return color.scale((double) 1 / rays.size());
+//            if (gp == null) return scene.background;
+//            //color = (gp == null ? scene.background : calcColor(gp, ray, level - 1, kkx)).scale(kx);
+//            color = color.add(isZero(gp.geometry.getNormal(gp.point).dotProduct(ray.getDirection()))
+//                  ? scene.background : calcColor(gp, ray, level - 1, kkx).scale(kx));
+//        }
+//        return color.reduce(rays.size());
     }
 
     /**
@@ -308,12 +398,12 @@ public class SimpleRayTracer extends RayTracerBase {
         Material material = gp.geometry.getMaterial();
 
         if (material.numRaysReflected == 1 || isZero(material.coneAngleReflected))
-            return List.of(constructReflectedRay(gp.point, v, n, plane));
+            return List.of(constructReflectedRay(gp.point, v, n));
 
         List<Ray> rays = new ArrayList<>();
 
         // Generate random direction vectors within the cone of the normal vector
-        List<Vector> randomDirection = Vector.generateRandomDirectionInCone(gp, n, material.coneAngleReflected, material.numRaysReflected, plane);
+        List<Vector> randomDirection = TargetArea.generateRandomDirectionInCone(gp, n, material.coneAngleReflected, material.numRaysReflected, plane);
 
         // Construct rays using the random direction vectors and add them to the list
         for (int i = 0; i < randomDirection.size() && i < material.numRaysReflected; i++) {
@@ -322,7 +412,7 @@ public class SimpleRayTracer extends RayTracerBase {
             rays.add(reflectedRay);
         }
 
-        rays.add(constructReflectedRay(gp.point, v, n, plane));
+        rays.add(constructReflectedRay(gp.point, v, n));
 
         return rays;
     }
@@ -338,23 +428,22 @@ public class SimpleRayTracer extends RayTracerBase {
     private List<Ray> constructRefractedRays(GeoPoint gp, Vector v, Vector n, Plane plane) {
         Material material = gp.geometry.getMaterial();
         if (material.numRaysRefracted == 1 || isZero(material.coneAngleRefracted))
-            return List.of(constructRefractedRay(gp.point, v, n, plane));
-
+            return List.of(constructRefractedRay(gp.point, v, n));
         List<Ray> rays = new ArrayList<>();
-
         // Generate random direction vectors within the cone of the inverted normal vector
-        List<Vector> randomDirection = Vector.generateRandomDirectionInCone(gp, v, material.coneAngleRefracted, material.numRaysRefracted, plane);
-
+        List<Vector> randomDirection = TargetArea.generateRandomDirectionInCone(gp, v, material.coneAngleRefracted, material.numRaysRefracted, plane);
         // Construct rays using the random direction vectors and add them to the list
         for (int i = 0; i < randomDirection.size() && i < material.numRaysRefracted; i++) {
             Vector u = randomDirection.get(i);
             Ray refractedRay = new Ray(gp.point, u, n);
             rays.add(refractedRay);
         }
-        rays.add(constructRefractedRay(gp.point, v, n, plane));
-
+        rays.add(constructRefractedRay(gp.point, v, n));
         return rays;
+
+
     }
+
 }
 
 

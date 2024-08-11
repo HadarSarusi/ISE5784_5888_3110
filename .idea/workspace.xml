@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="21087c2b-fa54-4989-b039-4ac151d13dc5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/primitives/TargetArea.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Point.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/primitives/Vector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Vector.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/unittests/finalScene/ImageF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/finalScene/ImageF.java" afterDir="false" />
@@ -125,7 +127,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Hadar Sarusi/Desktop/Study/ISEminiProject",
+    "last_opened_file_path": "C:/Users/Hadar Sarusi/Desktop/Study/ISE5784_3110_5888",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -135,7 +137,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "com.github.copilot.settings.ApplicationConfigurable",
+    "settings.editor.selected.configurable": "settings.sync",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -298,6 +300,9 @@
       <workItem from="1723376304343" duration="58000" />
       <workItem from="1723376452473" duration="1506000" />
       <workItem from="1723381521121" duration="823000" />
+      <workItem from="1723383820806" duration="842000" />
+      <workItem from="1723385391393" duration="159000" />
+      <workItem from="1723385649456" duration="20088000" />
     </task>
     <task id="LOCAL‎-00001" summary="upload">
       <option name="closed" value="true" />
@@ -603,7 +608,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1723325892120</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL‎-00039" summary="Minip 2 without addaptive">
+      <option name="closed" value="true" />
+      <created>1723383858184</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL‎-00039" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1723383858184</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -621,7 +634,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="small fix" />
     <MESSAGE value="stage2_full" />
     <MESSAGE value="Stage_2 add triangle test and convert assertTrue to assertEqual" />
     <MESSAGE value="stage3 sphera EP test" />
@@ -646,7 +658,8 @@
     <MESSAGE value="Minip1" />
     <MESSAGE value="Minip1_with dan" />
     <MESSAGE value="Minip 2 with thread" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minip 2 with thread" />
+    <MESSAGE value="Minip 2 without addaptive" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minip 2 without addaptive" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -657,9 +670,24 @@
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/renderer/Camera.java</url>
-          <line>284</line>
-          <option name="timeStamp" value="8" />
+          <url>file://$PROJECT_DIR$/src/renderer/SimpleRayTracer.java</url>
+          <line>397</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/renderer/SimpleRayTracer.java</url>
+          <line>428</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/renderer/SimpleRayTracer.java</url>
+          <line>120</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/renderer/SimpleRayTracer.java</url>
+          <line>441</line>
+          <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
