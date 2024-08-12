@@ -354,13 +354,15 @@ public class Camera implements Cloneable {
     }
 
     public Camera setMultithreading(int threads) {
-        if (threads < -2) throw new IllegalArgumentException("Multithreading must be -2 or higher");if (threads >= -1) threadsCount = threads;
+        if (threads < -2) throw new IllegalArgumentException("Multithreading must be -2 or higher");
+        if (threads >= -1) threadsCount = threads;
         else { // == -2
             int cores = Runtime.getRuntime().availableProcessors() - SPARE_THREADS;
             threadsCount = cores <= 2 ? 1 : cores;
         }
         return this;
     }
+
     public Camera setDebugPrint(double interval) {
         printInterval = interval;
         return this;

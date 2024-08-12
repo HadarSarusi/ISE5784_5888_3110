@@ -1,6 +1,6 @@
 package finalScene;
 
-import geometries.Geometries;
+
 import geometries.Polygon;
 import geometries.Sphere;
 import lighting.AmbientLight;
@@ -42,8 +42,8 @@ public class ImageF {
                 .setKs(0.8)
                 .setKt(0)        // High transmission for transparency
                 .setKr(0.8);
-                //.setNumRaysReflected(10)
-                //.setConeAngleReflected(20);
+        //.setNumRaysReflected(10)
+        //.setConeAngleReflected(20);
 
         Material wallsMaterial = new Material()
                 .setShininess(20)

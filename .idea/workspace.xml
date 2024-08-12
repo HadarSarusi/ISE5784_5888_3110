@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="21087c2b-fa54-4989-b039-4ac151d13dc5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/primitives/TargetArea.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/primitives/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Point.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/primitives/Vector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Vector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/TargetArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/TargetArea.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/Pixel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Pixel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/unittests/finalScene/ImageF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/finalScene/ImageF.java" afterDir="false" />
     </list>
@@ -61,93 +60,93 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "false",
-    "JUnit.All in ISE5784_5888_3110.executor": "Run",
-    "JUnit.CameraTest.executor": "Run",
-    "JUnit.CameraTest.testConstructRay.executor": "Run",
-    "JUnit.Can.can.executor": "Run",
-    "JUnit.Can.executor": "Run",
-    "JUnit.CanWithImprove.canI.executor": "Run",
-    "JUnit.CanWithImprove.executor": "Run",
-    "JUnit.FinalImage2.executor": "Run",
-    "JUnit.FinalSceneCan.executor": "Run",
-    "JUnit.ImageF.executor": "Run",
-    "JUnit.ImageWriterTest.ImageWriterTest.executor": "Run",
-    "JUnit.ImageWriterTest.executor": "Run",
-    "JUnit.ImageWriterTest.imageWriterTest.executor": "Run",
-    "JUnit.IntegrationTest.executor": "Debug",
-    "JUnit.IntegrationTest.planeIntegrationTest.executor": "Run",
-    "JUnit.IntegrationTest.sphereIntegrationTest.executor": "Run",
-    "JUnit.IntegrationTest.triangleIntegrationTest.executor": "Run",
-    "JUnit.LightsTests.executor": "Run",
-    "JUnit.LightsTests.sphereDirectional.executor": "Run",
-    "JUnit.LightsTests.spherePoint.executor": "Debug",
-    "JUnit.LightsTests.sphereSpot.executor": "Run",
-    "JUnit.LightsTests.sphereSpotSharp.executor": "Run",
-    "JUnit.LightsTests.triangleIntegrationTest.executor": "Run",
-    "JUnit.LightsTests.trianglesDirectional.executor": "Run",
-    "JUnit.LightsTests.trianglesSpotSharp.executor": "Run",
-    "JUnit.PlaneTest.executor": "Run",
-    "JUnit.PlaneTest.findIntersections.executor": "Run",
-    "JUnit.PlaneTest.findIntsersections.executor": "Run",
-    "JUnit.PlaneTest.getNormal.executor": "Run",
-    "JUnit.RayTest.findClosestPoint.executor": "Run",
-    "JUnit.ReflectionRefractionTests (1).executor": "Run",
-    "JUnit.ReflectionRefractionTests.complexSceneTest.executor": "Run",
-    "JUnit.ReflectionRefractionTests.executor": "Run",
-    "JUnit.ReflectionRefractionTests.finalScene.executor": "Run",
-    "JUnit.ReflectionRefractionTests.myTest.executor": "Run",
-    "JUnit.ReflectionRefractionTests.twoSpheres.executor": "Run",
-    "JUnit.ReflectionRefractionTests.twoSpheresImproved.executor": "Run",
-    "JUnit.RenderTests.basicRenderXml.executor": "Run",
-    "JUnit.RenderTests.executor": "Run",
-    "JUnit.RenderTests.renderMultiColorTest.executor": "Run",
-    "JUnit.RenderTests.renderTwoColorTest.executor": "Run",
-    "JUnit.ShadowTests.executor": "Run",
-    "JUnit.ShadowTests.sphereTriangleInitial.executor": "Run",
-    "JUnit.ShadowTests.sphereTriangleMove1.executor": "Run",
-    "JUnit.ShadowTests.sphereTriangleMove2.executor": "Run",
-    "JUnit.ShadowTests.sphereTriangleSpot1.executor": "Run",
-    "JUnit.SphereTest.getNormal.executor": "Run",
-    "JUnit.SphereTest.testFindIntersections.executor": "Run",
-    "JUnit.SphereWall.executor": "Run",
-    "JUnit.TriangleTest.findIntsersections.executor": "Run",
-    "JUnit.TriangleTest.testGetNormal.executor": "Run",
-    "JUnit.TubeTest.getNormal.executor": "Run",
-    "JUnit.VectorTest.crossProduct.executor": "Run",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Hadar Sarusi/Desktop/Study/ISE5784_3110_5888",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "C:/Users/Hadar Sarusi/Desktop/מיני פרויקט מבוא להנדסת תכנה/Stage1/src/Main.java",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "settings.sync",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JUnit.All in ISE5784_5888_3110.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CameraTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CameraTest.testConstructRay.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.Can.can.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.Can.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CanWithImprove.canI.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CanWithImprove.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FinalImage2.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FinalSceneCan.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ImageF.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ImageWriterTest.ImageWriterTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ImageWriterTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ImageWriterTest.imageWriterTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.IntegrationTest.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.IntegrationTest.planeIntegrationTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.IntegrationTest.sphereIntegrationTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.IntegrationTest.triangleIntegrationTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LightsTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LightsTests.sphereDirectional.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LightsTests.spherePoint.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.LightsTests.sphereSpot.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LightsTests.sphereSpotSharp.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LightsTests.triangleIntegrationTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LightsTests.trianglesDirectional.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LightsTests.trianglesSpotSharp.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlaneTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlaneTest.findIntersections.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlaneTest.findIntsersections.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlaneTest.getNormal.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RayTest.findClosestPoint.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ReflectionRefractionTests (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ReflectionRefractionTests.complexSceneTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ReflectionRefractionTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ReflectionRefractionTests.finalScene.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ReflectionRefractionTests.myTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ReflectionRefractionTests.twoSpheres.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ReflectionRefractionTests.twoSpheresImproved.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RenderTests.basicRenderXml.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RenderTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RenderTests.renderMultiColorTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RenderTests.renderTwoColorTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ShadowTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ShadowTests.sphereTriangleInitial.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ShadowTests.sphereTriangleMove1.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ShadowTests.sphereTriangleMove2.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ShadowTests.sphereTriangleSpot1.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SphereTest.getNormal.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SphereTest.testFindIntersections.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SphereWall.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TriangleTest.findIntsersections.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TriangleTest.testGetNormal.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TubeTest.getNormal.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.VectorTest.crossProduct.executor&quot;: &quot;Run&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Hadar Sarusi/Desktop/Study/ISE5784_3110_5888&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/Hadar Sarusi/Desktop/מיני פרויקט מבוא להנדסת תכנה/Stage1/src/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "GitStage.ChangesTree.GroupingKeys": [
-      "directory",
-      "module",
-      "repository"
+  &quot;keyToStringList&quot;: {
+    &quot;GitStage.ChangesTree.GroupingKeys&quot;: [
+      &quot;directory&quot;,
+      &quot;module&quot;,
+      &quot;repository&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -668,26 +667,6 @@
           <url>file://$PROJECT_DIR$/unittests/geometries/PlaneTest.java</url>
           <line>66</line>
           <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/renderer/SimpleRayTracer.java</url>
-          <line>397</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/renderer/SimpleRayTracer.java</url>
-          <line>428</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/renderer/SimpleRayTracer.java</url>
-          <line>120</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/renderer/SimpleRayTracer.java</url>
-          <line>441</line>
-          <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

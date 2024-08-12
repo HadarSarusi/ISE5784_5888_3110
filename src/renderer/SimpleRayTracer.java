@@ -7,7 +7,6 @@ import scene.Scene;
 import geometries.Intersectable.GeoPoint;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import static primitives.Util.alignZero;
@@ -23,7 +22,9 @@ public class SimpleRayTracer extends RayTracerBase {
      * Recursion stopping condition for reflection and refraction calculations.
      */
     private static final int MAX_CALC_COLOR_LEVEL = 10;
-
+    /**
+     * A flag to enable or disable adaptive super sampling.
+     */
     private static boolean adaptiveSuperSampling = false;
 
     /**
@@ -40,10 +41,17 @@ public class SimpleRayTracer extends RayTracerBase {
         super(scene);
     }
 
-    public SimpleRayTracer setAdaptiveSuperSampling(boolean adaptiveSuperSampling){
+    /**
+     * Enables or disables adaptive super sampling.
+     *
+     * @param adaptiveSuperSampling {@code true} to enable adaptive super sampling; {@code false} to disable it.
+     * @return the current instance of {@code SimpleRayTracer} for method chaining.
+     */
+    public SimpleRayTracer setAdaptiveSuperSampling(boolean adaptiveSuperSampling) {
         this.adaptiveSuperSampling = adaptiveSuperSampling;
         return this;
     }
+
     /**
      * Traces the given ray and returns the color determined by the ray tracing algorithm.
      * If there are no intersections, the background color is returned.
@@ -118,35 +126,65 @@ public class SimpleRayTracer extends RayTracerBase {
      */
     private Color calcGlobalEffects(GeoPoint gp, int level, Double3 k, Material material, Ray ray, Vector n) {
         Plane plane = new Plane(gp.point, n);
-        if(!adaptiveSuperSampling){
-        return calcGlobalEffect(constructRefractedRays(gp, ray.getDirection(), n,plane), level, k, material.kT).
-                add(calcGlobalEffect(constructReflectedRays(gp, ray.getDirection(), n, plane), level, k, material.kR));}
-        else{return ReflectedAddaptiveRays(ray.getHead(), material.numRaysReflected, plane, level, k, material.kR).
-                add(ReflectedAddaptiveRays(ray.getHead(), material.numRaysRefracted, plane, level, k, material.kT));
+        if (!adaptiveSuperSampling) {
+            return calcGlobalEffect(constructRefractedRays(gp, ray.getDirection(), n, plane), level, k, material.kT).
+                    add(calcGlobalEffect(constructReflectedRays(gp, ray.getDirection(), n, plane), level, k, material.kR));
+        } else {
+            return ReflectedAddaptiveRays(ray.getHead(), material.numRaysReflected, plane, level, k, material.kR).
+                    add(ReflectedAddaptiveRays(ray.getHead(), material.numRaysRefracted, plane, level, k, material.kT));
         }
     }
 
+    /**
+     * Generates and traces reflected rays using adaptive super sampling.
+     * <p>
+     * This method calculates the number of reflected rays to be generated based on the
+     * specified resolution and uses adaptive super sampling to improve rendering efficiency.
+     * It calculates the pixel size based on the square root of the number of rays and then
+     * delegates the actual sampling to the {@code AdaptiveSuperSampling} method.
+     *
+     * @param head             The starting point of the reflected rays.
+     * @param numRaysReflected The total number of reflected rays to generate.
+     * @param plane            The plane on which the reflection occurs.
+     * @param level            The current recursion level for tracing rays.
+     * @param k                The coefficient for attenuation of the reflected color.
+     * @param kR               The reflection coefficient.
+     * @return The accumulated color from the reflected rays.
+     */
     private Color ReflectedAddaptiveRays(Point head, int numRaysReflected, Plane plane, int level, Double3 k, Double3 kR) {
         //Calculate the size of each pixel
         double rX = Math.sqrt(numRaysReflected);
         double rY = rX;
         //HashMap<Ray,Color> storeColor = new HashMap<>();
-        return AdaptiveSuperSampling(head,rX,rY,numRaysReflected, plane, level, k, kR );
+        return AdaptiveSuperSampling(head, rX, rY, numRaysReflected, plane, level, k, kR);
     }
 
+    /**
+     * Performs adaptive super sampling by recursively subdividing pixels and sampling colors.
+     *
+     * @param head             The starting point for the sampling rays.
+     * @param rX               The horizontal size of the pixel.
+     * @param rY               The vertical size of the pixel.
+     * @param numRaysReflected The number of rays to cast for reflection.
+     * @param plane            The plane on which sampling is performed.
+     * @param level            The current recursion level for ray tracing.
+     * @param k                The attenuation coefficient for the color.
+     * @param kR               The reflection coefficient.
+     * @return The averaged color from the sampled rays.
+     */
     private Color AdaptiveSuperSampling(Point head, double rX, double rY, int numRaysReflected, Plane plane, int level, Double3 k, Double3 kR) {
         List<Vector> vectors = plane.findVectorsOfPlane();
         // Cast rays for the four corners of the pixel
-        Color topLeft = castRayAndColor(rX, rY, -1, -1 ,head, vectors, level, k, kR);
-        Color topRight = castRayAndColor( rX, rY, 1, -1,head, vectors, level, k, kR);
-        Color bottomLeft = castRayAndColor( rX, rY, -1, 1,head, vectors, level, k, kR);
-        Color bottomRight = castRayAndColor(rX, rY, 1, 1,head, vectors , level, k, kR);
+        Color topLeft = castRayAndColor(rX, rY, -1, -1, head, vectors, level, k, kR);
+        Color topRight = castRayAndColor(rX, rY, 1, -1, head, vectors, level, k, kR);
+        Color bottomLeft = castRayAndColor(rX, rY, -1, 1, head, vectors, level, k, kR);
+        Color bottomRight = castRayAndColor(rX, rY, 1, 1, head, vectors, level, k, kR);
 
         // Check if all four colors are similar or the rayNum has reached the limit
         if ((topLeft.equals(topRight)
                 && topLeft.equals(bottomLeft)
                 && topLeft.equals(bottomRight))
-                || numRaysReflected <=0 ) {
+                || numRaysReflected <= 0) {
 
             // Return the colorRay if all four colors are similar or rayNum limit reached
             return topLeft;
@@ -157,29 +195,29 @@ public class SimpleRayTracer extends RayTracerBase {
 
             // Compute the four subpixel points within the pixel
             Point A = head
-                    .add(vectors.get(1).scale((newRy)*-1)
-                            .add(vectors.get(0).scale((newRx)*-1)));
+                    .add(vectors.get(1).scale((newRy) * -1)
+                            .add(vectors.get(0).scale((newRx) * -1)));
 
             Point B = head
-                    .add(vectors.get(1).scale((newRy)*1)
-                            .add(vectors.get(0).scale((newRx)*-1)));
+                    .add(vectors.get(1).scale((newRy) * 1)
+                            .add(vectors.get(0).scale((newRx) * -1)));
 
             Point C = head
-                    .add(vectors.get(1).scale((newRy)*-1)
-                            .add(vectors.get(0).scale((newRx)*1)));
+                    .add(vectors.get(1).scale((newRy) * -1)
+                            .add(vectors.get(0).scale((newRx) * 1)));
 
             Point D = head
-                    .add(vectors.get(1).scale((newRy)*1)
-                            .add(vectors.get(0).scale((newRx)*1)));
+                    .add(vectors.get(1).scale((newRy) * 1)
+                            .add(vectors.get(0).scale((newRx) * 1)));
 
             // Recursively compute the color of the subpixels
-            Color topLeftSubpixel = AdaptiveSuperSampling(A, newRx, newRy, numRaysReflected / 4, plane, level,k,kR);
-            Color topRightSubpixel = AdaptiveSuperSampling(B, newRx, newRy, numRaysReflected / 4, plane, level,k,kR);
-            Color bottomLeftSubpixel = AdaptiveSuperSampling(C, newRx, newRy, numRaysReflected / 4, plane, level,k,kR);
-            Color bottomRightSubpixel = AdaptiveSuperSampling(D, newRx, newRy, numRaysReflected / 4, plane, level,k,kR);
+            Color topLeftSubpixel = AdaptiveSuperSampling(A, newRx, newRy, numRaysReflected / 4, plane, level, k, kR);
+            Color topRightSubpixel = AdaptiveSuperSampling(B, newRx, newRy, numRaysReflected / 4, plane, level, k, kR);
+            Color bottomLeftSubpixel = AdaptiveSuperSampling(C, newRx, newRy, numRaysReflected / 4, plane, level, k, kR);
+            Color bottomRightSubpixel = AdaptiveSuperSampling(D, newRx, newRy, numRaysReflected / 4, plane, level, k, kR);
 
             // Compute the average color of the subpixels
-            return  topLeftSubpixel
+            return topLeftSubpixel
                     .add(topRightSubpixel)
                     .add(bottomLeftSubpixel)
                     .add(bottomRightSubpixel)
@@ -188,11 +226,25 @@ public class SimpleRayTracer extends RayTracerBase {
         }
     }
 
-    private Color castRayAndColor(double rX, double rY, int offsetX, int offsetY, Point head, List<Vector> vectors,int level, Double3 k, Double3 kR) {
-       //צריך לקבל את ו y x
+    /**
+     * Casts a ray from the given point and calculates the resulting color using global effects.
+     *
+     * @param rX      The horizontal size of the pixel.
+     * @param rY      The vertical size of the pixel.
+     * @param offsetX The horizontal offset for the ray direction.
+     * @param offsetY The vertical offset for the ray direction.
+     * @param head    The starting point for the ray.
+     * @param vectors The basis vectors of the plane for calculating direction.
+     * @param level   The current recursion level for ray tracing.
+     * @param k       The attenuation coefficient for color.
+     * @param kR      The reflection coefficient.
+     * @return The color calculated from the cast ray.
+     */
+    private Color castRayAndColor(double rX, double rY, int offsetX, int offsetY, Point head, List<Vector> vectors, int level, Double3 k, Double3 kR) {
+        //צריך לקבל את ו y x
         Vector x = vectors.get(0), y = vectors.get(1);
-                Point cornerPoint= head.add(y.scale((rY/2)*offsetY)
-                        .add(x.scale((rX/2)*offsetX)));
+        Point cornerPoint = head.add(y.scale((rY / 2) * offsetY)
+                .add(x.scale((rX / 2) * offsetX)));
         List<Ray> cornerRay = new ArrayList<>(List.of(new Ray(head, cornerPoint.subtract(head))));
         // Perform ray casting and return the ColorRay
         return calcGlobalEffect(cornerRay, level, k, kR);
@@ -214,10 +266,9 @@ public class SimpleRayTracer extends RayTracerBase {
     /**
      * Constructs a refracted ray from the specified point.
      *
-     * @param p     the point from which the refracted ray is constructed
-     * @param v     the view vector
-     * @param n     the normal vector at the point on the geometry
-     * @param plane
+     * @param p the point from which the refracted ray is constructed
+     * @param v the view vector
+     * @param n the normal vector at the point on the geometry
      * @return the refracted ray
      */
     private Ray constructRefractedRay(Point p, Vector v, Vector n) {
@@ -308,7 +359,7 @@ public class SimpleRayTracer extends RayTracerBase {
      * @param nl    The vector representing the dot product of the normal vector and the light direction vector.
      * @param light The light source being considered.
      * @return A boolean value indicating whether the point is unshaded (true) or shaded (false).
-     * @deprecated Please use {@link #transparency(GeoPoint, Vector, Vector, double, LightSource, Double3)} instead
+     * @deprecated Please use {@link #transparency(GeoPoint, Vector, Vector, LightSource, Double3)} instead
      */
     @Deprecated(forRemoval = true)
     @SuppressWarnings("unused")

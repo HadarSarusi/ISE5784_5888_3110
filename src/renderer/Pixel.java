@@ -13,6 +13,7 @@ record Pixel(int row, int col) {
     private static final String PRINT_FORMAT = "%5.1f%%\r";
     private static Object mutexNext = new Object();
     private static Object mutexPixels = new Object();
+
     static void initialize(int maxRows, int maxCols, double interval) {
         Pixel.maxRows = maxRows;
         Pixel.maxCols = maxCols;
@@ -20,6 +21,7 @@ record Pixel(int row, int col) {
         printInterval = (int) (interval * 10);
         if (print = printInterval != 0) System.out.printf(PRINT_FORMAT, 0d);
     }
+
     static Pixel nextPixel() {
         synchronized (mutexNext) {
             if (cRow == maxRows) return null;
@@ -31,6 +33,7 @@ record Pixel(int row, int col) {
         }
         return null;
     }
+
     static void pixelDone() {
         boolean flag = false;
         int percentage = 0;
