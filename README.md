@@ -1,31 +1,29 @@
-Ray Tracing Engine – Java 17
-Project Overview
+# Ray Tracing Engine – Java 17
 
-This project implements a full Ray Tracing Engine in pure Java 17.
-It was developed as part of the Intro to Software Engineering practical course, and its purpose is to explore advanced concepts in:
+## Project Overview
+This project implements a complete **Ray Tracing Engine** written fully in **Java 17**.
 
-Computer graphics
+It was developed as part of the *Intro to Software Engineering* practical course, focusing on:
 
-3D geometry
+- 3D computer graphics  
+- Ray tracing algorithms  
+- Clean Object-Oriented Design  
+- Software engineering principles  
+- Design patterns  
+- Mathematical modeling  
+- Test Driven Development (TDD)
 
-Ray tracing algorithms
+The engine supports 3D geometric primitives, lighting, camera operations, rendering logic, and image output — all without external libraries.
 
-Clean OOP design
+---
+# Authors
+- **Lea Haim & Hadar Sarusi**
 
-Software engineering principles
 
-Design patterns
+# Project Structure
 
-Unit testing & responsibility-driven architecture
-
-The engine supports 3D primitives, lighting models, camera transformations, pixel rendering, and image output — all written without any external libraries.
-
-Author
-
-Hadar Sarusi
-
-Project Structure
-./src
+```plaintext
+src/
 ├── geometries/
 │   ├── Cylinder.java
 │   ├── Geometries.java
@@ -74,157 +72,158 @@ Project Structure
         ├── lighting/
         ├── primitives/
         └── renderer/
+```
 
-Software Engineering Concepts Used
-✔ TDD – Test Driven Development
+---
 
-All core components have dedicated JUnit test folders under:
+# Software Engineering Concepts
 
-test/unittests/
+## Test Driven Development (TDD)
 
+Unit tests validate:
 
-This ensures correctness of:
+- Vector and point math  
+- Geometric intersections  
+- Lighting models  
+- Rendering logic  
+- Ray accuracy  
 
-vector math
+**Tests are located under:**
 
-intersections
+```plaintext
+src/test/unittests/
+```
 
-geometric primitives
+---
 
-lighting
+## Responsibility Driven Design (RDD)
 
-rendering behavior
+Each component has a single responsibility:
 
-✔ RDD – Responsibility Driven Design
+- `Vector.java` → vector operations  
+- `Ray.java` → ray construction and intersection logic  
+- Geometry classes → shape-specific behavior  
+- `Camera.java` → camera transformations and ray creation  
+- `SimpleRayTracer.java` → rendering pipeline  
 
-Each class has a clear responsibility.
-Examples from your implementation:
+---
 
-Vector calculations → Vector.java
+## Avoiding Hard-Coding
 
-Ray logic & intersections → Ray.java
+All scene settings, improvements, and rendering options are configurable using **setters**, enabling maximum flexibility.
 
-3D object behavior → geometry classes
+---
 
-Camera behavior & transformations → Camera.java
+## Abstraction & Encapsulation
 
-✔ Abstraction & Encapsulation
+Each module behaves as an isolated subsystem:
 
-Each module (lighting, geometries, primitives, renderer) behaves as a black box, allowing clean architecture and easy debugging.
+```plaintext
+lighting/
+geometries/
+primitives/
+renderer/
+```
 
-✔ Avoiding Hard-Coding
+This modularity allows clean architecture and simplifies extension.
 
-Features like improvements, picture tuning, and scene parameters are controlled via setters to keep the engine flexible.
+---
 
-✔ Law of Demeter
+## Law of Demeter
 
-Classes interact only with their direct neighbors to keep the design decoupled.
+Classes interact only with their immediate collaborators, ensuring low coupling and better maintainability.
 
-✔ DRY – Don't Repeat Yourself
+---
 
-Shared operations (vectors, dot products, colors, materials) appear only once in the primitives package.
+## DRY – Don't Repeat Yourself
 
-✔ KISS – Keep It Simple, Stupid
+Shared logic (vectors, colors, materials, utilities) exists once inside:
 
-The implementation avoids unnecessary complexity and follows clean, readable structure.
+```plaintext
+src/primitives/
+```
 
-3D Objects Supported
+and is reused throughout the system.
 
-Your engine supports the following primitives:
+---
 
-Sphere
+## KISS – Keep It Simple
 
-Cylinder
+The project avoids unnecessary complexity and remains clean, readable, and maintainable.
 
-Tube
+---
 
-Plane
+# 3D Objects Supported
 
-Polygon
+- Sphere  
+- Cylinder  
+- Tube  
+- Plane  
+- Triangle  
+- Polygon  
+- Composite objects via `Geometries.java`
 
-Triangle
+---
 
-Geometries (Composite of multiple shapes)
+# Lighting Models Supported
 
-Lighting Models Supported
+- Ambient Light  
+- Directional Light  
+- Point Light  
+- Spot Light (with adjustable beam angle)
 
-Ambient Light
+---
 
-Directional Light
+# Camera Features
 
-Point Light
+## View Plane Configuration
+- Width  
+- Height  
+- Distance  
 
-Spot Light (with beam angle support)
+## Orientation Controls
+- Yaw  
+- Pitch  
+- Roll  
 
-Camera Features
-View Plane Control
+## Movement Controls
+- Forward / Backward  
+- Up / Down  
+- Right / Left  
 
-Width
+---
 
-Height
+# Renderer
 
-Distance
+The rendering pipeline includes:
 
-Orientation
+1. Camera generates rays per pixel  
+2. Ray–object intersections are calculated  
+3. Lighting model evaluates shading  
+4. Color is computed  
+5. Pixel is written to the image using `ImageWriter`  
 
-Yaw
+## Renderer Implementation
+- `RayTracerBase.java` – abstract tracer  
+- `SimpleRayTracer.java` – concrete implementation  
 
-Pitch
+---
 
-Roll
+# Running the Project
 
-Movement
+## Clone the repository
 
-Forward / Backward
-
-Up / Down
-
-Right / Left
-
-Ray Construction
-
-The Camera class generates rays per pixel and sends them to the renderer.
-
-Renderer
-
-Your renderer supports:
-
-Simple Ray Tracer
-
-Pixel-by-pixel color calculation
-
-Image output using ImageWriter
-
-The rendering pipeline:
-
-Camera generates rays
-
-Rays intersect with objects
-
-Lighting model evaluates shading
-
-Pixel color is written to the output image
-
-Running the Project
-Clone
+```bash
 git clone https://github.com/HadarSarusi/ISE5784_5888_3110.git
+```
 
-Run
+## Run the project
 
-Open in IntelliJ IDEA
+1. Open the project in **IntelliJ IDEA**  
+2. Set **Java 17** as the Project SDK  
+3. Build the project  
+4. Run:
 
-Set SDK to Java 17
-
-Build → Run Main.java (under /test)
-
-Rendered image output will be produced by ImageWriter
-
-Future Improvements
-
-Anti-aliasing
-
-Reflections / refractions
-
-Adaptive super sampling
-
-Multi-threaded rendering
+```plaintext
+src/test/Main.java
+```
