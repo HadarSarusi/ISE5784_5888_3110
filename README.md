@@ -1,26 +1,48 @@
-# Ray Tracing Engine – Java 17
+# 🚀 Ray Tracing Engine – Java 17 🚀
 
-## Project Overview
+> 🎨 A complete 3D Ray Tracing Engine built from scratch using **Java 17**  
+> 💡 Developed as part of an Intro to Software Engineering course  
+> 🧠 Built with strong OOP principles, clean architecture & rendering algorithms  
+
+---
+
+## 🧾 Project Overview 🧾
+
 This project implements a complete **Ray Tracing Engine** written fully in **Java 17**.
 
 It was developed as part of the *Intro to Software Engineering* practical course, focusing on:
 
-- 3D computer graphics  
-- Ray tracing algorithms  
-- Clean Object-Oriented Design  
-- Software engineering principles  
-- Design patterns  
-- Mathematical modeling  
-- Test Driven Development (TDD)
+- 🖥️ 3D computer graphics  
+- 🔦 Ray tracing algorithms  
+- 🧱 Clean Object-Oriented Design  
+- 📐 Software engineering principles  
+- 🧩 Design patterns  
+- ➗ Mathematical modeling  
+- 🧪 Test Driven Development (TDD)  
 
-The engine supports 3D geometric primitives, lighting, camera operations, rendering logic, and image output — all without external libraries.
+The engine supports 3D geometric primitives, advanced lighting models, camera operations, rendering logic, and image output — all implemented **without external libraries**.
 
 ---
-# Authors
-- **Lea Haim & Hadar Sarusi**
 
+## 🛠️ Technologies & Tools 🛠️
 
-# Project Structure
+### 💻 Core Technologies
+- ☕ Java 17  
+- 🧪 JUnit (Unit Testing)  
+- 📦 IntelliJ IDEA  
+
+### 🧠 Engineering Principles Applied
+- 🧪 Test Driven Development (TDD)  
+- 🎯 Responsibility Driven Design (RDD)  
+- 📏 Law of Demeter  
+- 🔁 DRY – Don't Repeat Yourself  
+- ✨ KISS – Keep It Simple  
+- 🧱 Avoiding Hard-Coding  
+- 🏗️ Clean Modular Architecture  
+
+---
+
+## 📂 Project Structure 📂
 
 ```plaintext
 src/
@@ -74,21 +96,23 @@ src/
         └── renderer/
 ```
 
+✨ The modular structure enables clear separation of responsibilities and easy extensibility.
+
 ---
 
-# Software Engineering Concepts
+## 🧪 Software Engineering Concepts 🧪
 
-## Test Driven Development (TDD)
+### 🔍 Test Driven Development (TDD)
 
 Unit tests validate:
 
-- Vector and point math  
-- Geometric intersections  
-- Lighting models  
-- Rendering logic  
-- Ray accuracy  
+- ➗ Vector and point mathematics  
+- 📐 Geometric intersections  
+- 💡 Lighting calculations  
+- 🎨 Rendering logic  
+- 🎯 Ray accuracy  
 
-**Tests are located under:**
+📁 Tests are located under:
 
 ```plaintext
 src/test/unittests/
@@ -96,25 +120,19 @@ src/test/unittests/
 
 ---
 
-## Responsibility Driven Design (RDD)
+### 🎯 Responsibility Driven Design (RDD)
 
-Each component has a single responsibility:
+Each component maintains a **single responsibility**:
 
 - `Vector.java` → vector operations  
-- `Ray.java` → ray construction and intersection logic  
+- `Ray.java` → ray construction & intersection logic  
 - Geometry classes → shape-specific behavior  
-- `Camera.java` → camera transformations and ray creation  
-- `SimpleRayTracer.java` → rendering pipeline  
+- `Camera.java` → camera transformations & ray generation  
+- `SimpleRayTracer.java` → rendering pipeline orchestration  
 
 ---
 
-## Avoiding Hard-Coding
-
-All scene settings, improvements, and rendering options are configurable using **setters**, enabling maximum flexibility.
-
----
-
-## Abstraction & Encapsulation
+### 🧱 Abstraction & Encapsulation
 
 Each module behaves as an isolated subsystem:
 
@@ -125,105 +143,124 @@ primitives/
 renderer/
 ```
 
-This modularity allows clean architecture and simplifies extension.
+This separation enforces encapsulation, low coupling, and scalable architecture.
 
 ---
 
-## Law of Demeter
+### 🧱 Avoiding Hard-Coding
 
-Classes interact only with their immediate collaborators, ensuring low coupling and better maintainability.
+All rendering parameters and scene configurations are adjustable via **setters**, ensuring flexibility and maintainability.
 
 ---
 
-## DRY – Don't Repeat Yourself
+### 🧠 Law of Demeter
 
-Shared logic (vectors, colors, materials, utilities) exists once inside:
+Classes interact only with their immediate collaborators, reducing coupling and increasing maintainability.
+
+---
+
+### 🔁 DRY – Don't Repeat Yourself
+
+Shared logic (vectors, colors, materials, utilities) is centralized under:
 
 ```plaintext
 src/primitives/
 ```
 
-and is reused throughout the system.
+and reused throughout the engine.
 
 ---
 
-## KISS – Keep It Simple
+### ✨ KISS – Keep It Simple
 
-The project avoids unnecessary complexity and remains clean, readable, and maintainable.
-
----
-
-# 3D Objects Supported
-
-- Sphere  
-- Cylinder  
-- Tube  
-- Plane  
-- Triangle  
-- Polygon  
-- Composite objects via `Geometries.java`
+The implementation avoids unnecessary complexity, keeping the architecture readable, scalable, and clean.
 
 ---
 
-# Lighting Models Supported
+## 🌍 3D Objects Supported 🌍
 
-- Ambient Light  
-- Directional Light  
-- Point Light  
-- Spot Light (with adjustable beam angle)
+- 🟠 Sphere  
+- 🧱 Cylinder  
+- 🧪 Tube  
+- 📐 Plane  
+- 🔺 Triangle  
+- 🔷 Polygon  
+- 🧩 Composite geometries via `Geometries.java`
 
 ---
 
-# Camera Features
+## 💡 Lighting Models Supported 💡
 
-## View Plane Configuration
+- 🌤️ Ambient Light  
+- ☀️ Directional Light  
+- 💡 Point Light  
+- 🔦 Spot Light (with adjustable beam angle)
+
+---
+
+## 📷 Camera Features 📷
+
+### 🎯 View Plane Configuration
 - Width  
 - Height  
 - Distance  
 
-## Orientation Controls
+### 🧭 Orientation Controls
 - Yaw  
 - Pitch  
 - Roll  
 
-## Movement Controls
+### 🚶 Movement Controls
 - Forward / Backward  
 - Up / Down  
 - Right / Left  
 
 ---
 
-# Renderer
+## 🎨 Rendering Pipeline 🎨
 
-The rendering pipeline includes:
+1️⃣ Camera generates rays per pixel  
+2️⃣ Ray–object intersections are computed  
+3️⃣ Lighting model evaluates shading  
+4️⃣ Final color is calculated  
+5️⃣ Pixel is written to the image using `ImageWriter`
 
-1. Camera generates rays per pixel  
-2. Ray–object intersections are calculated  
-3. Lighting model evaluates shading  
-4. Color is computed  
-5. Pixel is written to the image using `ImageWriter`  
-
-## Renderer Implementation
+### 🏗️ Renderer Implementation 🏗️
 - `RayTracerBase.java` – abstract tracer  
 - `SimpleRayTracer.java` – concrete implementation  
 
 ---
 
-# Running the Project
+## ▶️ Running the Project ▶️
 
-## Clone the repository
+### 📥 Clone the repository
 
 ```bash
-git clone https://github.com/HadarSarusi/ISE5784_5888_3110.git
+git clone https://github.com/HadarSarusi/java-ray-tracing-engine.git
 ```
 
-## Run the project
+### 💥 Run the project
 
-1. Open the project in **IntelliJ IDEA**  
-2. Set **Java 17** as the Project SDK  
+1. Open the project in IntelliJ IDEA  
+2. Set Java 17 as the Project SDK  
 3. Build the project  
 4. Run:
 
 ```plaintext
 src/test/Main.java
 ```
+
+---
+
+## 👩‍💻 Authors & Credits 👩‍💻
+
+- 🌟 **Lea Haim** 🌟  
+- 💙 **Hadar Sarusi** 💙  
+
+[![GitHub](https://img.shields.io/badge/GITHUB-LEAHAIM-0D1117?style=for-the-badge&logo=github&logoColor=white)](https://github.com/LeaHaim)
+
+[![GitHub](https://img.shields.io/badge/GITHUB-HADARSARUSI-1F6FEB?style=for-the-badge&logo=github&logoColor=white)](https://github.com/HadarSarusi)
+
+---
+
+> ✨ If you like this project – please leave a star! ✨
