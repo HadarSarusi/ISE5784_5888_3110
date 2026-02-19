@@ -254,12 +254,33 @@ src/test/Main.java
 
 ## 👩‍💻 Authors & Credits 👩‍💻
 
-- 🌟 **Lea Haim** 🌟  
-- 💙 **Hadar Sarusi** 💙  
+<div align="center">
 
-[![GitHub](https://img.shields.io/badge/GITHUB-LEAHAIM-0D1117?style=for-the-badge&logo=github&logoColor=white)](https://github.com/LeaHaim)
+<table>
+<tr>
 
+<td align="center">
+
+<img src="https://github.com/HadarSarusi.png" width="150" style="border-radius: 12px;" />
+
+###  Hadar Sarusi 
 [![GitHub](https://img.shields.io/badge/GITHUB-HADARSARUSI-1F6FEB?style=for-the-badge&logo=github&logoColor=white)](https://github.com/HadarSarusi)
+
+</td>
+
+<td align="center">
+
+<img src="https://github.com/LeaHaim.png" width="150" style="border-radius: 12px;" />
+
+### Lea Haim 
+[![GitHub](https://img.shields.io/badge/GITHUB-LEAHAIM-1F6FEB?style=for-the-badge&logo=github&logoColor=white)](https://github.com/LeaHaim)
+
+</td>
+
+</tr>
+</table>
+
+</div>
 
 ---
 
